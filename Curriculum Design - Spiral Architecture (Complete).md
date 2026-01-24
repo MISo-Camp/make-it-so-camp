@@ -625,20 +625,23 @@ Not just technical skills, but metacognitive ability to recognize implicit patte
 
 ---
 
-# Summary: Spiral Curriculum for Make It So Camp
+## Summary
 
 **Core Innovation**: Mental model shift revealed through tool building
 
 **Architecture**: Three recursive loops (Discovery → Application → Integration)
 
-**Pattern Mechanisms**: Checkpoints + Peer observation + Pattern-first briefs
+**Pattern Mechanisms**:
+- Structured reflection checkpoints
+- Peer observation
+- Pattern-first briefs
 
-**Duration**: 2 days intensive + async week
-
-**Deliverables**:
+**Participant Outcomes**:
 - 3 working tools
 - 3-5 documented protocols
 - Pattern stack foundation
 - Ability to teach this approach to others
 
 **Key Insight**: Articulation isn't just for AI - it's how you discover your own method
+
+**Adaptable Delivery**: This outcome-based design can be delivered as 2-day intensive, 2-week distributed camp, or other formats while maintaining pedagogical integrity.

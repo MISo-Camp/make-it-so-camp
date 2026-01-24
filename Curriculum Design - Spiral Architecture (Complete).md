@@ -420,24 +420,32 @@ Facilitator reframe: "There's no right pattern, just explicit vs. implicit"
 
 ---
 
-## Deliverables
+## Participant Outcomes
 
-**End of Day 1:**
-- One tiny tool (Loop 1)
-- One micro-project (Loop 2)
-- Two documented patterns/protocols
-- Experience of full mental model → build → reflect cycle
+**Loop 1 Complete:**
+- One working tiny tool
+- One documented pattern (rough notes)
+- Experience of "articulation reveals your method"
 
-**End of Day 2:**
-- One collaborative protocol (co-created)
-- Small project in progress (core feature working)
+**Loop 2 Complete:**
+- One working micro-project (published on GitHub)
+- One documented protocol ("How I [do X]")
+- Experience of "structure doesn't constrain, it enables"
+
+**Loop 3 Complete:**
+- One collaborative protocol (co-created with 3-4 peers)
+- Small project launched (core feature working)
 - Pattern stack begun
+- Understanding of transparency-creativity loop at team scale
 
-**End of Async Week:**
-- One deployed small project
-- Complete pattern stack documentation
-- "Programming OS" foundation: 3-5 documented protocols
-- Ability to articulate this approach to others
+**Full Camp Complete:**
+- 3 working tools (tiny tool, micro-project, small project deployed)
+- 3-5 documented protocols (personal + collaborative)
+- Pattern stack foundation ("Programming OS")
+- Ability to articulate and teach this approach to others
+
+**Key Capability Developed:**
+Not just technical skills, but metacognitive ability to recognize implicit patterns and make them explicit - for yourself and for teams.
 
 ---
 

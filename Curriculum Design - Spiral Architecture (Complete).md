@@ -123,116 +123,127 @@ Participants install Claude Code and run first command. Checkpoint: They've seen
 
 ---
 
-## Loop 2: Application (Day 1, 1:30-6:00)
+## Loop 2: Application
 
-**Goal**: Apply pattern articulation systematically to build a working micro-project
+**Outcome**: Participants apply pattern articulation systematically to build a working micro-project with documented protocol
 
-**Duration**: 4.5 hours
+**Complete when:**
+- One working micro-project built and published
+- One protocol documented ("How I [decide/build/evaluate] this type of thing")
+- Experience of "structure doesn't constrain, it enables"
 
-### 2.1 Mental Model Input: "Articulation as Design" (1 hour)
+### 2.1 Mental Model Input: "Articulation as Design"
 
-**Concept Introduction (20 min):**
+**Outcome:** Participants understand articulation as design work (not just documentation)
+
+**Core concepts to cover:**
 - Articulation ≠ documentation (design vs. recording)
 - "What is the mental model of this list?" (EPA example)
 - POV-driven iteration: "THIS not THAT" (Noah WhatsApp)
 - When to make things explicit vs. let them stay tacit
 
-**Exercise: Three Ways to Articulate (20 min):**
-- Take your Loop 1 pattern
-- Articulate it three different ways:
-  1. As a rule ("Always do X when Y")
-  2. As a question ("How do I know when Z?")
-  3. As a trade-off ("I accept A to get B")
-- Pair share: Which articulation is most useful?
+**Example approach: Three Ways to Articulate**
 
-**Pattern-First Brief Template (20 min):**
-Introduction to structured briefs:
+Take Loop 1 pattern and articulate it three different ways:
+1. As a rule: "Always do X when Y"
+2. As a question: "How do I know when Z?"
+3. As a trade-off: "I accept A to get B"
+
+Pair discussion: Which articulation is most useful? Why?
+
+**Introduce: Pattern-First Brief Template**
+
+Structure for articulating BEFORE building:
 - Goal: What I'm building
 - Success criteria: What "good enough" means TO ME
 - Out of scope: What I'm NOT doing
 - Pattern hypothesis: What pattern am I testing/documenting?
 
-**Example walkthrough**: Facilitator demonstrates writing a pattern-first brief
+Example walkthrough by facilitator
 
 ---
 
-### 2.2 Micro-Project Build (3 hours)
+### 2.2 Micro-Project Build
 
-**Following the existing Modules 3-10 structure, but with pattern mechanisms integrated:**
+**Outcome:** Participants build a complete micro-project following the pattern-first methodology
 
-**Module 3: Picking Your Micro-Project (20 min)**
-- Criteria: Solves real annoyance, completable in 2-4 hours, tangible artifact
-- NEW: Pattern question: "What recurring pattern does this solve?"
-- Exercise: Brainstorm 3 candidates, pick one
-- Peer review: Does this solve a real pattern?
+**Project Selection (Module 3):**
+Criteria: Solves real annoyance, completable in focused session, tangible artifact
 
-**Module 4: Pattern-First Brief (20 min)**
-- Write brief using template from 2.1
-- NEW: Explicit articulation of YOUR success criteria
-- NEW: "What does 'good enough' mean for this specific thing?"
-- Peer review checkpoint: "Does this brief pass clarity test?"
+Key addition: "What recurring pattern does this solve?"
 
-**Module 5: Brainstorming WITH Claude (20 min)**
-- How to brainstorm WITH Claude, not ask it to brainstorm FOR you
+Brainstorm 3 candidates, pick one
+Peer review checkpoint: Does this solve a real pattern?
+
+**Pattern-First Brief (Module 4):**
+Write brief using template from 2.1
+
+Critical element: Articulate YOUR success criteria (not generic "good")
+Question: "What does 'good enough' mean for this specific thing?"
+
+Peer review: "Does this brief pass clarity test?"
+
+**Brainstorming WITH Claude (Module 5):**
+How to brainstorm WITH Claude, not ask it to brainstorm FOR you
 - "Yes, and" vs. "no, instead"
-- NEW: "How do I brainstorm? What's my pattern?" (meta-question)
+- Meta-question: "How do I brainstorm? What's my pattern?"
 - Ruthless scoping: essential vs. nice-to-have
 
-**Module 6: Making a Plan (15 min)**
-- Micro-scale plan: simple numbered list
-- Claude helps sequence steps
-- Checkpoint: 5-10 step plan
+**Planning (Module 6):**
+Create micro-scale plan (simple numbered list)
+Claude helps sequence steps
+Checkpoint: 5-10 step plan
 
-**Module 7: Executing (First Pass) (40 min)**
+**Executing First Pass (Module 7):**
 - Hand Claude the plan + brief together
 - Peer observation resumes: Observer notes articulation moments
 - Watch it work: what to pay attention to
 - Basic git: commit = snapshot
 - Checkpoint: First draft exists
 
-**Module 8: Reviewing and Refining (30 min)**
+**Reviewing and Refining (Module 8):**
 - Evaluate: does it do what you asked?
 - Targeted feedback: "this works, this doesn't, here's what I expected"
-- NEW Pattern checkpoint: "What pattern am I refining right now?"
+- Pattern checkpoint: "What pattern am I refining right now?"
 - Observer feedback: "Here's what I saw you articulate"
 - Checkpoint: Working version
 
-**Module 9: Testing and Evaluating (20 min)**
+**Testing and Evaluating (Module 9):**
 - Test with real inputs
 - "Works" vs. "works well"
 - When is it done? (good enough vs. gold-plating)
-- NEW: "How did I decide it was done?" (capture decision pattern)
+- Document: "How did I decide it was done?" (capture decision pattern)
 
-**Module 10: Publishing + PATTERN REFLECTION (35 min)**
+**Publishing + Pattern Reflection (Module 10):**
 - Put on GitHub (step-by-step)
 - Write README
-- NEW: Structured Pattern Documentation (20 min):
-  - What pattern did you discover while building?
-  - What had to become explicit that was previously implicit?
-  - If you built this again, what would you document for reuse?
-  - Create first draft "protocol": "How I build [this type of thing]"
+
+Structured Pattern Documentation:
+- What pattern did you discover while building?
+- What had to become explicit that was previously implicit?
+- If you built this again, what would you document for reuse?
+- Create first draft "protocol": "How I build [this type of thing]"
 
 ---
 
-### 2.3 Pattern Documentation (30 min)
+### 2.3 Protocol Creation
 
-**Structured Protocol Creation:**
-- Template: "How I [decide/build/evaluate] [thing]"
-- Sections:
-  1. When I use this pattern
-  2. My decision criteria (what makes it "good enough")
-  3. Trade-offs I accept
-  4. How I know I'm done
+**Outcome:** Participants transform discovered patterns into reusable protocols
+
+**Structured Protocol Template:**
+"How I [decide/build/evaluate] [thing]"
+
+Sections:
+1. When I use this pattern
+2. My decision criteria (what makes it "good enough")
+3. Trade-offs I accept
+4. How I know I'm done
 
 **Peer Protocol Review:**
 - Exchange protocols with partner
 - Test: Can they apply your protocol without you?
 - Refine based on feedback
-
-**Checkpoint:**
-- One working micro-project
-- One documented protocol
-- Experience of "structure doesn't constrain, it enables"
+- Key insight: "Structure doesn't constrain, it enables"
 
 ---
 

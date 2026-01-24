@@ -449,30 +449,32 @@ Not just technical skills, but metacognitive ability to recognize implicit patte
 
 ---
 
-## Materials Needed
+## Supporting Materials
 
 ### Pre-Camp Setup
-- [ ] Claude Code installation guide (step-by-step for non-technical)
-- [ ] GitHub account setup instructions
-- [ ] Example patterns (3-5 well-documented protocols)
-- [ ] Template library: briefs, pattern documentation, protocol structure
+- Claude Code installation guide (step-by-step for non-technical)
+- GitHub account setup instructions
+- Example patterns (3-5 well-documented protocols)
+- Template library access
 
-### Day 1 Materials
-- [ ] Loop 1: Pattern discovery template (fillable)
-- [ ] Loop 2: Pattern-first brief template
-- [ ] Loop 2: Protocol creation template
-- [ ] Observer prompts (printable cards/digital)
+### Templates & Frameworks
+**Loop 1 Templates:**
+- Pattern discovery template (fillable)
+- Observer prompts (what to watch for)
 
-### Day 2 Materials
-- [ ] Loop 3: Collaborative protocol template
-- [ ] Loop 3: Protocol challenge prompts
-- [ ] Pattern stack documentation template
-- [ ] Async week guide
+**Loop 2 Templates:**
+- Pattern-first brief template
+- Protocol creation template
 
-### Optional Enhancements
-- [ ] Pattern library (shared repository)
-- [ ] Sample projects with documented patterns
-- [ ] Video walkthrough: "How I use my protocols"
+**Loop 3 Templates:**
+- Collaborative protocol template
+- Protocol challenge prompts
+- Pattern stack documentation template
+
+### Example Resources
+- Pattern library (shared repository of examples)
+- Sample projects with documented patterns
+- Video walkthrough: "How I use my protocols"
 
 ---
 

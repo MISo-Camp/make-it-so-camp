@@ -38,76 +38,88 @@ Each loop introduces mental models → applies them through building → documen
 
 ---
 
-## Loop 1: Discovery (Day 1, 9:30-12:30)
+## Loop 1: Discovery
 
-**Goal**: Experience the pattern recognition → articulation → building cycle once at minimal scale
+**Outcome**: Participants experience the pattern recognition → articulation → building cycle at minimal scale
 
-**Duration**: 3 hours
+**Complete when:**
+- One working tiny tool built
+- One pattern documented (what had to become explicit to build it)
+- Experience of "articulation reveals your method"
 
-### 1.1 Mental Model Input: "Your Method is Invisible" (30 min)
+### 1.1 Mental Model Input: "Your Method is Invisible"
 
-**Concept Introduction (15 min):**
+**Outcome:** Participants understand that articulation is the bottleneck (not technical skill) and experience discovering their own implicit patterns
+
+**Core concepts to cover:**
 - Why articulation is the bottleneck (not technical skill)
-- One core insight: "My method was partly invisible even to me" (Strategy essay)
+- "My method was partly invisible even to me" (Strategy essay)
 - The shift from "user" to "captain"
-- Example: vague vs. articulated request (before/after comparison)
+- Vague vs. articulated requests (concrete examples)
 
-**Exercise: Surfacing Implicit Patterns (15 min):**
-- Individual writing (5 min): "Describe how you currently solve one recurring work problem"
-- Pair share (5 min): Read to partner - partner identifies implicit patterns they hear
-- Group debrief (5 min): What patterns emerged? What was hard to articulate?
+**Example approach: Surfacing Implicit Patterns**
 
-**Pattern-First Brief (Introduced):**
+Individual reflection:
+- Prompt: "Describe how you currently solve one recurring work problem"
+- Observe: What's easy to describe? What's hard to put into words?
+
+Peer pattern identification:
+- Share description with partner
+- Partner identifies implicit patterns they hear
+- Compare: What patterns were invisible to you?
+
+Group debrief:
+- What patterns emerged across participants?
+- What was hardest to articulate?
+- Why does this matter for working with AI?
+
+**Introduce: Pattern-First Brief**
 "Before we build, we articulate what we're testing"
 
 ---
 
-### 1.2 Tiny Tool Build (2 hours)
+### 1.2 Tiny Tool Build
 
-**Pattern-First Brief (10 min):**
+**Outcome:** Participants build simplest possible tool while discovering what they must articulate to direct AI
+
+**Pattern-First Brief:**
 - "What takes you 10 clicks that shouldn't?"
 - Write one sentence: "I want to test if I can articulate [X pattern]"
 - Example: "I want to test if I can articulate how I decide which files to rename"
 
-**Environment Setup (20 min):**
-- Install Claude Code (step-by-step for non-terminal users)
-- First command: navigate, see what Claude can access
-- Checkpoint: "You've run Claude Code and seen it respond"
+**Environment Setup:**
+Participants install Claude Code and run first command. Checkpoint: They've seen Claude respond to a request.
 
-**Build Phase (60 min):**
-- Peer observation begins (pairs switch: builder + observer)
+**Build Phase (with peer observation):**
+- Pair structure: Builder + Observer
+- Builder's job: Make simplest possible version work
 - Observer's job: Note what builder has to explain to Claude
-- Builder's job: Make the simplest possible version work
-- Facilitator circulates: "What are you having to articulate?"
+- Key question: "What are you having to articulate?"
 
-**Make It Work (30 min):**
+**Iterate to Working:**
 - Test with real input
 - Iterate once if it fails
 - Observer notes: "What pattern did you refine?"
 
 ---
 
-### 1.3 Pattern Reflection (30 min)
+### 1.3 Pattern Reflection
 
-**Structured Checkpoint (15 min):**
-Each participant documents (template provided):
+**Outcome:** Participants document what became explicit during building
+
+**Structured documentation (template provided):**
 1. What did you have to explain to Claude that surprised you?
 2. What was harder to articulate than expected?
 3. One pattern you discovered about your own decision-making
 
-**Peer Pattern Review (10 min):**
+**Peer Pattern Review:**
 - Observer shares: "Here's the pattern I saw you use"
 - Builder reflects: "Did I know I was doing that?"
 - Compare notes
 
-**Group Share (5 min):**
-- 3-4 volunteers share one discovered pattern
-- Facilitator connects patterns to mental models theme
-
-**Output from Loop 1:**
-- One working tiny tool
-- One documented pattern (rough notes)
-- Experience of "articulation reveals your method"
+**Group synthesis:**
+- Volunteers share one discovered pattern
+- Connect patterns to mental models theme
 
 ---
 

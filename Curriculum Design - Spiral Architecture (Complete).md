@@ -247,137 +247,145 @@ Sections:
 
 ---
 
-## Loop 3: Integration (Day 2, 9:00-5:00)
+## Loop 3: Integration
 
-**Goal**: Apply pattern articulation to collaborative contexts and launch small project
+**Outcome**: Participants extend pattern articulation to collaborative contexts and launch small project
 
-**Duration**: Full day (8 hours with breaks)
+**Complete when:**
+- One collaborative protocol co-created (with 3-4 peers)
+- Small project launched (core feature working)
+- Pattern stack begun (connecting personal protocols)
+- Understanding of transparency-creativity loop at team scale
 
-### 3.1 Mental Model Input: "The Transparency-Creativity Loop" (1.5 hours, 9:00-10:30)
+### 3.1 Mental Model Input: "The Transparency-Creativity Loop"
 
-**Concept Introduction (30 min):**
+**Outcome:** Participants understand how explicit frameworks enable (not constrain) creativity in collaborative contexts
+
+**Core concepts to cover:**
 - Strategy-as-Protocol: transparency → creativity → better strategy
 - The Fela Kuti groove metaphor (tight structure + internalization = improvisation)
 - Psychological safety: explicit = challengeable (Argyris, Edmondson)
 - Team of Teams: shared consciousness through explicit frameworks
 
-**Exercise: Load-Bearing vs. Paint (20 min):**
-- Review your protocols from Loop 1 & 2
+**Example approach: Load-Bearing vs. Paint**
+
+Review protocols from Loop 1 & 2:
 - Identify: Which parts are "structural" (can't change without breaking pattern)?
 - Which parts are "paint" (could be done differently)?
 - Pair discussion: Where can we improvise within the structure?
 
-**From Personal to Collaborative Protocols (40 min):**
+**From Personal to Collaborative Protocols:**
 - AI-readable, human-editable documentation (Noah insight)
 - Example: Design system in markdown vs. Figma
 - "THIS not THAT" at team scale
 - Exercise: Take one protocol - rewrite for a team
 
-**Pattern-First Brief for Collaboration:**
-- How do we articulate shared patterns?
-- What needs to be explicit for the team vs. individual?
+Key question: What needs to be explicit for the team vs. individual?
 
 ---
 
-### 3.2 Collaborative Protocol Design (1.5 hours, 10:30-12:00)
+### 3.2 Collaborative Protocol Design
 
-**Exercise: Co-Create a Team Protocol (60 min):**
-- Groups of 3-4
+**Outcome:** Participants co-create a protocol that works for multiple people
+
+**Example approach: Co-Create a Team Protocol**
+
+Small groups (3-4 participants):
 - Pick one common work pattern (e.g., "How we decide a brief is ready")
 - Each person shares their individual pattern
 - Group identifies: What's shared? What's different?
 - Co-create one protocol that works for everyone
 - Test: Can someone outside the group apply it?
 
-**Peer Protocol Challenge (20 min):**
+**Peer Protocol Challenge:**
 - Groups exchange protocols
 - Each group tries to find: What's ambiguous? What assumptions are hidden?
 - Feedback loop: Refine based on challenges
-- Debrief: "Explicit = challengeable = improvable"
+- Key insight: "Explicit = challengeable = improvable"
 
-**Teaching Patterns to Others (10 min):**
+**Teaching Patterns to Others:**
 - How to onboard someone to your protocol
 - Documentation that transfers knowledge (not cargo cult)
 - The articulation-creativity loop at team scale
 
 ---
 
-### 3.3 Small Project Scoping & Launch (1.5 hours, 1:00-2:30)
+### 3.3 Small Project Scoping & Launch
 
-**Pattern-First Brief for Small Project (30 min):**
-Following Module 11-13 structure with pattern enhancements:
+**Outcome:** Participants launch a small project using full pattern stack
 
-**Module 11: Selecting a Small Project**
-- Criteria: 1-2 days work, multiple features, browser-based
-- NEW: "What problem do I solve manually that has a reusable pattern?"
-- NEW: "What pattern will this project help me document?"
-- Peer review: Is the pattern worth documenting?
+**Pattern-First Brief for Small Project:**
 
-**Module 12: Writing the Pattern-First Brief**
-- Full brief structure (from Loop 2)
-- NEW addition: "Who else would use this pattern?"
-- NEW: "What implicit knowledge am I testing?"
-- Peer or AI review: Clarity test
+Selection criteria (Module 11):
+- Scope: Multiple features, browser-based
+- Pattern focus: "What problem do I solve manually that has a reusable pattern?"
+- Reusability: "Who else would use this pattern?"
 
-**Module 13: Brainstorming and Planning**
+Brief structure (Module 12):
+- Full brief template (from Loop 2)
+- New addition: "What implicit knowledge am I testing?"
+- Peer or AI review for clarity
+
+Planning (Module 13):
 - Core feature vs. nice-to-haves
 - Sequencing: dependencies
 - Risks: what might go wrong?
-- NEW: "What pattern stack am I using?" (brief + build + evaluate patterns)
+- Pattern stack: "What patterns am I using?" (brief + build + evaluate)
 
-**Project Launch (60 min):**
-- Module 14: Scaffolding (start from template)
+**Project Launch:**
+Scaffolding (Module 14):
+- Start from template
 - Tour what Claude built: frontend, backend, connections
 - Checkpoint: Running skeleton
-- Begin Module 15: Core feature implementation
+- Begin core feature implementation (Module 15)
 
 ---
 
-### 3.4 Building Support + Pattern Documentation (1.5 hours, 2:30-4:00)
+### 3.4 Building Support + Pattern Documentation
 
-**Facilitated Building Time:**
-- Participants work on Module 15-16 (core feature + debugging)
-- Peer observation continues (informal, rotates)
-- Facilitators circulate
-- Pattern checkpoints every 30 min:
-  - "What are you learning about your pattern?"
-  - "What's becoming explicit?"
+**Outcome:** Participants make progress on small project while documenting emergent patterns
 
-**Mid-Build Pattern Documentation (20 min at 3:30):**
-- Pause building
+**Facilitated building time:**
+- Work on Module 15-16 (core feature + debugging)
+- Peer observation (informal, rotates)
+- Pattern checkpoints: "What are you learning about your pattern?"
+
+**Mid-build pattern reflection:**
+- Pause building periodically
 - Document: "Pattern I'm using right now"
-- Share with one peer: "Can you see the pattern I'm applying?"
+- Share with peer: "Can you see the pattern I'm applying?"
 
----
+### 3.5 Path Forward
 
-### 3.5 Path Forward & Closing (1 hour, 4:00-5:30)
+**Outcome:** Participants understand how to continue evolving their practice
 
-**Async Week Orientation (20 min):**
-- Complete Modules 17-20 at your own pace:
-  - Module 17: Complete all features
-  - Module 18: User testing
-  - Module 19: Refine based on feedback
-  - Module 20: Deploy + PATTERN STACK documentation
+**Async completion guidance:**
+Complete remaining modules at own pace:
+- Module 17: Complete all features
+- Module 18: User testing
+- Module 19: Refine based on feedback
+- Module 20: Deploy + PATTERN STACK documentation
 
-**Final Pattern Stack Documentation (explained):**
-- When you deploy, document the full pattern stack:
-  1. Patterns you used from Loop 1 & 2
-  2. New patterns you discovered
-  3. "How I build [this category of tool]" protocol
-- This becomes your "Programming OS" starting point
+**Pattern Stack Documentation:**
+When deploying, document the full pattern stack:
+1. Patterns used from Loop 1 & 2
+2. New patterns discovered
+3. "How I build [this category of tool]" protocol
+This becomes "Programming OS" starting point
 
-**Continuing to Evolve Your Practice (20 min):**
-- Building your protocols over time
+**Continuing practice:**
+- Building protocols over time
 - From tool builder → organizational designer
-- Resources: Where to go next
-- Community: How to stay connected
+- Resources for further learning
+- Community connections
 
-**Final Reflection (20 min):**
-- Individual writing (10 min):
-  - What pattern will you document first when you get back?
-  - How will you explain this way of working to your team?
-  - What's one mental model shift you'll keep?
-- Group share (10 min): Volunteers share insights
+**Final Reflection:**
+Individual reflection:
+- What pattern will you document first when you get back?
+- How will you explain this way of working to your team?
+- What's one mental model shift you'll keep?
+
+Group share: Volunteers share insights
 
 ---
 

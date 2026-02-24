@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MISo Camp — Sponsorship Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,300;1,8..60,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f6f3;
+    --bg-alt: #efeeeb;
+    --fg: #1a1f36;
+    --fg-secondary: #4a5068;
+    --fg-muted: #8890a4;
+    --accent: #2b5ea7;
+    --accent-hover: #1d4a8a;
+    --accent-light: rgba(43, 94, 167, 0.08);
+    --accent-border: rgba(43, 94, 167, 0.15);
+    --white: #ffffff;
+    --border: #e2e1dd;
+    --border-light: #eeedea;
+    --shadow-sm: 0 1px 3px rgba(26, 31, 54, 0.04);
+    --shadow-md: 0 4px 16px rgba(26, 31, 54, 0.06);
+    --shadow-lg: 0 8px 32px rgba(26, 31, 54, 0.08);
+    --font-display: 'Outfit', sans-serif;
+    --font-body: 'Source Serif 4', serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; overflow: hidden; }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ---- Deck engine ---- */
+  .deck {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5vh 7vw;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    background: var(--bg);
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .slide.active {
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 1;
+  }
+
+  .slide-inner {
+    max-width: 1200px;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.15s,
+                transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.15s;
+  }
+
+  .slide.active .slide-inner {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ---- Header bar ---- */
+  .topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2.5rem;
+    z-index: 200;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .topbar-brand {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    color: var(--fg);
+  }
+
+  .topbar-brand span {
+    color: var(--accent);
+  }
+
+  .topbar-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .topbar-counter {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--fg-muted);
+    margin-right: 1rem;
+    letter-spacing: 0.02em;
+  }
+
+  .topbar-counter .current {
+    color: var(--fg);
+    font-weight: 500;
+  }
+
+  .topbar-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--white);
+    color: var(--fg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    font-size: 0.9rem;
+  }
+
+  .topbar-btn:hover {
+    background: var(--bg);
+    border-color: var(--accent-border);
+    color: var(--accent);
+  }
+
+  .topbar-btn:disabled {
+    opacity: 0.3;
+    cursor: default;
+  }
+
+  .topbar-btn:disabled:hover {
+    background: var(--white);
+    border-color: var(--border);
+    color: var(--fg);
+  }
+
+  /* Progress */
+  .progress {
+    position: fixed;
+    top: 52px;
+    left: 0;
+    height: 2px;
+    background: var(--accent);
+    z-index: 201;
+    transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* ---- Slide number badge ---- */
+  .slide-label {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+    margin-bottom: 2rem;
+  }
+
+  .slide-label span { color: var(--accent); }
+
+  /* ---- Typography ---- */
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(2.6rem, 5vw, 4.2rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--fg);
+    margin-bottom: 1.5rem;
+  }
+
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--fg);
+    margin-bottom: 1rem;
+  }
+
+  .body-text {
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 1.3vw, 1.15rem);
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--fg-secondary);
+    max-width: 640px;
+  }
+
+  .body-text em {
+    font-style: italic;
+    color: var(--fg);
+  }
+
+  /* ---- Slide 1: Title ---- */
+  .slide--title {
+    background: var(--white);
+    padding-top: 52px;
+  }
+
+  .title-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-light);
+    border: 1px solid var(--accent-border);
+    border-radius: 4px;
+    padding: 0.35rem 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .title-facts {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .title-fact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .title-fact-label {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+  }
+
+  .title-fact-value {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--fg);
+  }
+
+  /* ---- Slide 2: Problem ---- */
+  .slide--problem { background: var(--fg); }
+  .slide--problem .slide-label { color: rgba(255,255,255,0.35); }
+  .slide--problem .slide-label span { color: rgba(255,255,255,0.6); }
+  .slide--problem h2 {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-style: italic;
+    font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+    line-height: 1.35;
+    color: var(--white);
+    max-width: 820px;
+  }
+  .slide--problem .body-text {
+    color: rgba(255,255,255,0.6);
+    margin-top: 2rem;
+  }
+  .slide--problem .body-text em { color: rgba(255,255,255,0.85); }
+  .slide--problem .accent-rule {
+    width: 48px;
+    height: 2px;
+    background: var(--accent);
+    margin-bottom: 1.5rem;
+  }
+
+  /* ---- Slide 3: Insight ---- */
+  .contrast-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+    max-width: 900px;
+  }
+
+  .contrast-card {
+    padding: 1.75rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--white);
+  }
+
+  .contrast-card--dim {
+    background: var(--bg-alt);
+    border-color: var(--border-light);
+  }
+
+  .contrast-card--accent {
+    border-color: var(--accent-border);
+    background: var(--white);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .contrast-tag {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    color: var(--fg-muted);
+  }
+
+  .contrast-card--accent .contrast-tag { color: var(--accent); }
+
+  .contrast-quote {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--fg-muted);
+  }
+
+  .contrast-card--accent .contrast-quote { color: var(--fg); font-weight: 400; }
+
+  /* ---- Slide 4: Answer ---- */
+  .slide--answer {
+    background: var(--accent-light);
+    border-left: 4px solid var(--accent);
+  }
+
+  .slide--answer .slide-label span { color: var(--accent); }
+
+  /* ---- Slide 5: Loops ---- */
+  .loops {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+    max-width: 1000px;
+  }
+
+  .loop {
+    padding: 2rem 1.75rem;
+    background: var(--white);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  .slide.active .loop { opacity: 1; transform: translateY(0); }
+  .slide.active .loop:nth-child(1) { transition-delay: 0.2s; }
+  .slide.active .loop:nth-child(2) { transition-delay: 0.35s; }
+  .slide.active .loop:nth-child(3) { transition-delay: 0.5s; }
+
+  .loop-num {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 2.5rem;
+    color: var(--accent);
+    opacity: 0.1;
+    position: absolute;
+    top: 0.75rem;
+    right: 1.25rem;
+    line-height: 1;
+  }
+
+  .loop-name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--fg);
+    margin-bottom: 0.5rem;
+  }
+
+  .loop-desc {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--fg-secondary);
+    margin-bottom: 1rem;
+  }
+
+  .loop-quote {
+    font-family: var(--font-body);
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--accent);
+    padding-left: 0.75rem;
+    border-left: 2px solid var(--accent-border);
+    line-height: 1.5;
+  }
+
+  .loop-footnote {
+    font-family: var(--font-body);
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--fg-muted);
+    margin-top: 1.75rem;
+  }
+
+  /* ---- Slide 6: Organizers ---- */
+  .org-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+    margin-top: 2rem;
+    max-width: 1100px;
+  }
+
+  .org-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .org-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--bg-alt);
+    border: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--fg-muted);
+    margin-bottom: 1.25rem;
+  }
+
+  .org-name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--fg);
+    margin-bottom: 0.15rem;
+  }
+
+  .org-role {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .org-bio {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: var(--fg-secondary);
+  }
+
+  /* ---- Slide 7: Tutors ---- */
+  .tutor-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .tutor {
+    text-align: center;
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  .slide.active .tutor { opacity: 1; transform: translateY(0); }
+  .slide.active .tutor:nth-child(1) { transition-delay: 0.15s; }
+  .slide.active .tutor:nth-child(2) { transition-delay: 0.25s; }
+  .slide.active .tutor:nth-child(3) { transition-delay: 0.35s; }
+  .slide.active .tutor:nth-child(4) { transition-delay: 0.45s; }
+  .slide.active .tutor:nth-child(5) { transition-delay: 0.55s; }
+
+  .tutor-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--bg-alt);
+    border: 2px solid var(--border);
+    margin: 0 auto 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--fg-muted);
+  }
+
+  .tutor-avatar.confirmed {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .tutor-name {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--fg);
+    margin-bottom: 0.15rem;
+  }
+
+  .tutor-domain {
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+  }
+
+  .tutor-note {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    color: var(--fg-muted);
+    margin-top: 0.4rem;
+    line-height: 1.45;
+  }
+
+  /* ---- Slide 8: Participants ---- */
+  .stat-row {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .stat-number {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(3rem, 6vw, 4.5rem);
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+  }
+
+  .featured-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .featured-card {
+    padding: 1.25rem;
+    background: var(--white);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  .slide.active .featured-card { opacity: 1; transform: translateY(0); }
+  .slide.active .featured-card:nth-child(1) { transition-delay: 0.15s; }
+  .slide.active .featured-card:nth-child(2) { transition-delay: 0.25s; }
+  .slide.active .featured-card:nth-child(3) { transition-delay: 0.35s; }
+  .slide.active .featured-card:nth-child(4) { transition-delay: 0.45s; }
+
+  .featured-card-name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--fg);
+    margin-bottom: 0.15rem;
+  }
+
+  .featured-card-role {
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+
+  .featured-card-bio {
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: var(--fg-secondary);
+  }
+
+  .tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .tag {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.03em;
+    padding: 0.35rem 0.65rem;
+    background: var(--bg-alt);
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    color: var(--fg-secondary);
+    cursor: default;
+    transition: border-color 0.2s ease;
+  }
+
+  .tag:hover { border-color: var(--accent-border); }
+
+  .tag-role {
+    color: var(--fg-muted);
+    margin-left: 0.25rem;
+    font-size: 0.5rem;
+  }
+
+  /* ---- Slide 9: Logistics ---- */
+  .logistics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+    margin-top: 2rem;
+    max-width: 1000px;
+  }
+
+  .logi-card {
+    padding: 1.5rem;
+    background: var(--white);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .logi-label {
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+
+  .logi-value {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--fg);
+    margin-bottom: 0.2rem;
+  }
+
+  .logi-detail {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--fg-muted);
+    line-height: 1.5;
+  }
+
+  .logi-note {
+    margin-top: 1.5rem;
+    font-family: var(--font-body);
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--fg-muted);
+  }
+
+  /* ---- Slide 10: The Ask ---- */
+  .slide--ask { background: var(--white); }
+
+  .ask-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 4rem;
+    margin-top: 2rem;
+    max-width: 1000px;
+  }
+
+  .ask-section h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--fg);
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--accent);
+    display: inline-block;
+  }
+
+  .ask-section p {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--fg-secondary);
+  }
+
+  .ask-section ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .ask-section li {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--fg-secondary);
+    padding: 0.6rem 0;
+    padding-left: 1.1rem;
+    position: relative;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .ask-section li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.95rem;
+    width: 5px;
+    height: 5px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+
+  .ask-section li:last-child { border-bottom: none; }
+
+  .ask-footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .ask-footer a {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .ask-footer a:hover { color: var(--accent-hover); }
+
+  .ask-footer .divider {
+    color: var(--border);
+  }
+
+  .ask-tiers {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--fg-muted);
+    margin-top: 1rem;
+    font-style: italic;
+  }
+
+  /* ---- Click zones ---- */
+  .click-zone {
+    position: fixed;
+    top: 52px;
+    bottom: 0;
+    width: 20%;
+    z-index: 50;
+    cursor: pointer;
+  }
+
+  .click-zone--prev { left: 0; }
+  .click-zone--next { right: 0; }
+
+  /* ---- Responsive ---- */
+  @media (max-width: 1024px) {
+    .slide { padding: 5vh 5vw; }
+    .org-grid { gap: 2rem; }
+    .featured-grid { grid-template-columns: repeat(2, 1fr); }
+    .logistics { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 768px) {
+    .slide { padding: 4vh 4vw; }
+    .contrast-columns,
+    .org-grid,
+    .ask-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .loops { grid-template-columns: 1fr; }
+    .tutor-grid { grid-template-columns: repeat(3, 1fr); }
+    .featured-grid { grid-template-columns: 1fr; }
+    .logistics { grid-template-columns: 1fr; }
+    .click-zone { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Top bar -->
+<div class="topbar">
+  <div class="topbar-brand">MISo <span>Camp</span></div>
+  <div class="topbar-nav">
+    <span class="topbar-counter"><span class="current" id="counterCurrent">1</span> / <span id="counterTotal">10</span></span>
+    <button class="topbar-btn" id="btnPrev" aria-label="Previous slide">&#8592;</button>
+    <button class="topbar-btn" id="btnNext" aria-label="Next slide">&#8594;</button>
+  </div>
+</div>
+
+<div class="progress" id="progress"></div>
+
+<!-- Click zones -->
+<div class="click-zone click-zone--prev" id="zonePrev"></div>
+<div class="click-zone click-zone--next" id="zoneNext"></div>
+
+<div class="deck" id="deck">
+
+  <!-- 01: Title -->
+  <section class="slide slide--title active" data-slide="0">
+    <div class="slide-inner">
+      <div class="title-badge">Sponsorship Opportunity</div>
+      <h1>Make It So Camp:<br>How to Become a Captain of AI</h1>
+      <p class="body-text">The first intensive that teaches knowledge workers to close the articulation gap — turning implicit expertise into explicit, reusable, teachable method.</p>
+      <div class="title-facts">
+        <div class="title-fact">
+          <span class="title-fact-label">When</span>
+          <span class="title-fact-value">Summer 2026</span>
+        </div>
+        <div class="title-fact">
+          <span class="title-fact-label">Where</span>
+          <span class="title-fact-value">Tokyo / Chiba, Japan</span>
+        </div>
+        <div class="title-fact">
+          <span class="title-fact-label">Duration</span>
+          <span class="title-fact-value">4 Days</span>
+        </div>
+        <div class="title-fact">
+          <span class="title-fact-label">Cohort</span>
+          <span class="title-fact-value">~40 Participants</span>
+        </div>
+        <div class="title-fact">
+          <span class="title-fact-label">Web</span>
+          <span class="title-fact-value">misocamp.com</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02: Problem -->
+  <section class="slide slide--problem" data-slide="1">
+    <div class="slide-inner">
+      <div class="slide-label"><span>02</span> &mdash; The Problem</div>
+      <div class="accent-rule"></div>
+      <h2>Everyone is experimenting with AI. Almost no one knows how to talk about what's working.</h2>
+      <p class="body-text">Across industries, knowledge workers are running private experiments with AI tools. Researchers, strategists, operations leads, creatives — each struggling in isolation. There is no shared vocabulary. No pattern library. No moment where anyone says <em>"here's what I'm learning"</em> in a way that makes sense to people who aren't developers.</p>
+    </div>
+  </section>
+
+  <!-- 03: Insight -->
+  <section class="slide" data-slide="2">
+    <div class="slide-inner">
+      <div class="slide-label"><span>03</span> &mdash; The Insight</div>
+      <h2>The bottleneck isn't technical skill.<br>It's the ability to articulate what you actually want.</h2>
+      <div class="contrast-columns">
+        <div class="contrast-card contrast-card--dim">
+          <div class="contrast-tag">Vague</div>
+          <div class="contrast-quote">"Help me analyze our customer data"</div>
+        </div>
+        <div class="contrast-card contrast-card--accent">
+          <div class="contrast-tag">Articulated</div>
+          <div class="contrast-quote">"Identify customers who purchased twice in Q1 but not Q2. Segment by channel. Flag 40%+ drop-off."</div>
+        </div>
+      </div>
+      <p class="body-text" style="margin-top: 2rem;">The people who succeed with AI aren't the most technical. They're the most precise. Knowledge workers have deep expertise locked in intuition, pattern recognition, and judgment. They've never had to make it explicit. Until now.</p>
+    </div>
+  </section>
+
+  <!-- 04: Answer -->
+  <section class="slide slide--answer" data-slide="3">
+    <div class="slide-inner">
+      <div class="slide-label"><span>04</span> &mdash; The Answer</div>
+      <h2>MISo Camp teaches articulation through building.</h2>
+      <p class="body-text">A 4-day intensive in Tokyo where ~40 curated participants solve real problems from their own practice using AI. Not a hackathon. Not a lecture series. Participants arrive with a problem, build working tools, and discover that their implicit expertise — once made explicit — becomes reusable, shareable, and teachable to both humans and machines.</p>
+    </div>
+  </section>
+
+  <!-- 05: Loops -->
+  <section class="slide" data-slide="4">
+    <div class="slide-inner">
+      <div class="slide-label"><span>05</span> &mdash; How It Works</div>
+      <h2>Three loops turn intuition into method.</h2>
+      <div class="loops">
+        <div class="loop">
+          <div class="loop-num">1</div>
+          <div class="loop-name">Build</div>
+          <div class="loop-desc">Solve a real problem from your own practice.</div>
+          <div class="loop-quote">"I have methods I didn't know I had."</div>
+        </div>
+        <div class="loop">
+          <div class="loop-num">2</div>
+          <div class="loop-name">Reuse</div>
+          <div class="loop-desc">Build bigger, using documented approaches from Loop 1.</div>
+          <div class="loop-quote">"Writing it down made this faster."</div>
+        </div>
+        <div class="loop">
+          <div class="loop-num">3</div>
+          <div class="loop-name">Share</div>
+          <div class="loop-desc">Collaborate using explicit protocols.</div>
+          <div class="loop-quote">"My methods are teachable."</div>
+        </div>
+      </div>
+      <p class="loop-footnote">Theory explains experience — it never precedes it.</p>
+    </div>
+  </section>
+
+  <!-- 06: Organizers -->
+  <section class="slide" data-slide="5">
+    <div class="slide-inner">
+      <div class="slide-label"><span>06</span> &mdash; Organizers</div>
+      <h2>Built by practitioners at the intersection of culture, technology, and foresight.</h2>
+      <div class="org-grid">
+        <div class="org-card">
+          <div class="org-avatar">JA</div>
+          <div class="org-name">Joe Austerweil</div>
+          <div class="org-role">Co-Organizer &middot; Host</div>
+          <p class="org-bio">Professor at Chiba Institute of Technology, working with Joi Ito. Cognitive science and computational modeling. Provides the academic home and institutional partnership for MISo Camp in Japan.</p>
+        </div>
+        <div class="org-card">
+          <div class="org-avatar">NR</div>
+          <div class="org-name">Noah Raford, PhD</div>
+          <div class="org-role">Co-Organizer</div>
+          <p class="org-bio">Former Chief Futurist of Dubai. Founding executive of the Dubai Future Foundation. Drove the Museum of the Future from concept to completion. PhD from MIT in complex systems. Research Associate at Oxford. Managing Director of EMIR Intelligence. TED talk: 2M+ views.</p>
+        </div>
+        <div class="org-card">
+          <div class="org-avatar">IS</div>
+          <div class="org-name">Igor Schwarzmann</div>
+          <div class="org-role">Co-Organizer</div>
+          <p class="org-bio">Strategic consultant (20 years) at the intersection of culture and technology. Founded and sold a consultancy, now building a new venture. Works with organizations on AI strategy, growth strategy, foresight, and scenario planning — from Fortune 500 to cultural institutions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07: Tutors -->
+  <section class="slide" data-slide="6">
+    <div class="slide-inner">
+      <div class="slide-label"><span>07</span> &mdash; Tutors</div>
+      <h2>Domain experts guide each stage of the camp.</h2>
+      <p class="body-text" style="margin-bottom: 2rem;">Practitioners who work with AI in their own fields — not lecturers, but working partners.</p>
+      <div class="tutor-grid">
+        <div class="tutor">
+          <div class="tutor-avatar confirmed">HR</div>
+          <div class="tutor-name">Harper Reed</div>
+          <div class="tutor-domain">Tech &amp; Civic Infrastructure</div>
+          <div class="tutor-note">CTO, Obama 2012. Former Head of Commerce, PayPal. CEO, 2389 Research.</div>
+        </div>
+        <div class="tutor">
+          <div class="tutor-avatar">02</div>
+          <div class="tutor-name">TBD</div>
+          <div class="tutor-domain">Domain TBD</div>
+        </div>
+        <div class="tutor">
+          <div class="tutor-avatar">03</div>
+          <div class="tutor-name">TBD</div>
+          <div class="tutor-domain">Domain TBD</div>
+        </div>
+        <div class="tutor">
+          <div class="tutor-avatar">04</div>
+          <div class="tutor-name">TBD</div>
+          <div class="tutor-domain">Domain TBD</div>
+        </div>
+        <div class="tutor">
+          <div class="tutor-avatar">05</div>
+          <div class="tutor-name">TBD</div>
+          <div class="tutor-domain">Domain TBD</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08: Participants -->
+  <section class="slide" data-slide="7">
+    <div class="slide-inner">
+      <div class="slide-label"><span>08</span> &mdash; Confirmed Participants</div>
+      <div class="stat-row">
+        <div class="stat-number">17</div>
+        <div class="stat-label">signed up before<br>we had a website</div>
+      </div>
+      <div class="featured-grid">
+        <div class="featured-card">
+          <div class="featured-card-name">Tim O'Reilly</div>
+          <div class="featured-card-role">CEO, O'Reilly Media</div>
+          <div class="featured-card-bio">Pioneer of the open source movement. Coined "Web 2.0." Decades shaping how the tech industry thinks about what's next.</div>
+        </div>
+        <div class="featured-card">
+          <div class="featured-card-name">Kevin Slavin</div>
+          <div class="featured-card-role">Genomic Data &middot; Fairfield Bio</div>
+          <div class="featured-card-bio">Former MIT Media Lab. Research on algorithms, cities, and biological systems. Now applying computational thinking to genomics.</div>
+        </div>
+        <div class="featured-card">
+          <div class="featured-card-name">JD D'Cruz</div>
+          <div class="featured-card-role">Executive &middot; Commodities</div>
+          <div class="featured-card-bio">Senior executive in global commodities trading. Operational decision-making under uncertainty at scale.</div>
+        </div>
+        <div class="featured-card">
+          <div class="featured-card-name">Ariella Helfgott</div>
+          <div class="featured-card-role">Strategist &middot; Systems</div>
+          <div class="featured-card-bio">Systems thinker and strategist at the intersection of complexity science, policy, and organizational transformation.</div>
+        </div>
+      </div>
+      <div class="tag-cloud">
+        <span class="tag">Honor Harger <span class="tag-role">Executive</span></span>
+        <span class="tag">Lucy Kimbell <span class="tag-role">Higher Ed / UAL</span></span>
+        <span class="tag">Jake Dunagan <span class="tag-role">Strategist / Futurist</span></span>
+        <span class="tag">Gal Raz, PhD <span class="tag-role">BCI Researcher</span></span>
+        <span class="tag">Durrell Bishop <span class="tag-role">Designer</span></span>
+        <span class="tag">Kristin Alford <span class="tag-role">Executive / Foresight</span></span>
+        <span class="tag">Scott Smith <span class="tag-role">Strategist, Changeist</span></span>
+        <span class="tag">Isabelle Sonnenfeld <span class="tag-role">Strategist</span></span>
+        <span class="tag">Brenton Caffin <span class="tag-role">States of Change</span></span>
+        <span class="tag">Luke Toop <span class="tag-role">Public Sector</span></span>
+        <span class="tag">Julie Baron <span class="tag-role">Executive, O'Reilly</span></span>
+        <span class="tag">Esther O'Callaghan <span class="tag-role">EMIR Intelligence</span></span>
+        <span class="tag">Julia Chen <span class="tag-role">Researcher</span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09: Logistics -->
+  <section class="slide" data-slide="8">
+    <div class="slide-inner">
+      <div class="slide-label"><span>09</span> &mdash; Logistics</div>
+      <h2>Four days in Tokyo. Curated. Intimate. Intense.</h2>
+      <div class="logistics">
+        <div class="logi-card">
+          <div class="logi-label">When</div>
+          <div class="logi-value">Summer 2026</div>
+          <div class="logi-detail">Targeting early-to-mid July</div>
+        </div>
+        <div class="logi-card">
+          <div class="logi-label">Where</div>
+          <div class="logi-value">Tokyo / Chiba</div>
+          <div class="logi-detail">Venue in discussion with Chiba Institute of Technology</div>
+        </div>
+        <div class="logi-card">
+          <div class="logi-label">Size</div>
+          <div class="logi-value">~40 Participants</div>
+          <div class="logi-detail">Curated, invitation-only</div>
+        </div>
+        <div class="logi-card">
+          <div class="logi-label">Format</div>
+          <div class="logi-value">4 Days, 3 Loops</div>
+          <div class="logi-detail">Mon: arrival (half day). Tue–Thu: one loop per day. Fri: demos + synthesis (half day)</div>
+        </div>
+      </div>
+      <p class="logi-note">Cost to participants: Free. No payment handling. Invitation-only.</p>
+    </div>
+  </section>
+
+  <!-- 10: The Ask -->
+  <section class="slide slide--ask" data-slide="9">
+    <div class="slide-inner">
+      <div class="slide-label"><span>10</span> &mdash; The Ask</div>
+      <h2>Early access to what's next.</h2>
+      <div class="ask-grid">
+        <div class="ask-section">
+          <h3>What we need</h3>
+          <p>Sponsorship covering travel and lodging for organizers and tutors. No one is paid — this runs on commitment, not fees.</p>
+          <p class="ask-tiers">Sponsorship tiers in development.</p>
+        </div>
+        <div class="ask-section">
+          <h3>What sponsors get</h3>
+          <ul>
+            <li>Full access to insights, protocols, and frameworks produced during the camp</li>
+            <li>2–3 seats for your team to participate as learners alongside the cohort</li>
+            <li>Brand association with a curated, high-signal community of 40 senior practitioners</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ask-footer">
+        <a href="mailto:hello@misocamp.com">hello@misocamp.com</a>
+        <span class="divider">|</span>
+        <a href="https://misocamp.com">misocamp.com</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+(function() {
+  const deck = document.getElementById('deck');
+  const slides = deck.querySelectorAll('.slide');
+  const total = slides.length;
+  let current = 0;
+  let transitioning = false;
+
+  const counterCurrent = document.getElementById('counterCurrent');
+  const counterTotal = document.getElementById('counterTotal');
+  const progress = document.getElementById('progress');
+  const btnPrev = document.getElementById('btnPrev');
+  const btnNext = document.getElementById('btnNext');
+  const zonePrev = document.getElementById('zonePrev');
+  const zoneNext = document.getElementById('zoneNext');
+
+  counterTotal.textContent = total;
+
+  function goTo(idx) {
+    if (idx < 0 || idx >= total || idx === current || transitioning) return;
+    transitioning = true;
+
+    slides[current].classList.remove('active');
+    current = idx;
+    slides[current].classList.add('active');
+
+    counterCurrent.textContent = current + 1;
+    progress.style.width = ((current / (total - 1)) * 100) + '%';
+    btnPrev.disabled = current === 0;
+    btnNext.disabled = current === total - 1;
+
+    setTimeout(() => { transitioning = false; }, 500);
+  }
+
+  function next() { goTo(current + 1); }
+  function prev() { goTo(current - 1); }
+
+  // Button clicks
+  btnPrev.addEventListener('click', prev);
+  btnNext.addEventListener('click', next);
+
+  // Click zones
+  zonePrev.addEventListener('click', prev);
+  zoneNext.addEventListener('click', next);
+
+  // Keyboard
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
+      e.preventDefault(); next();
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      e.preventDefault(); prev();
+    }
+  });
+
+  // Touch swipe
+  let touchStartX = 0;
+  document.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+
+  document.addEventListener('touchend', (e) => {
+    const diff = touchStartX - e.changedTouches[0].screenX;
+    if (Math.abs(diff) > 60) {
+      diff > 0 ? next() : prev();
+    }
+  }, { passive: true });
+
+  // Init
+  progress.style.width = '0%';
+  btnPrev.disabled = true;
+})();
+</script>
+
+</body>
+</html>

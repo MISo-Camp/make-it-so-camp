@@ -52,7 +52,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 5vh 7vw;
+    padding: calc(52px + 3vh) 7vw 4vh;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1);
@@ -222,7 +222,7 @@
   /* ---- Slide 1: Title ---- */
   .slide--title {
     background: var(--white);
-    padding-top: 52px;
+    padding-top: calc(52px + 3vh);
   }
 
   .title-badge {
@@ -798,22 +798,84 @@
 
   /* ---- Responsive ---- */
   @media (max-width: 1024px) {
-    .slide { padding: 5vh 5vw; }
+    .slide { padding: calc(52px + 3vh) 5vw 4vh; }
     .org-grid { gap: 2rem; }
     .featured-grid { grid-template-columns: repeat(2, 1fr); }
     .logistics { grid-template-columns: repeat(2, 1fr); }
   }
 
   @media (max-width: 768px) {
-    .slide { padding: 4vh 4vw; }
+    .topbar { padding: 0 1rem; }
+    .slide { padding: calc(52px + 2vh) 1.25rem 3vh; }
     .contrast-columns,
     .org-grid,
-    .ask-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-    .loops { grid-template-columns: 1fr; }
-    .tutor-grid { grid-template-columns: repeat(3, 1fr); }
-    .featured-grid { grid-template-columns: 1fr; }
-    .logistics { grid-template-columns: 1fr; }
+    .ask-grid { grid-template-columns: 1fr; gap: 1.25rem; }
+    .loops { grid-template-columns: 1fr; gap: 1rem; }
+    .tutor-grid { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .featured-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .logistics { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
     .click-zone { display: none; }
+    .ask-grid { gap: 1.5rem; }
+    .ask-footer { gap: 1rem; }
+    .title-facts { gap: 1.25rem; margin-top: 1.5rem; padding-top: 1.25rem; }
+  }
+
+  @media (max-width: 480px) {
+    .topbar { padding: 0 0.875rem; }
+    .topbar-brand { font-size: 0.8rem; }
+    .topbar-counter { margin-right: 0.5rem; }
+    .topbar-btn { width: 28px; height: 28px; }
+
+    .slide { padding: calc(52px + 1.5vh) 1rem 2.5vh; }
+
+    h1 {
+      font-size: clamp(1.6rem, 7vw, 2.6rem);
+      margin-bottom: 1rem;
+    }
+    h2 {
+      font-size: clamp(1.25rem, 5.5vw, 1.9rem);
+      margin-bottom: 0.75rem;
+    }
+    .body-text { font-size: 0.95rem; line-height: 1.65; }
+
+    .title-badge { font-size: 0.65rem; padding: 0.3rem 0.6rem; margin-bottom: 1.25rem; }
+    .title-facts { flex-wrap: wrap; gap: 1rem; }
+    .title-fact-value { font-size: 0.85rem; }
+
+    .stat-number { font-size: clamp(2.2rem, 12vw, 3.5rem); }
+
+    .org-grid { gap: 1.5rem; }
+    .org-avatar { width: 52px; height: 52px; font-size: 0.95rem; }
+
+    .tutor-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+
+    .featured-grid { grid-template-columns: 1fr; }
+
+    .logistics { grid-template-columns: 1fr; }
+    .logi-card { padding: 1.1rem; }
+
+    .loop { padding: 1.25rem; }
+    .loop-num { font-size: 1.8rem; }
+
+    .contrast-card { padding: 1.25rem; }
+    .contrast-columns { gap: 0.75rem; }
+
+    .ask-grid { gap: 1.25rem; }
+    .ask-footer {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+      margin-top: 1.75rem;
+    }
+    .ask-footer .divider { display: none; }
+    .ask-footer a { font-size: 0.9rem; }
+
+    .tag-cloud { gap: 0.3rem; }
+    .tag { font-size: 0.58rem; padding: 0.3rem 0.5rem; }
+    .featured-card { padding: 1rem; }
+    .featured-card-bio { font-size: 0.8rem; }
+
+    .slide-label { margin-bottom: 1rem; }
   }
 </style>
 </head>
@@ -1163,16 +1225,20 @@
     }
   });
 
-  // Touch swipe
+  // Touch swipe — only trigger slide nav if horizontal swipe is dominant
   let touchStartX = 0;
+  let touchStartY = 0;
   document.addEventListener('touchstart', (e) => {
     touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY;
   }, { passive: true });
 
   document.addEventListener('touchend', (e) => {
-    const diff = touchStartX - e.changedTouches[0].screenX;
-    if (Math.abs(diff) > 60) {
-      diff > 0 ? next() : prev();
+    const diffX = touchStartX - e.changedTouches[0].screenX;
+    const diffY = touchStartY - e.changedTouches[0].screenY;
+    // Only navigate if horizontal swipe is larger than vertical (not a scroll)
+    if (Math.abs(diffX) > 60 && Math.abs(diffX) > Math.abs(diffY) * 1.5) {
+      diffX > 0 ? next() : prev();
     }
   }, { passive: true });
 

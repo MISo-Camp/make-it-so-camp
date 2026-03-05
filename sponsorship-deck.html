@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MISo Camp — Sponsorship Deck</title>
+<title>MISo Camp Sponsorship Deck</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,300;1,8..60,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
@@ -11,9 +11,9 @@
   :root {
     --bg: #f7f6f3;
     --bg-alt: #efeeeb;
-    --fg: #1a1f36;
-    --fg-secondary: #4a5068;
-    --fg-muted: #8890a4;
+    --fg: #000000;
+    --fg-secondary: #333333;
+    --fg-muted: #666666;
     --accent: #2b5ea7;
     --accent-hover: #1d4a8a;
     --accent-light: rgba(43, 94, 167, 0.08);
@@ -33,7 +33,7 @@
   html, body { height: 100%; overflow: hidden; }
 
   body {
-    background: var(--bg);
+    background: var(--white);
     color: var(--fg);
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
@@ -56,7 +56,7 @@
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1);
-    background: var(--bg);
+    background: var(--white);
     overflow-y: auto;
     overflow-x: hidden;
   }
@@ -187,10 +187,10 @@
   /* ---- Typography ---- */
   h1 {
     font-family: var(--font-display);
-    font-weight: 800;
-    font-size: clamp(2.6rem, 5vw, 4.2rem);
-    line-height: 1.05;
-    letter-spacing: -0.03em;
+    font-weight: 700;
+    font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
     color: var(--fg);
     margin-bottom: 1.5rem;
   }
@@ -207,10 +207,10 @@
 
   .body-text {
     font-family: var(--font-body);
-    font-size: clamp(1rem, 1.3vw, 1.15rem);
-    font-weight: 300;
+    font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+    font-weight: 400;
     line-height: 1.75;
-    color: var(--fg-secondary);
+    color: var(--fg);
     max-width: 640px;
   }
 
@@ -221,7 +221,6 @@
 
   /* ---- Slide 1: Title ---- */
   .slide--title {
-    background: var(--white);
     padding-top: calc(52px + 3vh);
   }
 
@@ -273,23 +272,17 @@
   }
 
   /* ---- Slide 2: Problem ---- */
-  .slide--problem { background: var(--fg); }
-  .slide--problem .slide-label { color: rgba(255,255,255,0.35); }
-  .slide--problem .slide-label span { color: rgba(255,255,255,0.6); }
   .slide--problem h2 {
     font-family: var(--font-body);
     font-weight: 400;
     font-style: italic;
     font-size: clamp(1.8rem, 3.2vw, 2.8rem);
     line-height: 1.35;
-    color: var(--white);
     max-width: 820px;
   }
   .slide--problem .body-text {
-    color: rgba(255,255,255,0.6);
     margin-top: 2rem;
   }
-  .slide--problem .body-text em { color: rgba(255,255,255,0.85); }
   .slide--problem .accent-rule {
     width: 48px;
     height: 2px;
@@ -345,12 +338,6 @@
   .contrast-card--accent .contrast-quote { color: var(--fg); font-weight: 400; }
 
   /* ---- Slide 4: Answer ---- */
-  .slide--answer {
-    background: var(--accent-light);
-    border-left: 4px solid var(--accent);
-  }
-
-  .slide--answer .slide-label span { color: var(--accent); }
 
   /* ---- Slide 5: Loops ---- */
   .loops {
@@ -694,7 +681,6 @@
   }
 
   /* ---- Slide 10: The Ask ---- */
-  .slide--ask { background: var(--white); }
 
   .ask-grid {
     display: grid;
@@ -904,7 +890,7 @@
     <div class="slide-inner">
       <div class="title-badge">Sponsorship Opportunity</div>
       <h1>Make It So Camp:<br>How to Become a Captain of AI</h1>
-      <p class="body-text">The first intensive that teaches knowledge workers to close the articulation gap — turning implicit expertise into explicit, reusable, teachable method.</p>
+      <p class="body-text">You cannot delegate to a machine what you cannot articulate. MISo Camp teaches strategists, researchers, and knowledge workers to close that gap, turning implicit expertise into explicit, reusable method. Technical practitioners support every stage.</p>
       <div class="title-facts">
         <div class="title-fact">
           <span class="title-fact-label">When</span>
@@ -933,45 +919,45 @@
   <!-- 02: Problem -->
   <section class="slide slide--problem" data-slide="1">
     <div class="slide-inner">
-      <div class="slide-label"><span>02</span> &mdash; The Problem</div>
+      <div class="slide-label"><span>02</span> /The Problem</div>
       <div class="accent-rule"></div>
-      <h2>Everyone is experimenting with AI. Almost no one knows how to talk about what's working.</h2>
-      <p class="body-text">Across industries, knowledge workers are running private experiments with AI tools. Researchers, strategists, operations leads, creatives — each struggling in isolation. There is no shared vocabulary. No pattern library. No moment where anyone says <em>"here's what I'm learning"</em> in a way that makes sense to people who aren't developers.</p>
+      <h2>A strategist opens an AI tool at 9am, hoping today is the day it finally clicks. Every session ends the same way: promising starts that drift into confusion.</h2>
+      <p class="body-text">Across industries, knowledge workers are experimenting in isolation. Researchers, analysts, project managers, operations leads, all running private experiments with AI tools. They've read the tutorials. Watched the demos. But no one has taught them <em>how to articulate what they actually want done</em>.</p>
     </div>
   </section>
 
   <!-- 03: Insight -->
   <section class="slide" data-slide="2">
     <div class="slide-inner">
-      <div class="slide-label"><span>03</span> &mdash; The Insight</div>
-      <h2>The bottleneck isn't technical skill.<br>It's the ability to articulate what you actually want.</h2>
+      <div class="slide-label"><span>03</span> /The Insight</div>
+      <h2>The bottleneck isn't technical skill.<br>It's knowing what these systems need from you.</h2>
       <div class="contrast-columns">
         <div class="contrast-card contrast-card--dim">
-          <div class="contrast-tag">Vague</div>
+          <div class="contrast-tag">Without understanding the system</div>
           <div class="contrast-quote">"Help me analyze our customer data"</div>
         </div>
         <div class="contrast-card contrast-card--accent">
-          <div class="contrast-tag">Articulated</div>
+          <div class="contrast-tag">With understanding the system</div>
           <div class="contrast-quote">"Identify customers who purchased twice in Q1 but not Q2. Segment by channel. Flag 40%+ drop-off."</div>
         </div>
       </div>
-      <p class="body-text" style="margin-top: 2rem;">The people who succeed with AI aren't the most technical. They're the most precise. Knowledge workers have deep expertise locked in intuition, pattern recognition, and judgment. They've never had to make it explicit. Until now.</p>
+      <p class="body-text" style="margin-top: 2rem;">The people who succeed with AI aren't the most technical. They're the ones who understand how these systems work well enough to know what needs to be articulated in the first place. That's a learnable skill. That's what MISo Camp teaches.</p>
     </div>
   </section>
 
   <!-- 04: Answer -->
   <section class="slide slide--answer" data-slide="3">
     <div class="slide-inner">
-      <div class="slide-label"><span>04</span> &mdash; The Answer</div>
+      <div class="slide-label"><span>04</span> /The Answer</div>
       <h2>MISo Camp teaches articulation through building.</h2>
-      <p class="body-text">A 4-day intensive in Tokyo where ~40 curated participants solve real problems from their own practice using AI. Not a hackathon. Not a lecture series. Participants arrive with a problem, build working tools, and discover that their implicit expertise — once made explicit — becomes reusable, shareable, and teachable to both humans and machines.</p>
+      <p class="body-text">Captains don't row boats. They set direction, read conditions, make calls. MISo Camp is a 4-day intensive in Tokyo where ~40 curated participants solve real problems from their own practice. They arrive with a problem, build working tools, and discover that their implicit expertise, once made explicit, becomes reusable, shareable, and teachable to both humans and machines.</p>
     </div>
   </section>
 
   <!-- 05: Loops -->
   <section class="slide" data-slide="4">
     <div class="slide-inner">
-      <div class="slide-label"><span>05</span> &mdash; How It Works</div>
+      <div class="slide-label"><span>05</span> /How It Works</div>
       <h2>Three loops turn intuition into method.</h2>
       <div class="loops">
         <div class="loop">
@@ -993,14 +979,14 @@
           <div class="loop-quote">"My methods are teachable."</div>
         </div>
       </div>
-      <p class="loop-footnote">Theory explains experience — it never precedes it.</p>
+      <p class="loop-footnote">Theory explains experience. It never precedes it.</p>
     </div>
   </section>
 
   <!-- 06: Organizers -->
   <section class="slide" data-slide="5">
     <div class="slide-inner">
-      <div class="slide-label"><span>06</span> &mdash; Organizers</div>
+      <div class="slide-label"><span>06</span> /Organizers</div>
       <h2>Built by practitioners at the intersection of culture, technology, and foresight.</h2>
       <div class="org-grid">
         <div class="org-card">
@@ -1019,7 +1005,7 @@
           <div class="org-avatar">IS</div>
           <div class="org-name">Igor Schwarzmann</div>
           <div class="org-role">Co-Organizer</div>
-          <p class="org-bio">Strategic consultant (20 years) at the intersection of culture and technology. Founded and sold a consultancy, now building a new venture. Works with organizations on AI strategy, growth strategy, foresight, and scenario planning — from Fortune 500 to cultural institutions.</p>
+          <p class="org-bio">Strategic consultant (20 years) at the intersection of culture and technology. Founded and sold a consultancy, now building a new venture. Works with organizations on AI strategy, growth strategy, foresight, and scenario planning. Clients range from Fortune 500 to cultural institutions.</p>
         </div>
       </div>
     </div>
@@ -1028,9 +1014,9 @@
   <!-- 07: Tutors -->
   <section class="slide" data-slide="6">
     <div class="slide-inner">
-      <div class="slide-label"><span>07</span> &mdash; Tutors</div>
+      <div class="slide-label"><span>07</span> /Tutors</div>
       <h2>Domain experts guide each stage of the camp.</h2>
-      <p class="body-text" style="margin-bottom: 2rem;">Practitioners who work with AI in their own fields — not lecturers, but working partners.</p>
+      <p class="body-text" style="margin-bottom: 2rem;">Practitioners who work with AI in their own fields. Not lecturers, but working partners.</p>
       <div class="tutor-grid">
         <div class="tutor">
           <div class="tutor-avatar confirmed">HR</div>
@@ -1039,23 +1025,26 @@
           <div class="tutor-note">CTO, Obama 2012. Former Head of Commerce, PayPal. CEO, 2389 Research.</div>
         </div>
         <div class="tutor">
-          <div class="tutor-avatar">02</div>
-          <div class="tutor-name">TBD</div>
-          <div class="tutor-domain">Domain TBD</div>
+          <div class="tutor-avatar confirmed">JV</div>
+          <div class="tutor-name">Jesse Vincent</div>
+          <div class="tutor-domain">Hardware &amp; AI Engineering</div>
+          <div class="tutor-note">Founder, Keyboardio. CEO, Prime Radiant. Builder of agentic dev tools and open-source infrastructure.</div>
         </div>
         <div class="tutor">
-          <div class="tutor-avatar">03</div>
-          <div class="tutor-name">TBD</div>
-          <div class="tutor-domain">Domain TBD</div>
+          <div class="tutor-avatar confirmed">BM</div>
+          <div class="tutor-name">Braydon McCormick</div>
+          <div class="tutor-domain">AI Systems &amp; Operations</div>
+          <div class="tutor-note">Founder, Light Forge Works. Ops lead, Synthyra. Builds high-trust AI systems for regulated industries.</div>
         </div>
         <div class="tutor">
-          <div class="tutor-avatar">04</div>
-          <div class="tutor-name">TBD</div>
-          <div class="tutor-domain">Domain TBD</div>
+          <div class="tutor-avatar confirmed">NT</div>
+          <div class="tutor-name">Nat Torkington</div>
+          <div class="tutor-domain">Open Source &amp; Community</div>
+          <div class="tutor-note">Co-author, Perl Cookbook. Chaired OSCON, Where 2.0. Founded Kiwi Foo Camp. O'Reilly alumnus.</div>
         </div>
         <div class="tutor">
-          <div class="tutor-avatar">05</div>
-          <div class="tutor-name">TBD</div>
+          <div class="tutor-avatar">R</div>
+          <div class="tutor-name">Ramon</div>
           <div class="tutor-domain">Domain TBD</div>
         </div>
       </div>
@@ -1065,7 +1054,7 @@
   <!-- 08: Participants -->
   <section class="slide" data-slide="7">
     <div class="slide-inner">
-      <div class="slide-label"><span>08</span> &mdash; Confirmed Participants</div>
+      <div class="slide-label"><span>08</span> /Confirmed Participants</div>
       <div class="stat-row">
         <div class="stat-number">17</div>
         <div class="stat-label">signed up before<br>we had a website</div>
@@ -1113,7 +1102,7 @@
   <!-- 09: Logistics -->
   <section class="slide" data-slide="8">
     <div class="slide-inner">
-      <div class="slide-label"><span>09</span> &mdash; Logistics</div>
+      <div class="slide-label"><span>09</span> /Logistics</div>
       <h2>Four days in Tokyo. Curated. Intimate. Intense.</h2>
       <div class="logistics">
         <div class="logi-card">
@@ -1144,12 +1133,12 @@
   <!-- 10: The Ask -->
   <section class="slide slide--ask" data-slide="9">
     <div class="slide-inner">
-      <div class="slide-label"><span>10</span> &mdash; The Ask</div>
+      <div class="slide-label"><span>10</span> /The Ask</div>
       <h2>Early access to what's next.</h2>
       <div class="ask-grid">
         <div class="ask-section">
           <h3>What we need</h3>
-          <p>Sponsorship covering travel and lodging for organizers and tutors. No one is paid — this runs on commitment, not fees.</p>
+          <p>Sponsorship covering travel and lodging for organizers and tutors. No one is paid. This runs on commitment, not fees.</p>
           <p class="ask-tiers">Sponsorship tiers in development.</p>
         </div>
         <div class="ask-section">

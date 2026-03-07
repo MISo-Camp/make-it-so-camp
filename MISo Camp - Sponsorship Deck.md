@@ -4,7 +4,7 @@ scope: external
 project: Internal_Make It So Camp
 status: draft
 created: 2026-02-24
-updated: 2026-02-24
+updated: 2026-03-07
 ---
 
 # MISo Camp — Sponsorship Deck
@@ -20,49 +20,60 @@ updated: 2026-02-24
 
 **Headline:** Make It So Camp: How to Become a Captain of AI
 
-**Spotlight (≤60 words):**
-MISo Camp
-Summer 2026 · Tokyo/Chiba · 5 Days · ~40 Participants
-misocamp.com
+**Spotlight:**
+You cannot delegate to a machine what you cannot articulate. MISo Camp teaches strategists, researchers, and knowledge workers to close that gap, turning implicit expertise into explicit, reusable method. Technical practitioners support every stage.
 
-**Design note:** Clean, confident. Logo top-left. Tagline centered. Location/date/URL in quiet type at bottom. No imagery competing with the words.
+**Facts:**
+- When: Summer 2026
+- Where: Tokyo / Chiba, Japan
+- Duration: 4 Days
+- Cohort: ~40 Participants
+- Web: misocamp.com
+
+**Design note:** Clean, confident. Badge top: "Sponsorship Opportunity". Headline dominates. Facts in a horizontal strip below a rule.
 
 **Source:** [DIRECT]
 
 ---
 
-## Slide 2 — The Familiar Problem (Trojan Horse Entry)
+## Slide 2 — The Problem
 
-**Headline:** Everyone is experimenting with AI. Almost no one knows how to talk about what's working.
+**Headline:** A strategist opens an AI tool at 9am, hoping today is the day it finally clicks. Every session ends the same way: promising starts that drift into confusion.
 
-**Spotlight (≤60 words):**
-Across industries, knowledge workers are running private experiments with AI tools. Researchers, strategists, operations leads, creatives — each struggling in isolation. There is no shared vocabulary. No pattern library. No moment where anyone says "here's what I'm learning" in a way that makes sense to people who aren't developers.
+**Spotlight:**
+Across industries, knowledge workers are experimenting in isolation. Researchers, analysts, project managers, operations leads, all running private experiments with AI tools. They've read the tutorials. Watched the demos. But no one has taught them how to articulate what they actually want done.
 
-**Design note:** Dark background, single pull-quote typography. No images — let the silence of the statement do the work.
-
-**Source:** [PARAPHRASE]
-
----
-
-## Slide 3 — The Flip (Trojan Horse Reveal)
-
-**Headline:** The bottleneck isn't technical skill. It's the ability to articulate what you actually want.
-
-**Spotlight (≤60 words):**
-The people who succeed with AI aren't the most technical. They're the most precise. Years of writing code trained developers to specify intent — but that skill isn't about code. It's about clarity. Knowledge workers have deep expertise locked in intuition, pattern recognition, and judgment. They've never had to make it explicit. Until now.
-
-**Design note:** Two-column contrast. Left: "Vague — 'Help me analyze our customer data'" in muted type. Right: "Articulated — 'Identify customers who purchased twice in Q1 but not Q2. Segment by channel. Flag 40%+ drop-off.'" in bold type. Visual makes the gap visceral.
+**Design note:** Dark background, single pull-quote typography. Accent rule above headline. Body text below in readable weight.
 
 **Source:** [PARAPHRASE]
 
 ---
 
-## Slide 4 — The Answer (Columbo)
+## Slide 3 — The Insight
 
-**Headline:** MISo Camp teaches articulation through building — for strategists, researchers, creatives, and operators.
+**Headline:** The bottleneck isn't technical skill. It's knowing what these systems need from you.
 
-**Spotlight (≤60 words):**
-A 5-day intensive in Tokyo where ~40 curated participants solve real problems from their own practice using AI. Not a hackathon. Not a lecture series. Participants arrive with a problem, build working tools, and discover that their implicit expertise — once made explicit — becomes reusable, shareable, and teachable to both humans and machines.
+**Spotlight:**
+Two-column contrast:
+
+| Without understanding the system | With understanding the system |
+|---|---|
+| "Help me analyze our customer data" | "Identify customers who purchased twice in Q1 but not Q2. Segment by channel. Flag 40%+ drop-off." |
+
+The people who succeed with AI aren't the most technical. They're the ones who understand how these systems work well enough to know what needs to be articulated in the first place. That's a learnable skill. That's what MISo Camp teaches.
+
+**Design note:** Two-column contrast cards. Left card dimmed/muted. Right card with accent border. Body text below columns.
+
+**Source:** [PARAPHRASE]
+
+---
+
+## Slide 4 — The Answer
+
+**Headline:** MISo Camp teaches articulation through building.
+
+**Spotlight:**
+Captains don't row boats. They set direction, read conditions, make calls. MISo Camp is a 4-day intensive in Tokyo where ~40 curated participants solve real problems from their own practice. They arrive with a problem, build working tools, and discover that their implicit expertise, once made explicit, becomes reusable, shareable, and teachable to both humans and machines.
 
 **Design note:** This is the "answer slide" — make it the most visually distinct in the deck. White space. Large type. One sentence headline dominates. Spotlight below in smaller, readable body text.
 
@@ -72,77 +83,87 @@ A 5-day intensive in Tokyo where ~40 curated participants solve real problems fr
 
 ## Slide 5 — How It Works
 
-**Headline:** Three loops turn intuition into method — each building on the last.
+**Headline:** Three loops turn intuition into method.
 
-**Spotlight (≤60 words):**
-**Loop 1: Build** — Solve a real problem. Discover "I have methods I didn't know I had."
-**Loop 2: Reuse** — Build bigger, using documented approaches from Loop 1. Experience "Writing it down made this faster."
-**Loop 3: Share** — Collaborate using explicit protocols. Realize "My methods are teachable."
+**Spotlight:**
+**Loop 1: Specify** — Turn a fuzzy goal into an explicit spec. State what you want, define constraints, set success criteria — then let the agent build. "I didn't realize how much I already knew until I had to say it out loud."
+**Loop 2: Refine** — Adapt your prompting patterns and decomposition strategies across problems. Once you've externalized a method, it becomes a reusable template. "The second time was twice as fast — I already had the playbook."
+**Loop 3: Scale** — Your externalized workflow becomes a team asset. Others can run it, critique it, or extend it without starting from scratch. "My process isn't locked in my head anymore."
 
-Theory explains experience — it never precedes it.
+Theory explains experience. It never precedes it.
 
-**Design note:** Three horizontal blocks or a simple spiral diagram. Each loop gets an icon and its one-line discovery quote. Minimal — this is a logic slide, not a data slide.
+**Design note:** Three horizontal blocks or a simple spiral diagram. Each loop gets a number (large, ghost opacity) and its one-line discovery quote in italic accent. Minimal — this is a logic slide, not a data slide.
 
 **Source:** [PARAPHRASE]
 
 ---
 
-## Slide 6 — Who's Behind This
+## Slide 6 — Organizers
 
-**Headline:** Built by practitioners who work at the intersection of culture, technology, and foresight.
+**Headline:** Built by practitioners at the intersection of culture, technology, and foresight.
 
 **Spotlight — Co-Organizers:**
 
-**Igor Schwarzmann** · Co-Organizer
-Independent strategic consultant (20 years). Culture × technology. Works with organizations on AI strategy, brand/growth strategy, foresight, and scenario planning. Clients range from Fortune 500 to cultural institutions. [PLACEHOLDER: Add 1-2 specific credential highlights, photo]
+**Joe Austerweil, PhD** · Co-Organizer & Host
+Human and machine learning researcher. Former associate professor at UW-Madison in Psychology and Computer Science, now a Professor at Chiba Tech with Joi Ito's Henkaku Center. Studies how people learn, create, and teach knowledge — and how AI changes those processes. Provides academic home and institutional partnership for MISo Camp in Japan.
 
 **Noah Raford, PhD** · Co-Organizer
-Futurist, strategist, builder. Former Chief Futurist of Dubai and founding executive of the Dubai Future Foundation. Drove the Museum of the Future from concept to completion. PhD from MIT in complex systems. Research Associate at Oxford. Managing Director of EMIR Intelligence, advising 350+ CEOs on emerging technology and geopolitics. TED talk: 2M+ views.
+Former Chief Futurist of Dubai. Founding executive of the Dubai Future Foundation. Drove the Museum of the Future from concept to completion. PhD from MIT in complex systems. Research Associate at Oxford. Managing Director of EMIR Intelligence. TED talk: 2M+ views.
 
-**Design note:** Side-by-side portraits with short bios beneath. Professional but human — candid photos over headshots if possible. Equal visual weight.
+**Igor Schwarzmann** · Co-Organizer
+Strategic consultant (20 years) at the intersection of culture and technology. Founded and sold a consultancy, now building a new venture. Works with organizations on AI strategy, growth strategy, foresight, and scenario planning. Clients range from Fortune 500 to cultural institutions.
 
-**Source:** Igor: [PLACEHOLDER] / Noah: [PARAPHRASE]
+**Design note:** Three-column grid of cards with initials avatar, name, role (mono), and bio. Equal visual weight across all three.
 
----
-
-## Slide 7 — Faculty
-
-**Headline:** Expert practitioners lead modules — showing AI collaboration beyond code.
-
-**Spotlight — Tutors:**
-
-**Harper Reed** · Technologist & Entrepreneur
-CTO of Barack Obama's 2012 reelection campaign. Former Head of Commerce at PayPal. Currently CEO of 2389 Research (AI agents for commerce). MIT Media Lab Director's Fellow. Builds at the intersection of technology, culture, and civic infrastructure.
-
-**[Tutor 2 — Name TBD]** · [Domain]
-[PLACEHOLDER: 2-3 sentence bio. Ideal profile: non-developer practitioner using AI in their field.]
-
-**[Tutor 3 — Name TBD]** · [Domain]
-[PLACEHOLDER: 2-3 sentence bio.]
-
-**[Tutor 4 — Name TBD]** · [Domain]
-[PLACEHOLDER: 2-3 sentence bio.]
-
-**[Tutor 5 — Name TBD]** · [Domain]
-[PLACEHOLDER: 2-3 sentence bio.]
-
-**Design note:** Grid of 5-6 portrait circles with name + one-line descriptor. Not full bios on slide — bios in appendix or speaker notes. The visual is "look at this group of people."
-
-**Source:** Harper Reed: [PARAPHRASE] / Others: [PLACEHOLDER]
+**Source:** Joe: [PARAPHRASE] / Noah: [PARAPHRASE] / Igor: [PARAPHRASE]
 
 ---
 
-## Slide 8 — Who's Already Coming
+## Slide 7 — Tutors
 
-**Headline:** 18 professionals signed up before we had a website. Here's who's in the room.
+**Headline:** Domain experts guide each stage of the camp.
 
-**Spotlight (≤60 words):**
+**Spotlight:**
+Practitioners who work with AI in their own fields. Not lecturers, but working partners.
+
+**Harper Reed** · Tech & Civic Infrastructure
+CTO of Barack Obama's 2012 reelection campaign. Former Head of Commerce at PayPal. Currently CEO of 2389 Research.
+
+**Jesse Vincent** · Hardware & AI Engineering
+Founder, Keyboardio. CEO, Prime Radiant. Builder of agentic dev tools and open-source infrastructure.
+
+**Isabelle Sonnenfeld** · Media & Strategy
+Former Twitter, Google, and General Catalyst. Ran Google News Lab EMEA.
+
+**Braydon McCormick** · AI Systems & Operations
+Founder, Light Forge Works. Ops lead, Synthyra. Builds high-trust AI systems for regulated industries.
+
+**Nat Torkington** · Open Source & Community
+Co-author, Perl Cookbook. Chaired OSCON, Where 2.0. Founded Kiwi Foo Camp. O'Reilly alumnus.
+
+**Design note:** Grid of 5 portrait circles with name + one-line descriptor + short note. The visual is "look at this group of people." All confirmed.
+
+**Source:** All: [PARAPHRASE]
+
+---
+
+## Slide 8 — Confirmed Participants
+
+**Headline:** 17 signed up before we had a website.
+
+**Spotlight — Featured:**
 
 | Name | Role |
 |------|------|
 | Tim O'Reilly | CEO, O'Reilly Media |
-| Kevin Slavin | Genomic data / Fairfield Bio |
-| Joe Austerweil | Professor, Chiba Tech (w/ Joi Ito) |
+| Kevin Slavin | Genomic Data · Fairfield Bio |
+| JD D'Cruz | Executive · Commodities |
+| Ariella Helfgott | Strategist · Systems |
+
+**Additional participants:**
+
+| Name | Role |
+|------|------|
 | Honor Harger | Executive |
 | Lucy Kimbell | Higher Ed / UAL |
 | Jake Dunagan | Strategist / Futurist |
@@ -150,16 +171,14 @@ CTO of Barack Obama's 2012 reelection campaign. Former Head of Commerce at PayPa
 | Durrell Bishop | Designer |
 | Kristin Alford | Executive / Foresight |
 | Scott Smith | Strategist, Changeist |
-| JD D'Cruz | Executive / Commodities |
-| Ariella Helfgott | Strategist / Systems |
-| Isabelle Sonnenfeld | Strategist |
-| Brenton Caffin | Strategist, States of Change |
-| Luke Toop | Public Sector Modernization |
-| Julie Baron | Executive, O'Reilly Media |
+| Brenton Caffin | States of Change |
+| Luke Toop | Public Sector |
+| Julie Baron | Executive, O'Reilly |
 | Esther O'Callaghan | EMIR Intelligence |
 | Julia Chen | Researcher |
+| (+ 1 additional) | |
 
-**Design note:** Logo cloud or name grid — not a table. Show diversity of roles and domains visually. Highlight 3-4 recognizable names larger. The message is density and breadth, not individual detail.
+**Design note:** Stat "17" in large accent type, then a featured 4-card grid, then a tag cloud for remaining names. Show diversity of roles and domains. The message is density and breadth.
 
 **Source:** [DIRECT]
 
@@ -167,37 +186,38 @@ CTO of Barack Obama's 2012 reelection campaign. Former Head of Commerce at PayPa
 
 ## Slide 9 — Logistics
 
-**Headline:** Five days in Tokyo, summer 2026. Curated. Intimate. Intense.
+**Headline:** Four days in Tokyo. Curated. Intimate. Intense.
 
-**Spotlight (≤60 words):**
+**Spotlight:**
 **When:** Summer 2026 (targeting early-to-mid July)
-**Where:** Tokyo / Chiba area (venue in discussion with Chiba Tech)
-**Size:** ~40 participants, curated — not open enrollment
-**Format:** Half-day intensity (~6 hrs structured / day). Day 1 arrival + setup, Days 2-4 one loop per day, Day 5 demos + synthesis
+**Where:** Tokyo / Chiba (venue in discussion with Chiba Institute of Technology)
+**Size:** ~40 participants, curated — invitation-only
+**Format:** 4 Days, 3 Loops. Mon: arrival (half day). Tue–Thu: one loop per day. Fri: demos + synthesis (half day).
 **Cost to participants:** Free. No payment handling. Invitation-only.
 
-**Design note:** Simple icon grid: calendar, map pin, people, clock. Clean info layout. This is a reference slide, not a story slide — make it scannable.
+**Design note:** Simple four-card icon grid: calendar, map pin, people, clock. Clean info layout. This is a reference slide, not a story slide — make it scannable.
 
 **Source:** [PARAPHRASE]
 
 ---
 
-## Slide 10 — The Ask [WIP]
+## Slide 10 — The Ask
 
-**Headline:** We're looking for sponsors who want early access to what's next.
+**Headline:** Early access to what's next.
 
-**Spotlight (≤60 words):**
+**Spotlight:**
 **What we need:** Sponsorship covering travel and lodging for organizers and tutors. No one is paid — this runs on commitment, not fees.
 
 **What sponsors get:**
 - Full access to insights, protocols, and frameworks produced during the camp
-- 2-3 seats for your team to participate as learners alongside the cohort
-- Brand association with a curated, high-signal community
-- [PLACEHOLDER: Additional sponsor benefits TBD]
+- 2–3 seats for your team to participate as learners alongside the cohort
+- Brand association with a curated, high-signal community of 40 senior practitioners
 
-**Sponsorship tiers and specific amounts: TBD — in development.**
+**Contact:** hello@misocamp.com · misocamp.com
 
-**Design note:** Two-column layout. Left: "What we need" (short, honest). Right: "What you get" (concrete list). No hard sell — the deck has already made the case. This slide just makes the exchange legible.
+**Sponsorship tiers: in development.**
+
+**Design note:** Two-column layout. Left: "What we need" (short, honest). Right: "What you get" (concrete list). Footer with contact links. No hard sell — the deck has already made the case.
 
 **Source:** [GENERATED]
 
@@ -207,19 +227,16 @@ CTO of Barack Obama's 2012 reelection campaign. Former Head of Commerce at PayPa
 
 **Originality Score:** 70% user-sourced / 30% generated
 
-- Direct: 2 slides (title, applicant list)
-- Paraphrased: 6 slides (problem, flip, answer, method, logistics, bios)
+- Direct: 2 slides (title, participant list)
+- Paraphrased: 7 slides (problem, insight, answer, method, logistics, bios)
 - Elaborated: 0 slides
 - Generated: 1 slide (the ask)
-- Placeholder: Partial content on 3 slides (Igor bio, 4 tutors, sponsor benefits)
+- Placeholder: None
 
 ---
 
 ## Open Items
 
-- [ ] Igor bio — needs specific credential highlights and photo
-- [ ] 4 additional tutor names and bios
-- [ ] Sponsor benefit refinement (slide 10)
-- [ ] Sponsorship tiers / specific amounts
 - [ ] Photos for all people slides
 - [ ] Final venue confirmation for logistics slide
+- [ ] Sponsorship tiers / specific amounts

@@ -247,7 +247,6 @@ strong {
 .section {
   padding-top:clamp(3.5rem, 8vw, 7rem);
   padding-bottom:clamp(3.5rem, 8vw, 7rem);
-  border-top:1px solid var(--rule);
 }
 
 .section-inner {

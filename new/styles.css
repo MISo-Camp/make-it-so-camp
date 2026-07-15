@@ -95,21 +95,29 @@ h4 {
 }
 
 h1 {
-  max-width:12ch;
-  font-size:clamp(3.7rem, 12vw, 8.5rem);
+  max-width:16ch;
+  font-size:clamp(2.6rem, 5vw, 4rem);
 }
 
 h2 {
-  max-width:15ch;
-  font-size:clamp(2.25rem, 6vw, 4.8rem);
+  max-width:22ch;
+  font-size:clamp(1.85rem, 3vw, 2.35rem);
 }
 
 h3 {
-  font-size:clamp(1.35rem, 2.5vw, 2rem);
+  font-size:clamp(1.25rem, 1.8vw, 1.55rem);
 }
 
 h4 {
   font-size:1.08rem;
+}
+
+/* Display scale — rationed: hero thesis, camp H1, one editorial break only. */
+.display {
+  max-width:18ch;
+  font-size:clamp(3rem, 6vw, 4.75rem);
+  line-height:1.05;
+  letter-spacing:-0.02em;
 }
 
 strong {
@@ -299,6 +307,184 @@ strong {
   .text-cols {
     grid-template-columns:1fr;
     gap:0;
+  }
+}
+
+/* ---- Hub (editorial manifesto) components ---- */
+
+/* Single-column manifesto hero */
+.hero-manifesto {
+  max-width:var(--wide);
+  margin:0 auto;
+  padding:clamp(4rem, 9vw, 7.5rem) var(--space-page) clamp(3rem, 6vw, 5rem);
+  display:grid;
+  gap:1.4rem;
+  justify-items:start;
+}
+
+.hero-manifesto .eyebrow {
+  margin-bottom:0.2rem;
+}
+
+.hero-manifesto .lede {
+  max-width:46ch;
+}
+
+/* Stacked section-intro: kicker overhangs a single anchor rule, then H2 + optional deck */
+.intro {
+  max-width:var(--wide);
+  margin:0 auto clamp(1.75rem, 3.5vw, 2.75rem);
+  padding-top:1.15rem;
+  border-top:1px solid var(--rule);
+}
+
+.intro .eyebrow {
+  margin-top:-2.25rem;
+  margin-bottom:1.1rem;
+}
+
+.intro .deck {
+  max-width:62ch;
+  margin:0.9rem 0 0;
+  font-size:clamp(1.1rem, 1.5vw, 1.3rem);
+  line-height:1.4;
+  color:var(--muted);
+}
+
+.intro .deck a {
+  color:var(--accent-deep);
+}
+
+/* Editorial essay — single reading rail, left-aligned with other sections */
+.reading-rail {
+  max-width:64ch;
+  margin:0;
+}
+
+.reading-rail .opener {
+  font-size:clamp(1.35rem, 2vw, 1.7rem);
+  line-height:1.32;
+  color:var(--ink);
+  margin-bottom:1.4rem;
+}
+
+.reading-rail p:last-child {
+  margin-bottom:0;
+}
+
+/* Two-day timeline */
+.day-list {
+  display:grid;
+  gap:1rem;
+}
+
+.day-row {
+  display:grid;
+  grid-template-columns:7rem minmax(0, 1fr);
+  gap:1.5rem;
+  align-items:start;
+  padding:1.25rem 0;
+  border-top:1px solid var(--rule);
+}
+
+.day-row .day-label {
+  color:var(--accent-deep);
+}
+
+.day-row p:last-child {
+  margin-bottom:0;
+}
+
+/* "Not for" note + generic notes */
+.note {
+  margin-top:1.5rem;
+  max-width:60ch;
+  color:var(--muted);
+  font-style:italic;
+}
+
+/* Collaborators band */
+.collab-band {
+  display:grid;
+  gap:1rem;
+  padding-top:1.4rem;
+  border-top:1px solid var(--rule);
+}
+
+.collab-logos {
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:0.9rem;
+}
+
+.collab-chip {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:3.35rem;
+  padding:0.5rem 0.9rem;
+  border:1px solid var(--rule);
+  border-radius:var(--radius-small);
+  background:var(--surface);
+}
+
+.collab-chip img {
+  height:2.35rem;
+  width:auto;
+  max-width:11rem;
+  object-fit:contain;
+}
+
+/* Placeholder chip until the positive Chiba logo asset arrives */
+.collab-chip-placeholder {
+  font-family:var(--font-serif);
+  font-size:0.95rem;
+  color:var(--ink);
+  border-style:dashed;
+}
+
+/* Invitation — email only, no form */
+.invite-email {
+  margin:0;
+  font-family:var(--font-serif);
+  font-size:clamp(1.6rem, 3.2vw, 2.6rem);
+  line-height:1.1;
+  letter-spacing:-0.01em;
+}
+
+.invite-email a {
+  color:var(--accent-deep);
+  text-decoration:none;
+  border-bottom:2px solid var(--accent-line, var(--rule));
+}
+
+.invite-email a:hover {
+  color:var(--accent);
+}
+
+/* Text link with a trailing arrow feel */
+.link-arrow {
+  display:inline-flex;
+  align-items:center;
+  gap:0.4rem;
+  color:var(--accent-deep);
+  font-weight:500;
+  text-decoration:none;
+}
+
+.link-arrow::after {
+  content:"\2192";
+}
+
+.link-arrow:hover {
+  color:var(--accent);
+}
+
+@media (max-width:640px) {
+  .day-row {
+    grid-template-columns:1fr;
+    gap:0.4rem;
   }
 }
 

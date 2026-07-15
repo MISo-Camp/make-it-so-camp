@@ -89,7 +89,7 @@ h4 {
   margin:0;
   font-family:var(--font-serif);
   font-weight:500;
-  letter-spacing:-0.025em;
+  letter-spacing:-0.01em;
   line-height:1.04;
   text-wrap:balance;
 }
@@ -261,6 +261,18 @@ strong {
   gap:clamp(1.5rem, 5vw, 4rem);
   align-items:start;
   margin-bottom:clamp(1.75rem, 4vw, 3rem);
+  padding-top:1.15rem;
+  border-top:1px solid var(--rule);
+}
+
+.section-head > div {
+  display:grid;
+  gap:0.65rem;
+}
+
+.section-head .eyebrow {
+  margin-top:-2.25rem;
+  margin-bottom:0;
 }
 
 .section-lead {
@@ -590,53 +602,11 @@ textarea {
 }
 
 .footer-inner {
-  display:grid;
-  gap:2rem;
   max-width:var(--wide);
   margin:0 auto;
   color:var(--muted);
 }
 
-.footer-bio-section {
-  display:grid;
-  gap:1.25rem;
-}
-
-.footer-statement {
-  max-width:34ch;
-  color:var(--ink);
-  font-size:clamp(1.55rem, 3.4vw, 2.6rem);
-  line-height:1.08;
-  letter-spacing:-0.025em;
-}
-
-.bio-grid {
-  display:grid;
-  grid-template-columns:repeat(2, minmax(0, 1fr));
-  gap:1rem;
-}
-
-.bio-card {
-  display:grid;
-  gap:0.65rem;
-  padding:clamp(1rem, 3vw, 1.45rem);
-  border:1px solid var(--rule);
-  border-radius:var(--radius);
-  background:var(--surface);
-}
-
-.bio-name {
-  margin:0;
-  font-family:var(--font-mono);
-  font-size:0.72rem;
-  font-weight:500;
-  letter-spacing:0.12em;
-  line-height:1.45;
-  text-transform:uppercase;
-  color:var(--accent-deep);
-}
-
-.bio-card p:last-child,
 .footer-colophon p {
   margin-bottom:0;
 }
@@ -651,13 +621,16 @@ textarea {
   .section-head,
   .grid,
   .grid-three,
-  .form-grid,
-  .bio-grid {
+  .form-grid {
     grid-template-columns:1fr;
   }
 
   .hero {
     align-items:start;
+  }
+
+  .section-head .eyebrow {
+    margin-top:0;
   }
 
   .hero-aside {

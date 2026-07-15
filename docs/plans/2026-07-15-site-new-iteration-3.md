@@ -1581,8 +1581,8 @@ PASS stylesheet colors are tokenized
 
 ```bash
 cd /Users/zeigor/GitHub/make-it-so-camp
-lsof -ti:8765 | xargs kill -9 2>/dev/null
-python3 -m http.server 8765 >/tmp/miso-iter3-http.log 2>&1 &
+lsof -ti:8796 | xargs kill -9 2>/dev/null
+python3 -m http.server 8796 >/tmp/miso-iter3-http.log 2>&1 &
 SERVER_PID=$!
 trap 'kill "$SERVER_PID" >/dev/null 2>&1 || true' EXIT
 sleep 1
@@ -1605,7 +1605,7 @@ let failed = false;
 for (const path of ['/new/','/new/tokyo/','/new/adelaide/','/new/about/']) {
   for (const width of [1440, 390]) {
     await send('Emulation.setDeviceMetricsOverride', { width, height: 1100, deviceScaleFactor: 2, mobile: width < 900 });
-    await send('Page.navigate', { url: 'http://127.0.0.1:8765' + path });
+    await send('Page.navigate', { url: 'http://127.0.0.1:8796' + path });
     await new Promise(r => setTimeout(r, 1200));
     const overflow = await send('Runtime.evaluate', { expression: 'document.documentElement.scrollWidth > document.documentElement.clientWidth', returnByValue: true });
     if (overflow.result.value) { console.error('FAIL overflow at ' + path + ' width ' + width); failed = true; }

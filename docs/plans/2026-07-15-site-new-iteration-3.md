@@ -25,9 +25,9 @@
 - `new/styles.css`: shared stylesheet.
 - `new/about/index.html`: About page with verbatim bios.
 
-### Task 1: Copy fixes
+### Task 1: Apply iteration-3 content changes
 
-Run the exact find/replace list from the approved spec against `new/index.html`, `new/tokyo/index.html`, and `new/adelaide/index.html`; use the final code blocks in Task 3 as the authoritative target text for every changed region.
+Branch setup:
 
 Branch setup:
 
@@ -46,59 +46,7 @@ Expected output:
 PASS on branch site-new-3
 ```
 
-Verification:
-
-```bash
-cd /Users/zeigor/GitHub/make-it-so-camp
-grep -RniE 'Free pilot|free pilot|, with Chiba|, with Flinders|<span class="tag">With Chiba Institute of Technology</span>' new/index.html new/tokyo/index.html new/adelaide/index.html && { echo "FAIL removed copy remains"; exit 1; } || echo "PASS removed copy absent"
-grep -Rhoi 'in collaboration with' new/index.html new/tokyo/index.html new/adelaide/index.html | wc -l | tr -d ' '
-grep -Fq 'mailto:hello@misocamp.com' new/index.html && echo "PASS hub mailto outreach present"
-```
-
-Expected output:
-
-```text
-PASS removed copy absent
-8
-PASS hub mailto outreach present
-```
-
-Commit:
-
-```bash
-git add new/index.html new/tokyo/index.html new/adelaide/index.html
-git commit -m "fix: update iteration three page copy"
-```
-
-### Task 2: Styles changes
-
-Apply `letter-spacing:-0.01em` to the `h1, h2, h3, h4` block and add the `.section-head` shared-rule CSS shown in the final `new/styles.css` block in Task 3.
-
-Verification:
-
-```bash
-cd /Users/zeigor/GitHub/make-it-so-camp
-grep -Fq 'letter-spacing:-0.01em;' new/styles.css && echo "PASS h1-h4 tracking is -0.01em"
-if grep -Fq 'letter-spacing:-0.025em;' new/styles.css; then echo "FAIL old headline tracking remains"; exit 1; else echo "PASS old headline tracking absent"; fi
-grep -Fq 'border-top:1px solid var(--rule);' new/styles.css && echo "PASS section-head shared rule present"
-```
-
-Expected output:
-
-```text
-PASS h1-h4 tracking is -0.01em
-PASS old headline tracking absent
-PASS section-head shared rule present
-```
-
-Commit:
-
-```bash
-git add new/styles.css
-git commit -m "style: refine headlines and section heads"
-```
-
-### Task 3: About page and slim footer
+Create `new/about/`, then write these complete files. They already include the copy fixes, heading tracking, and section-head rule from the approved spec, so writing them is the single action that produces all of iteration 3's content:
 
 Create `new/about/`, then write these complete files.
 
@@ -1545,6 +1493,40 @@ Verification:
 
 ```bash
 cd /Users/zeigor/GitHub/make-it-so-camp
+grep -RniE 'Free pilot|free pilot|, with Chiba|, with Flinders|<span class="tag">With Chiba Institute of Technology</span>' new/index.html new/tokyo/index.html new/adelaide/index.html && { echo "FAIL removed copy remains"; exit 1; } || echo "PASS removed copy absent"
+grep -Rhoi 'in collaboration with' new/index.html new/tokyo/index.html new/adelaide/index.html | wc -l | tr -d ' '
+grep -Fq 'mailto:hello@misocamp.com' new/index.html && echo "PASS hub mailto outreach present"
+```
+
+Expected output:
+
+```text
+PASS removed copy absent
+8
+PASS hub mailto outreach present
+```
+
+Verification:
+
+```bash
+cd /Users/zeigor/GitHub/make-it-so-camp
+grep -Fq 'letter-spacing:-0.01em;' new/styles.css && echo "PASS h1-h4 tracking is -0.01em"
+if grep -Fq 'letter-spacing:-0.025em;' new/styles.css; then echo "FAIL old headline tracking remains"; exit 1; else echo "PASS old headline tracking absent"; fi
+grep -Fq 'border-top:1px solid var(--rule);' new/styles.css && echo "PASS section-head shared rule present"
+```
+
+Expected output:
+
+```text
+PASS h1-h4 tracking is -0.01em
+PASS old headline tracking absent
+PASS section-head shared rule present
+```
+
+Verification:
+
+```bash
+cd /Users/zeigor/GitHub/make-it-so-camp
 test -f new/about/index.html && echo "PASS about page exists"
 grep -Fq 'Independent strategist and researcher working at the intersection of culture and technology: cultural and trend research, brand and growth strategy, and AI strategy. He ran a foresight and strategic-design studio out of Berlin, which he sold in 2022. Recent clients include frontier AI labs, luxury fashion houses, and home-appliance makers.' new/about/index.html && echo "PASS Igor bio paragraph verbatim"
 grep -Fq "Strategist and futurist. He spent a decade running strategy and innovation for Dubai's Prime Minister's office and now advises a global network of CEOs on foresight and AI. He holds a PhD in computational public policy and has been building deeply with AI-augmented workflows since late 2025." new/about/index.html && echo "PASS Noah bio paragraph verbatim"
@@ -1565,13 +1547,20 @@ PASS footer bio classes absent
 Commit:
 
 ```bash
+cd /Users/zeigor/GitHub/make-it-so-camp
 git add new/styles.css new/index.html new/tokyo/index.html new/adelaide/index.html new/about/index.html
-git commit -m "feat: add about page and slim footer"
+git commit -m "feat: iteration three copy, type, about page, and footer"
 ```
 
-### Task 4: Final verification
+Expected output includes:
 
-Run static verification plus screenshot verification. If Playwright is unavailable, STOP and report `BLOCKED iter3-plan: Playwright unavailable for required screenshots`.
+```text
+[site-new-3
+```
+
+### Task 2: Final verification
+
+Run static verification plus screenshot verification. If Chrome is unavailable, STOP and report `BLOCKED iter3-plan: Chrome unavailable for required screenshots`.
 
 ```bash
 cd /Users/zeigor/GitHub/make-it-so-camp
@@ -1592,11 +1581,52 @@ PASS stylesheet colors are tokenized
 
 ```bash
 cd /Users/zeigor/GitHub/make-it-so-camp
+lsof -ti:8765 | xargs kill -9 2>/dev/null
 python3 -m http.server 8765 >/tmp/miso-iter3-http.log 2>&1 &
 SERVER_PID=$!
 trap 'kill "$SERVER_PID" >/dev/null 2>&1 || true' EXIT
 sleep 1
-node -e "const { chromium } = require('playwright'); (async()=>{const b=await chromium.launch(); for (const u of ['/new/','/new/tokyo/','/new/adelaide/','/new/about/']) { for (const w of [1440,390]) { const p=await b.newPage({viewport:{width:w,height:1100}}); await p.goto('http://127.0.0.1:8765'+u,{waitUntil:'networkidle'}); if(await p.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth)) throw new Error(u+' overflow'); if(!(await p.evaluate(()=>{const h=document.querySelector('.section-head'); const s=getComputedStyle(h); return s.borderTopStyle!=='none' && parseFloat(s.borderTopWidth)>=1;}))) throw new Error(u+' no section rule'); await p.screenshot({path:'docs/plans/iteration-3-screenshots/'+u.replace(/\//g,'-')+'-'+w+'.png',fullPage:true}); await p.close(); }} await b.close(); console.log('PASS screenshots saved for hub/tokyo/adelaide/about at desktop and 390px'); console.log('PASS no horizontal overflow at 390px'); console.log('PASS section-head rule detected in browser');})().catch(e=>{console.error(e.message);process.exit(1)})"
+mkdir -p docs/plans/iteration-3-screenshots
+CHROME="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+"$CHROME" --headless --disable-gpu --remote-debugging-port=9401 --user-data-dir=/tmp/iter3-cdp about:blank >/dev/null 2>&1 &
+CHROME_PID=$!
+sleep 2
+node - <<'NODEEOF'
+(async () => {
+const list = await (await fetch('http://localhost:9401/json/list')).json();
+const target = list.find(t => t.type === 'page');
+const ws = new WebSocket(target.webSocketDebuggerUrl);
+let id = 0; const pend = new Map();
+const send = (method, params={}) => new Promise(r => { const i = ++id; pend.set(i, r); ws.send(JSON.stringify({id:i, method, params})); });
+await new Promise(r => ws.onopen = r);
+ws.onmessage = e => { const m = JSON.parse(e.data); if (m.id && pend.has(m.id)) { pend.get(m.id)(m.result); pend.delete(m.id); } };
+await send('Page.enable');
+let failed = false;
+for (const path of ['/new/','/new/tokyo/','/new/adelaide/','/new/about/']) {
+  for (const width of [1440, 390]) {
+    await send('Emulation.setDeviceMetricsOverride', { width, height: 1100, deviceScaleFactor: 2, mobile: width < 900 });
+    await send('Page.navigate', { url: 'http://127.0.0.1:8765' + path });
+    await new Promise(r => setTimeout(r, 1200));
+    const overflow = await send('Runtime.evaluate', { expression: 'document.documentElement.scrollWidth > document.documentElement.clientWidth', returnByValue: true });
+    if (overflow.result.value) { console.error('FAIL overflow at ' + path + ' width ' + width); failed = true; }
+    const rule = await send('Runtime.evaluate', { expression: `(()=>{const h=document.querySelector('.section-head');if(!h)return false;const s=getComputedStyle(h);return s.borderTopStyle!=='none'&&parseFloat(s.borderTopWidth)>=1})()`, returnByValue: true });
+    if (!rule.result.value) { console.error('FAIL no section-head rule at ' + path); failed = true; }
+    const name = path.replace(/\//g, '-') + '-' + width + '.png';
+    const shot = await send('Page.captureScreenshot', { format: 'png', captureBeyondViewport: true, clip: { x: 0, y: 0, width, height: 2400, scale: 1 } });
+    require('fs').writeFileSync('docs/plans/iteration-3-screenshots/' + name, Buffer.from(shot.result.data, 'base64'));
+  }
+}
+ws.close();
+if (failed) { console.log('FAIL screenshot verification'); process.exit(1); }
+console.log('PASS screenshots saved for hub/tokyo/adelaide/about at desktop and 390px');
+console.log('PASS no horizontal overflow at 390px');
+console.log('PASS section-head rule detected in browser');
+})();
+NODEEOF
+STATUS=$?
+kill $CHROME_PID 2>/dev/null
+rm -rf /tmp/iter3-cdp 2>/dev/null
+exit $STATUS
 ```
 
 Expected output:

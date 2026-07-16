@@ -1,8 +1,18 @@
 export interface CampFactsRow {
-  /** Term, e.g. "Dates", "Venue", "In collaboration with", "Supported by". */
+  /** Term, e.g. "Dates", "Venue", "In collaboration with". */
   term: string;
   /** Value cell. */
   value: string;
+}
+
+export interface CampScheduleSlot {
+  time: string;
+  title: string;
+}
+
+export interface CampScheduleDay {
+  day: 'Day 1' | 'Day 2';
+  slots: CampScheduleSlot[];
 }
 
 export interface Camp {
@@ -16,6 +26,8 @@ export interface Camp {
   ogDescription: string;
   /** Hero <h1> statement, including trailing period. */
   statement: string;
+  /** Hero collaboration line. */
+  heroSub: string;
   /** Hero meta line after the middot, e.g. "Tokyo · 24–25 August 2026". */
   metaLine: string;
   /** Mailto subject slug without the host, percent-encoded, e.g. "Tokyo%20invitation%20request". */
@@ -28,9 +40,39 @@ export interface Camp {
   overviewLeft: string[];
   /** Overview right column paragraphs, in order. */
   overviewRight: string[];
+  /** Schedule days and slots, in order. */
+  schedule: CampScheduleDay[];
   /** Logistics facts rows, in order. */
   facts: CampFactsRow[];
 }
+
+const sharedSchedule: CampScheduleDay[] = [
+  {
+    day: 'Day 1',
+    slots: [
+      { time: '09:00', title: 'Welcome + frame' },
+      { time: '10:00', title: "Methods you can't see" },
+      { time: '11:40', title: 'Lunch' },
+      { time: '12:40', title: 'Write it down, it compounds' },
+      { time: '14:15', title: 'Explicit = shareable' },
+      { time: '15:30', title: 'Form teams, or go solo' },
+      { time: '16:15', title: 'Networking drinks' },
+    ],
+  },
+  {
+    day: 'Day 2',
+    slots: [
+      { time: '09:00', title: 'Re-entry' },
+      { time: '09:15', title: 'Morning frame: lock the build' },
+      { time: '09:45', title: 'Build I' },
+      { time: '11:15', title: 'Mid-build crit' },
+      { time: '11:45', title: 'Lunch' },
+      { time: '12:30', title: 'Build II' },
+      { time: '14:00', title: 'Demo rounds' },
+      { time: '14:45', title: 'Wrap, early finish' },
+    ],
+  },
+];
 
 export const camps: Camp[] = [
   {
@@ -39,6 +81,7 @@ export const camps: Camp[] = [
     description: 'Make It So Camp Tokyo is a two-day AI workshop at Crypto Café Tokyo, in collaboration with Chiba Institute of Technology.',
     ogDescription: 'Two days to make your way of working legible — to a machine, and to people who work nothing like you.',
     statement: 'Make It So Camp Tokyo.',
+    heroSub: 'In collaboration with Chiba Institute of Technology.',
     metaLine: 'Tokyo · 24–25 August 2026',
     subject: 'Tokyo%20invitation%20request',
     overviewLead: 'Two days to make your way of working legible — to a machine, and to people who work nothing like you.',
@@ -51,6 +94,7 @@ export const camps: Camp[] = [
       'Day 1 is about articulation — making the method behind your work explicit enough that someone from another field could follow it. Day 2 puts it to work: you build with the tools, alone or in a small team, and demo what your way of working makes possible.',
       'You leave with three things: a written method you can keep using, a working thing you built from it, and a set of people who now know how you think.',
     ],
+    schedule: sharedSchedule,
     facts: [
       { term: 'Dates', value: '24–25 August 2026' },
       { term: 'Venue', value: 'Crypto Café Tokyo' },
@@ -63,26 +107,27 @@ export const camps: Camp[] = [
   {
     slug: 'adelaide',
     title: 'Make It So Camp Adelaide — 17–18 September 2026',
-    description: 'Make It So Camp Adelaide is a two-day AI workshop at Flinders University New Venture Institute, with SA Futures Agency as a supporting partner.',
+    description: 'Make It So Camp Adelaide is a two-day AI workshop in Adelaide, in collaboration with Flinders University New Venture Institute and SA Futures Agency.',
     ogDescription: 'Two days to make your way of working legible — to a machine, and to people who work nothing like you.',
     statement: 'Make It So Camp Adelaide.',
+    heroSub: 'In collaboration with Flinders University New Venture Institute and SA Futures Agency.',
     metaLine: 'Adelaide · 17–18 September 2026',
     subject: 'Adelaide%20invitation%20request',
     overviewLead: 'Two days to make your way of working legible — to a machine, and to people who work nothing like you.',
     overviewDim: 'This page is what to expect in Adelaide.',
     overviewLeft: [
-      'Make It So Camp Adelaide runs over two days at Flinders University New Venture Institute, with SA Futures Agency as a supporting partner. The cohort is deliberately mixed: researchers, strategists, designers, operators — people from the region who share a problem type, not a job title.',
+      'Make It So Camp Adelaide runs over two days in Adelaide, in collaboration with Flinders University New Venture Institute and SA Futures Agency. The venue will be announced. The cohort is deliberately mixed: researchers, strategists, designers, operators — people from the region who share a problem type, not a job title.',
       'You bring real work. Not a case study, not a sandbox exercise: a live problem where your judgment matters and your method has never been written down. That problem is your material for both days.',
     ],
     overviewRight: [
       'Day 1 is about articulation — making the method behind your work explicit enough that someone from another field could follow it. Day 2 puts it to work: you build with the tools, alone or in a small team, and demo what your way of working makes possible.',
       'You leave with three things: a written method you can keep using, a working thing you built from it, and a set of people who now know how you think.',
     ],
+    schedule: sharedSchedule,
     facts: [
       { term: 'Dates', value: '17–18 September 2026' },
-      { term: 'Venue', value: 'Flinders University New Venture Institute' },
-      { term: 'In collaboration with', value: 'Flinders University New Venture Institute' },
-      { term: 'Supported by', value: 'SA Futures Agency' },
+      { term: 'Venue', value: 'TBD' },
+      { term: 'In collaboration with', value: 'Flinders University New Venture Institute and SA Futures Agency' },
       { term: 'Format', value: 'Two days, hands-on' },
       { term: 'Cohort', value: 'Deliberately mixed: academic, creative industries, corporate' },
       { term: 'Bring', value: 'A real problem you are working on' },

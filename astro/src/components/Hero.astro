@@ -10,11 +10,13 @@ export interface Props {
   small?: boolean;
   /** Optional inline min-height style override, e.g. "48svh". */
   minHeight?: string;
+  /** Optional collaboration/supporting line below the statement. */
+  heroSub?: string;
   /** Optional CTA. When provided, renders the hero-cta block. */
   cta?: { href: string; label: string };
 }
 
-const { leftMeta, rightMeta, statement, small, minHeight, cta } = Astro.props;
+const { leftMeta, rightMeta, statement, small, minHeight, heroSub, cta } = Astro.props;
 ---
 <section class="hero" style={minHeight ? `min-height:${minHeight}` : undefined}>
   <div class="hero-top">
@@ -23,6 +25,9 @@ const { leftMeta, rightMeta, statement, small, minHeight, cta } = Astro.props;
   </div>
   <div class="spacer"></div>
   <h1 class={`statement${small ? ' statement-sm' : ''}`}>{statement}</h1>
+  {heroSub && (
+    <p class="hero-sub">{heroSub}</p>
+  )}
   {cta && (
     <p class="hero-cta"><a href={cta.href}>{cta.label}</a></p>
   )}

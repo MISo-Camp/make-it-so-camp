@@ -23,6 +23,7 @@ const requestHref = `mailto:hello@misocamp.com?subject=${camp.subject}`;
   <Header links={[
     { label: 'Overview', href: '#overview' },
     { label: 'The two days', href: '#days' },
+    { label: 'Schedule', href: '#schedule' },
     { label: 'Logistics', href: '#logistics' },
     { label: 'About', href: '/new/about/' },
     { label: 'Request an invitation', href: '#request', accent: true },
@@ -34,6 +35,7 @@ const requestHref = `mailto:hello@misocamp.com?subject=${camp.subject}`;
     statement={camp.statement}
     small={true}
     minHeight="48svh"
+    heroSub={camp.heroSub}
     cta={{ href: requestHref, label: 'Request an invitation ↗' }}
   />
 
@@ -85,8 +87,23 @@ const requestHref = `mailto:hello@misocamp.com?subject=${camp.subject}`;
     </div>
   </section>
 
+  <section class="section" id="schedule" aria-labelledby="schedule-label">
+    <div class="section-label"><span class="num">03</span><span class="label" id="schedule-label">The schedule</span></div>
+    <p class="lead-statement">What happens on those two days. <span class="dim">Times are indicative — the exact rhythm may shift.</span></p>
+    <div class="sched">
+      {camp.schedule.map((day) => (
+        <div>
+          <h3>{day.day}</h3>
+          {day.slots.map((slot) => (
+            <div class="slot"><span class="slot-time">{slot.time}</span><span>{slot.title}</span></div>
+          ))}
+        </div>
+      ))}
+    </div>
+  </section>
+
   <section class="section" id="logistics" aria-labelledby="logistics-label">
-    <div class="section-label"><span class="num">03</span><span class="label" id="logistics-label">Logistics</span></div>
+    <div class="section-label"><span class="num">04</span><span class="label" id="logistics-label">Logistics</span></div>
     <dl class="facts">
       {camp.facts.map((row) => (
         <>
@@ -98,7 +115,7 @@ const requestHref = `mailto:hello@misocamp.com?subject=${camp.subject}`;
   </section>
 
   <section class="section invite" id="request" aria-labelledby="request-label">
-    <div class="section-label"><span class="num">04</span><span class="label" id="request-label">Request an invitation</span></div>
+    <div class="section-label"><span class="num">05</span><span class="label" id="request-label">Request an invitation</span></div>
     <p class="lead-statement" style="margin-bottom:1.6rem">Tell us what work you would bring, and why now. <span class="dim">We reply if there is a fit.</span></p>
     <p class="email"><a href={requestHref}>hello@misocamp.com</a></p>
   </section>

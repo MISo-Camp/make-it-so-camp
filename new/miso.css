@@ -45,7 +45,7 @@ img, svg { display:block; max-width:100%; }
   padding:var(--pad) var(--pad) 0;
 }
 .brand { font-weight:700; letter-spacing:-0.02em; font-size:1.35rem; text-decoration:none; color:var(--ink); }
-.nav { display:flex; gap:1.3rem; font-weight:500; }
+.nav { display:flex; flex-wrap:wrap; justify-content:flex-end; gap:0.6rem 1.3rem; font-weight:500; }
 .nav a { color:var(--muted); text-decoration:none; }
 .nav a:hover { color:var(--ink); }
 .nav a.accent { color:var(--accent); }

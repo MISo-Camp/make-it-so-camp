@@ -1,0 +1,21 @@
+---
+export interface NavLink {
+  label: string;
+  href: string;
+  accent?: boolean;
+}
+
+export interface Props {
+  links: NavLink[];
+}
+
+const { links } = Astro.props;
+---
+<header class="site-header">
+  <a class="brand" href="/new/">Make It So Camp</a>
+  <nav class="nav" aria-label="Primary">
+    {links.map((link) => (
+      <a href={link.href} class={link.accent ? 'accent' : undefined}>{link.label}</a>
+    ))}
+  </nav>
+</header>

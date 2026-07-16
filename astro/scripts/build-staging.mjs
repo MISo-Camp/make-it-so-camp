@@ -75,7 +75,8 @@ for (const path of htmlFiles) {
   if (/href="\/new\/(?!astro\/)/.test(html)) {
     throw new Error(`Unscoped internal link remains: ${path}`);
   }
-  if (html.includes('<script')) {
+  const stripped = html.replace(/<script\s+type="application\/ld\+json">[\s\S]*?<\/script>/g, '');
+  if (/<script/i.test(stripped)) {
     throw new Error(`Client script emitted: ${path}`);
   }
 }

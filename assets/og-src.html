@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1200, initial-scale=1.0">
+  <title>Make It So Camp — OG card</title>
+  <style>
+    :root {
+      --bg:#EAE6DD;
+      --ink:#1A1712;
+      --muted:#8C877D;
+      --line:#D6D0C4;
+      --accent:#8F2E20;
+      --sans:"Helvetica Neue", Helvetica, Arial, sans-serif;
+      --mono:"SF Mono", ui-monospace, "Menlo", "Consolas", monospace;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html, body { background:var(--bg); color:var(--ink); font-family:var(--sans); }
+    body { width:1200px; height:630px; position:relative; overflow:hidden; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+    .card { position:absolute; inset:0; padding:72px 88px; display:flex; flex-direction:column; }
+    .brand { font-weight:700; font-size:28px; letter-spacing:-0.02em; }
+    .accent-rule { width:64px; height:6px; background:var(--accent); margin-top:28px; }
+    .statement {
+      font-weight:700;
+      font-size:88px;
+      line-height:1.0;
+      letter-spacing:-0.03em;
+      max-width:15ch;
+      margin-top:auto;
+    }
+    .footnote {
+      margin-top:40px;
+      font-family:var(--mono);
+      font-size:22px;
+      letter-spacing:0.01em;
+      color:var(--ink);
+      font-weight:500;
+    }
+    .footnote .dot { color:var(--accent); margin:0 0.4ch; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="brand">Make It So Camp</div>
+    <div class="accent-rule"></div>
+    <div class="statement">You cannot delegate what you cannot articulate.</div>
+    <div class="footnote">Two-day AI workshop<span class="dot">—</span>Tokyo<span class="dot">·</span>Adelaide<span class="dot">·</span>2026</div>
+  </div>
+</body>
+</html>

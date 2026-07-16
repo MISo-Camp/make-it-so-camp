@@ -6,11 +6,38 @@ import Footer from '../../components/Footer.astro';
 
 const title = 'About — Make It So Camp';
 const description = 'Make It So Camp was created by Igor Schwarzmann and Noah Raford. A selective two-day AI workshop. Tokyo and Adelaide, 2026.';
+const igorObj = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Igor Schwarzmann",
+  "sameAs": ["https://igorschwarzmann.com"]
+};
+const noahObj = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Noah Raford",
+  "jobTitle": "Managing Partner",
+  "affiliation": { "@type": "Organization", "name": "EMIR" },
+  "alumniOf": [{ "@type": "EducationalOrganization", "name": "Massachusetts Institute of Technology" }],
+  "hasCredential": "PhD, Massachusetts Institute of Technology",
+  "sameAs": ["https://noahraford.com"]
+};
+const breadcrumbObj = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://misocamp.com/new/" },
+    { "@type": "ListItem", "position": 2, "name": "About", "item": "https://misocamp.com/new/about/" }
+  ]
+};
+const jsonldGraph = [igorObj, noahObj, breadcrumbObj];
 ---
 <BaseLayout
   title={title}
   description={description}
   canonicalPath="/new/about/"
+
+  jsonldGraph={jsonldGraph}
 >
   <Header links={[
     { label: 'Home', href: '/new/' },

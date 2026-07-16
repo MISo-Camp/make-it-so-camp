@@ -6,6 +6,19 @@ import Footer from '../../components/Footer.astro';
 
 const title = 'Make It So Camp — You cannot delegate what you cannot articulate';
 const description = 'Make It So Camp is a selective two-day AI workshop for experienced practitioners. Day 1 you make your working method explicit; Day 2 you build with others and demo. Tokyo and Adelaide, 2026. By invitation.';
+const jsonldGraph = [
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      { "@type": "Organization", "@id": "https://misocamp.com/new/#org", "name": "Make It So Camp", "url": "https://misocamp.com/new/", "email": "hello@misocamp.com", "description": "Make It So Camp is a selective two-day AI workshop, by invitation. Thesis: You cannot delegate what you cannot articulate.", "founder": [ { "@id": "https://misocamp.com/new/#igor" }, { "@id": "https://misocamp.com/new/#noah" } ] },
+      { "@type": "WebSite", "@id": "https://misocamp.com/new/#website", "name": "Make It So Camp", "url": "https://misocamp.com/new/", "inLanguage": "en", "publisher": { "@id": "https://misocamp.com/new/#org" } },
+      { "@type": "Person", "@id": "https://misocamp.com/new/#igor", "name": "Igor Schwarzmann", "sameAs": ["https://igorschwarzmann.com"] },
+      { "@type": "Person", "@id": "https://misocamp.com/new/#noah", "name": "Noah Raford", "jobTitle": "Managing Partner", "affiliation": { "@type": "Organization", "name": "EMIR" }, "alumniOf": [{ "@type": "EducationalOrganization", "name": "Massachusetts Institute of Technology" }], "hasCredential": "PhD, Massachusetts Institute of Technology", "sameAs": ["https://noahraford.com"] },
+      { "@type": "Event", "@id": "https://misocamp.com/new/#tokyo-event", "name": "Make It So Camp Tokyo", "description": "Selective two-day AI workshop, by invitation. In collaboration with Chiba Institute of Technology.", "startDate": "2026-08-24", "endDate": "2026-08-25", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "eventStatus": "https://schema.org/EventScheduled", "organizer": { "@id": "https://misocamp.com/new/#org" }, "contributor": [{ "@type": "Organization", "name": "Chiba Institute of Technology" }], "location": { "@type": "Place", "name": "Crypto Café Tokyo", "address": { "@type": "PostalAddress", "addressLocality": "Tokyo", "addressCountry": "JP" } } },
+      { "@type": "Event", "@id": "https://misocamp.com/new/#adelaide-event", "name": "Make It So Camp Adelaide", "description": "Selective two-day AI workshop, by invitation. In collaboration with Flinders University New Venture Institute and SA Futures Agency.", "startDate": "2026-09-17", "endDate": "2026-09-18", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "eventStatus": "https://schema.org/EventScheduled", "organizer": { "@id": "https://misocamp.com/new/#org" }, "contributor": [ { "@type": "Organization", "name": "Flinders University New Venture Institute" }, { "@type": "Organization", "name": "SA Futures Agency" } ], "location": { "@type": "Place", "name": "Venue to be announced", "address": { "@type": "PostalAddress", "addressLocality": "Adelaide", "addressCountry": "AU" } } }
+    ]
+  }
+];
 ---
 <BaseLayout
   title={title}
@@ -13,6 +26,8 @@ const description = 'Make It So Camp is a selective two-day AI workshop for expe
   canonicalPath="/new/"
   ogTitle={title}
   ogDescription="A selective two-day AI workshop for experienced practitioners. Tokyo and Adelaide, 2026. By invitation."
+
+  jsonldGraph={jsonldGraph}
 >
   <Header links={[
     { label: "Who it's for", href: '#who' },

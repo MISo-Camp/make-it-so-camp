@@ -7,6 +7,8 @@ export interface Props {
   ogDescription?: string;
   twitterTitle?: string;
   twitterDescription?: string;
+  /** Optional JSON-LD objects; one application/ld+json script is rendered per object. */
+  jsonldGraph?: Record<string, unknown>[];
 }
 
 const {
@@ -17,6 +19,7 @@ const {
   ogDescription = description,
   twitterTitle = ogTitle,
   twitterDescription = ogDescription,
+  jsonldGraph,
 } = Astro.props;
 
 const site = Astro.site?.toString().replace(/\/$/, '') ?? 'https://misocamp.com';
@@ -47,6 +50,9 @@ const ogImage = `${site}/og-image.jpg`;
   <meta name="twitter:description" content={twitterDescription}>
   <meta name="twitter:image" content={ogImage}>
   <link rel="stylesheet" href="/new/miso.css">
+  {jsonldGraph && jsonldGraph.map((obj) => (
+    <script type="application/ld+json" set:html={JSON.stringify(obj)} />
+  ))}
 </head>
 <body>
   <slot />

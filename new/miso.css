@@ -82,6 +82,7 @@ img, svg { display:block; max-width:100%; }
 /* Section shell */
 .section { max-width:var(--wide); margin:0 auto; padding:clamp(3.5rem, 7vw, 6.5rem) var(--pad); }
 .section-label { display:flex; gap:1rem; align-items:baseline; margin-bottom:clamp(1.5rem, 3vw, 2.75rem); }
+.section-label h2.label { margin:0; }
 
 /* Large statement (what it is / request deck) */
 .lead-statement {

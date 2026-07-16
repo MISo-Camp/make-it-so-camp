@@ -75,7 +75,7 @@ const jsonldGraph = [eventObj, breadcrumbObj];
   />
 
   <section class="section" id="overview" aria-labelledby="overview-label">
-    <div class="section-label"><span class="num">01</span><span class="label" id="overview-label">Overview</span></div>
+    <div class="section-label"><span class="num">01</span><h2 class="label" id="overview-label">Overview</h2></div>
     <p class="lead-statement">{camp.overviewLead} <span class="dim">{camp.overviewDim}</span></p>
     <div class="cols">
       <div>
@@ -88,7 +88,7 @@ const jsonldGraph = [eventObj, breadcrumbObj];
   </section>
 
   <section class="section" id="days" aria-labelledby="days-label">
-    <div class="section-label"><span class="num">02</span><span class="label" id="days-label">The two days</span></div>
+    <div class="section-label"><span class="num">02</span><h2 class="label" id="days-label">The two days</h2></div>
     <p class="lead-statement">Hands-on from the first hour. <span class="dim">Theory only ever names what you have already experienced.</span></p>
     <div class="day-list" style="margin-top:clamp(2rem,3.5vw,3rem)">
       <div class="day-row">
@@ -123,7 +123,7 @@ const jsonldGraph = [eventObj, breadcrumbObj];
   </section>
 
   <section class="section" id="schedule" aria-labelledby="schedule-label">
-    <div class="section-label"><span class="num">03</span><span class="label" id="schedule-label">The schedule</span></div>
+    <div class="section-label"><span class="num">03</span><h2 class="label" id="schedule-label">The schedule</h2></div>
     <p class="lead-statement">What happens on those two days. <span class="dim">Times are indicative — the exact rhythm may shift.</span></p>
     <div class="sched">
       {camp.schedule.map((day) => (
@@ -138,7 +138,7 @@ const jsonldGraph = [eventObj, breadcrumbObj];
   </section>
 
   <section class="section" id="logistics" aria-labelledby="logistics-label">
-    <div class="section-label"><span class="num">04</span><span class="label" id="logistics-label">Logistics</span></div>
+    <div class="section-label"><span class="num">04</span><h2 class="label" id="logistics-label">Logistics</h2></div>
     <dl class="facts">
       {camp.facts.map((row) => (
         <>
@@ -150,7 +150,7 @@ const jsonldGraph = [eventObj, breadcrumbObj];
   </section>
 
   <section class="section invite" id="request" aria-labelledby="request-label">
-    <div class="section-label"><span class="num">05</span><span class="label" id="request-label">Request an invitation</span></div>
+    <div class="section-label"><span class="num">05</span><h2 class="label" id="request-label">Request an invitation</h2></div>
     <p class="lead-statement" style="margin-bottom:1.6rem">Tell us what work you would bring, and why now. <span class="dim">We reply if there is a fit.</span></p>
     <p class="email"><a href={requestHref}>hello@misocamp.com</a></p>
   </section>

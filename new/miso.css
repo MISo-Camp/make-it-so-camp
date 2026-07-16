@@ -170,3 +170,27 @@ img, svg { display:block; max-width:100%; }
   .moves { grid-template-columns:1fr; }
   .camp, .move { border-top-width:1.5px; }
 }
+
+/* Camp detail utilities */
+.statement-sm {
+  font-size:clamp(2.2rem, 6vw, 5rem);
+  max-width:16ch;
+}
+
+.facts {
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:0.45rem 1.4rem;
+  margin:0;
+  max-width:56rem;
+}
+
+.facts dt {
+  color:var(--muted);
+  font-weight:500;
+}
+
+.facts dd {
+  margin:0;
+  font-weight:500;
+}

@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "build": "astro build",
+    "build:staging": "npm run build && node scripts/build-staging.mjs",
     "check": "astro check",
     "preview": "astro preview"
   },

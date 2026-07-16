@@ -41,19 +41,23 @@ img, svg { display:block; max-width:100%; }
 .site-header {
   display:flex; justify-content:space-between; align-items:baseline;
   gap:1rem; flex-wrap:wrap;
+  width:100%; max-width:var(--wide); margin:0 auto;
   padding:var(--pad) var(--pad) 0;
 }
-.brand { font-weight:700; letter-spacing:-0.02em; font-size:1.15rem; text-decoration:none; color:var(--ink); }
+.brand { font-weight:700; letter-spacing:-0.02em; font-size:1.35rem; text-decoration:none; color:var(--ink); }
 .nav { display:flex; gap:1.3rem; font-weight:500; }
 .nav a { color:var(--muted); text-decoration:none; }
 .nav a:hover { color:var(--ink); }
 .nav a.accent { color:var(--accent); }
 
-/* Poster hero */
+/* Poster hero — shares the section grid so left edges align on all viewports */
 .hero {
-  min-height:88svh;
+  min-height:58svh;
+  width:100%;
+  max-width:var(--wide);
+  margin:0 auto;
   display:flex; flex-direction:column;
-  padding:clamp(2rem, 5vw, 4rem) var(--pad) var(--pad);
+  padding:clamp(1.5rem, 3.5vw, 2.75rem) var(--pad) var(--pad);
 }
 .hero-top { display:grid; grid-template-columns:1fr 1fr; gap:2rem; }
 .hero-top > :last-child { text-align:right; }

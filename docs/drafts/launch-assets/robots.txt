@@ -1,0 +1,7 @@
+# robots.txt for https://misocamp.com
+# Deploy to the domain root at cutover. Not before.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://misocamp.com/sitemap.xml

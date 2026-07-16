@@ -1,0 +1,18 @@
+# Make It So Camp
+
+> Make It So Camp is a selective two-day AI workshop, by invitation. Day 1 you make your working method explicit; Day 2 you build with others and demo. Tokyo and Adelaide, 2026.
+
+## Pages
+
+- [/](https://misocamp.com/): The idea, who it's for, how it works, and the 2026 camps. Thesis: you cannot delegate what you cannot articulate.
+- [Tokyo](https://misocamp.com/tokyo/): Tokyo camp, 24-25 August 2026 at Crypto Cafe Tokyo, in collaboration with Chiba Institute of Technology.
+- [Adelaide](https://misocamp.com/adelaide/): Adelaide camp, 17-18 September 2026, venue to be announced, in collaboration with Flinders University New Venture Institute and SA Futures Agency.
+- [About](https://misocamp.com/about/): The founders, Igor Schwarzmann and Noah Raford, and the camp collaborators.
+
+## Optional
+
+- [Full site content as markdown](https://misocamp.com/llms-full.txt): the complete site transcribed as clean markdown for language models.
+
+## Contact
+
+Email-only: hello@misocamp.com. By invitation; request one by telling us which camp, what work you would bring, and why now.

@@ -6,6 +6,7 @@
   "scripts": {
     "build": "astro build",
     "build:staging": "npm run build && node scripts/build-staging.mjs",
+    "build:production": "npm run build && node scripts/build-production.mjs",
     "check": "astro check",
     "preview": "astro preview"
   },

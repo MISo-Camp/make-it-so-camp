@@ -19,7 +19,13 @@
     body { width:1200px; height:630px; position:relative; overflow:hidden; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
     .card { position:absolute; inset:0; padding:72px 88px; display:flex; flex-direction:column; }
     .brand { font-weight:700; font-size:28px; letter-spacing:-0.02em; }
-    .accent-rule { width:64px; height:6px; background:var(--accent); margin-top:28px; }
+    .accent-circle {
+      position:absolute;
+      top:72px; right:88px;
+      width:96px; height:96px;
+      border-radius:50%;
+      background:var(--accent);
+    }
     .statement {
       font-weight:700;
       font-size:88px;
@@ -42,7 +48,7 @@
 <body>
   <div class="card">
     <div class="brand">Make It So Camp</div>
-    <div class="accent-rule"></div>
+    <div class="accent-circle"></div>
     <div class="statement">You cannot delegate what you cannot articulate.</div>
     <div class="footnote">Two-day AI workshop<span class="dot">—</span>Tokyo<span class="dot">·</span>Adelaide<span class="dot">·</span>2026</div>
   </div>

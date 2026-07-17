@@ -14,9 +14,11 @@ export interface Props {
   heroSub?: string;
   /** Optional CTA. When provided, renders the hero-cta block. */
   cta?: { href: string; label: string };
+  /** Optional second, muted CTA rendered inside the same hero-cta block. */
+  ctaAlt?: { href: string; label: string };
 }
 
-const { leftMeta, rightMeta, statement, small, minHeight, heroSub, cta } = Astro.props;
+const { leftMeta, rightMeta, statement, small, minHeight, heroSub, cta, ctaAlt } = Astro.props;
 ---
 <section class="hero" style={minHeight ? `min-height:${minHeight}` : undefined}>
   <div class="hero-top">
@@ -29,6 +31,6 @@ const { leftMeta, rightMeta, statement, small, minHeight, heroSub, cta } = Astro
     <p class="hero-sub">{heroSub}</p>
   )}
   {cta && (
-    <p class="hero-cta"><a href={cta.href}>{cta.label}</a></p>
+    <p class="hero-cta"><a href={cta.href}>{cta.label}</a>{ctaAlt && <a class="hero-cta-alt" href={ctaAlt.href}>{ctaAlt.label}</a>}</p>
   )}
 </section>

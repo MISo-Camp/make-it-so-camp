@@ -1,0 +1,268 @@
+# Make It So Camp
+
+Make It So Camp is a selective two-day AI workshop for experienced practitioners. By invitation. Tokyo and Adelaide, 2026.
+
+Site: https://misocamp.com/
+Contact: hello@misocamp.com (email-only)
+Founders: Igor Schwarzmann and Noah Raford
+
+---
+
+## Home
+
+By invitation. Two-day AI workshop. Tokyo · Adelaide · 2026.
+
+You cannot delegate what you cannot articulate.
+
+[Request an invitation ↗](mailto:hello@misocamp.com?subject=Invitation%20request)  [Partner with us to run a camp ↗](mailto:hello@misocamp.com?subject=Partnership)
+
+### 01 The idea
+
+AI can only help with work you can describe. And the most valuable work — yours — has usually never been described.
+
+When these tools arrived, the people who got the most out of them were not the most technical. They were the ones who could state what they wanted: the goal, the constraints, what good looks like. The machine does not guess. It needs you to say what you mean.
+
+Most AI training starts with the tools: which model, which prompt, which trick. We start with your work. Whatever your field and however long you have been in it, most of your method is unwritten — how you frame a problem, what you pay attention to, when you call something good enough. That unwritten method is the material the camp works with.
+
+The camp is for writing it down. That sounds simple, and it is the whole difference: a written method is something a machine can execute, a stranger can question, and a team can improve. And it compounds — each piece of your work you make explicit makes the next thing you build faster.
+
+The aim is not to get faster at generic tasks. It is to make your work legible enough that AI becomes a collaborator, and to leave with a way of working that keeps paying off long after the two days end.
+
+### 02 Who it's for
+
+Come for your experience, not your AI experience. The camp leans on what you already know — strategy, research, policy, craft — and mixes domains on purpose: the method transfers, and the demos are better for it.
+
+- **Academic.** Researchers, teachers, lab leads. People whose methods are rigorous but rarely written for anyone else to run.
+- **Creative.** Strategists, designers, writers, cultural workers. People who work by taste and want it to survive contact with the tools.
+- **Corporate.** Product, operations, transformation. People who own a process a team needs to understand, not just follow.
+- **Public & policy.** Policy makers, public servants, civic institutions. People whose decisions must hold up when someone asks why.
+
+You need work you care about, and the patience to say what you mean. If you would rather wait for a playbook, this camp is not the place — the people here are writing it.
+
+### 03 How it works
+
+Hands-on from the first hour. Theory only ever names what you have already experienced.
+
+**Before — A map of the room.** We ask everyone beforehand what they are working on and how they work today, so Day 1 starts from what is actually in the room rather than a round of introductions.
+
+**Day 1 — Articulate.** You work on a real problem you bring with you, and make the method behind it explicit: the steps, the assumptions, what good looks like. Exercises with people from other fields test whether someone else could actually follow it.
+
+**Day 2 — Build and demo.** Alone or in a small cross-domain team, you put the written method to work with the tools and build something real. The day ends in demo rounds — not show-and-tell, but what did your way of working make possible.
+
+### 04 2026 camps
+
+Tokyo
+- Dates: 24–25 August 2026
+- Venue: Crypto Café Tokyo
+- Partner: Chiba Institute of Technology
+[View Tokyo ↗](https://misocamp.com/tokyo/)
+
+Adelaide
+- Dates: 17–18 September 2026
+- Venue: TBD
+- Partner: Flinders University New Venture Institute and SA Futures Agency
+[View Adelaide ↗](https://misocamp.com/adelaide/)
+
+### 05 Request an invitation
+
+Tell us which camp, what work you would bring, and why now. We reply if there is a fit.
+
+[hello@misocamp.com](mailto:hello@misocamp.com?subject=Invitation%20request)
+
+Interested in running a version of Make It So Camp — at your university, company, or city? [Partner with us ↗](mailto:hello@misocamp.com?subject=Partnership)
+
+Make It So Camp — created by [Igor Schwarzmann and Noah Raford](https://misocamp.com/about/).
+In collaboration with Chiba Institute of Technology, Flinders University New Venture Institute, and SA Futures Agency.
+[About](https://misocamp.com/about/) · [Impressum](https://misocamp.com/about/#impressum) · hello@misocamp.com
+
+---
+
+## Tokyo
+
+Make It So Camp Tokyo.
+
+By invitation. Two-day AI workshop. Tokyo · 24–25 August 2026.
+
+In collaboration with Chiba Institute of Technology.
+
+[Request an invitation ↗](mailto:hello@misocamp.com?subject=Tokyo%20invitation%20request)
+
+### 01 Overview
+
+Two days to make your way of working legible — to a machine, and to people who work nothing like you. This page is what to expect in Tokyo.
+
+Make It So Camp Tokyo runs over two days at Crypto Café Tokyo, in collaboration with Chiba Institute of Technology. The cohort is deliberately mixed: researchers, strategists, designers, operators — people from the region who share a problem type, not a job title.
+
+You bring real work. Not a case study, not a sandbox exercise: a live problem where your judgment matters and your method has never been written down. That problem is your material for both days.
+
+Day 1 is about articulation — making the method behind your work explicit enough that someone from another field could follow it. Day 2 puts it to work: you build with the tools, alone or in a small team, and demo what your way of working makes possible.
+
+You leave with three things: a written method you can keep using, a working thing you built from it, and a set of people who now know how you think.
+
+### 02 The two days
+
+Hands-on from the first hour. Theory only ever names what you have already experienced.
+
+**Before — A map of the room.** We ask everyone beforehand what they are working on and how they work today. Day 1 starts from what is actually in the room, not from a round of introductions.
+
+**Day 1 — Articulate.** A sequence of short working blocks, each ending hands-on. You surface the steps, assumptions, and quality signals behind your real problem, write them down, and test with people from other fields whether your method actually transfers. The day ends with choosing what to build — and with whom, or solo.
+
+**Day 2 — Build and demo.** Working blocks with the tools, building from the method you wrote down, with a mid-point critique to catch wrong turns early. The day ends in demo rounds in small groups — not show-and-tell, but what did your way of working make possible — and finishes early enough to travel.
+
+**After — The method stays.** What you wrote down is yours: a working method your team can read, question, and improve — and a starting point that compounds with every next build.
+
+### 03 The schedule
+
+What happens on those two days. Times are indicative — the exact rhythm may shift.
+
+Day 1
+- 09:00 Welcome + frame
+- 10:00 Methods you can't see
+- 11:40 Lunch
+- 12:40 Write it down, it compounds
+- 14:15 Explicit = shareable
+- 15:30 Form teams, or go solo
+- 16:15 Networking drinks
+
+Day 2
+- 09:00 Re-entry
+- 09:15 Morning frame: lock the build
+- 09:45 Build I
+- 11:15 Mid-build crit
+- 11:45 Lunch
+- 12:30 Build II
+- 14:00 Demo rounds
+- 14:45 Wrap, early finish
+
+### 04 Logistics
+
+- Dates: 24–25 August 2026
+- Venue: Crypto Café Tokyo
+- In collaboration with: Chiba Institute of Technology
+- Format: Two days, hands-on
+- Cohort: Deliberately mixed: academic, creative industries, corporate
+- Bring: A real problem you are working on
+
+### 05 Request an invitation
+
+Tell us what work you would bring, and why now. We reply if there is a fit.
+
+[hello@misocamp.com](mailto:hello@misocamp.com?subject=Tokyo%20invitation%20request)
+
+---
+
+## Adelaide
+
+Make It So Camp Adelaide.
+
+By invitation. Two-day AI workshop. Adelaide · 17–18 September 2026.
+
+In collaboration with Flinders University New Venture Institute and SA Futures Agency.
+
+[Request an invitation ↗](mailto:hello@misocamp.com?subject=Adelaide%20invitation%20request)
+
+### 01 Overview
+
+Two days to make your way of working legible — to a machine, and to people who work nothing like you. This page is what to expect in Adelaide.
+
+Make It So Camp Adelaide runs over two days in Adelaide, in collaboration with Flinders University New Venture Institute and SA Futures Agency. The venue will be announced. The cohort is deliberately mixed: researchers, strategists, designers, operators — people from the region who share a problem type, not a job title.
+
+You bring real work. Not a case study, not a sandbox exercise: a live problem where your judgment matters and your method has never been written down. That problem is your material for both days.
+
+Day 1 is about articulation — making the method behind your work explicit enough that someone from another field could follow it. Day 2 puts it to work: you build with the tools, alone or in a small team, and demo what your way of working makes possible.
+
+You leave with three things: a written method you can keep using, a working thing you built from it, and a set of people who now know how you think.
+
+### 02 The two days
+
+Hands-on from the first hour. Theory only ever names what you have already experienced.
+
+**Before — A map of the room.** We ask everyone beforehand what they are working on and how they work today. Day 1 starts from what is actually in the room, not from a round of introductions.
+
+**Day 1 — Articulate.** A sequence of short working blocks, each ending hands-on. You surface the steps, assumptions, and quality signals behind your real problem, write them down, and test with people from other fields whether your method actually transfers. The day ends with choosing what to build — and with whom, or solo.
+
+**Day 2 — Build and demo.** Working blocks with the tools, building from the method you wrote down, with a mid-point critique to catch wrong turns early. The day ends in demo rounds in small groups — not show-and-tell, but what did your way of working make possible — and finishes early enough to travel.
+
+**After — The method stays.** What you wrote down is yours: a working method your team can read, question, and improve — and a starting point that compounds with every next build.
+
+### 03 The schedule
+
+What happens on those two days. Times are indicative — the exact rhythm may shift.
+
+Day 1
+- 09:00 Welcome + frame
+- 10:00 Methods you can't see
+- 11:40 Lunch
+- 12:40 Write it down, it compounds
+- 14:15 Explicit = shareable
+- 15:30 Form teams, or go solo
+- 16:15 Networking drinks
+
+Day 2
+- 09:00 Re-entry
+- 09:15 Morning frame: lock the build
+- 09:45 Build I
+- 11:15 Mid-build crit
+- 11:45 Lunch
+- 12:30 Build II
+- 14:00 Demo rounds
+- 14:45 Wrap, early finish
+
+### 04 Logistics
+
+- Dates: 17–18 September 2026
+- Venue: TBD
+- In collaboration with: Flinders University New Venture Institute and SA Futures Agency
+- Format: Two days, hands-on
+- Cohort: Deliberately mixed: academic, creative industries, corporate
+- Bring: A real problem you are working on
+
+### 05 Request an invitation
+
+Tell us what work you would bring, and why now. We reply if there is a fit.
+
+[hello@misocamp.com](mailto:hello@misocamp.com?subject=Adelaide%20invitation%20request)
+
+---
+
+## About
+
+Who's behind this.
+
+Make It So Camp was created by Igor Schwarzmann and Noah Raford. Two practices, one thesis: articulation is the bottleneck.
+
+### 01 Founders
+
+[Igor Schwarzmann ↗](https://igorschwarzmann.com)
+Independent strategist and researcher working at the intersection of culture and technology: cultural and trend research, brand and growth strategy, and AI strategy. He ran a foresight and strategic-design studio out of Berlin, which he sold in 2022. Recent clients include frontier AI labs, luxury fashion houses, and home-appliance makers.
+
+[Noah Raford ↗](https://www.noahraford.com)
+Futurist and strategist. Managing Partner at EMIR, he advises businesses and governments on emerging technologies and foresight. He spent a decade in the Government of Dubai as Futurist-in-Chief — founding executive of the Dubai Future Foundation and the Museum of the Future, and senior advisor to the UAE Prime Minister's Office. He holds a PhD from MIT.
+
+### 02 Collaborators
+
+- Tokyo: In collaboration with Chiba Institute of Technology
+- Adelaide: In collaboration with Flinders University New Venture Institute and SA Futures Agency
+
+### 03 Request an invitation
+
+Tell us which camp, what work you would bring, and why now. We reply if there is a fit.
+
+[hello@misocamp.com](mailto:hello@misocamp.com?subject=Invitation%20request)
+
+### 04 Impressum
+
+Angaben gemäß § 5 DDG
+
+Known Unknowns GmbH
+Fregestraße 65
+12159 Berlin
+
+Vertreten durch: Igor Schwarzmann, Geschäftsführer
+Registergericht: Amtsgericht Charlottenburg, HRB 129945 B
+USt-IdNr.: DE273843619
+Kontakt: hello@misocamp.com
+
+Make It So Camp — created by [Igor Schwarzmann and Noah Raford](https://misocamp.com/about/).
+In collaboration with Chiba Institute of Technology, Flinders University New Venture Institute, and SA Futures Agency.
+[About](https://misocamp.com/about/) · [Impressum](https://misocamp.com/about/#impressum) · hello@misocamp.com

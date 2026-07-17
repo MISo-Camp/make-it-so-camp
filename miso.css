@@ -229,3 +229,9 @@ img, svg { display:block; max-width:100%; }
   .hero-cta a { display:block; width:fit-content; }
   .hero-cta a.hero-cta-alt, .hero-cta-alt { margin-left:0; margin-top:0.9rem; }
 }
+
+/* Imprint — one-line legal strip above the footer */
+.imprint-strip { max-width:var(--wide); margin:0 auto; padding:0 var(--pad) 1.4rem; }
+.imprint-strip .imprint { font-size:0.78rem; line-height:1.55; color:var(--muted); max-width:none; }
+.imprint-strip .imprint a { color:var(--muted); }
+.imprint-strip .imprint a:hover { color:var(--ink); }

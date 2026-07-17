@@ -19,7 +19,7 @@ if (!existsSync(source)) {
 
 // 1. Clear only the five prior production outputs at repo root.
 const outFiles = ['index.html', 'miso.css'];
-const outDirs = ['tokyo', 'adelaide', 'about'];
+const outDirs = ['tokyo', 'adelaide', 'about', 'imprint'];
 for (const name of outFiles) {
   rmSync(join(repoRoot, name), { force: true });
 }
@@ -33,6 +33,7 @@ const pages = [
   join(source, 'tokyo'),
   join(source, 'adelaide'),
   join(source, 'about'),
+  join(source, 'imprint'),
   join(source, 'miso.css'),
 ];
 for (const path of pages) {
@@ -42,6 +43,7 @@ cpSync(join(source, 'index.html'), join(repoRoot, 'index.html'));
 cpSync(join(source, 'tokyo'), join(repoRoot, 'tokyo'), { recursive: true });
 cpSync(join(source, 'adelaide'), join(repoRoot, 'adelaide'), { recursive: true });
 cpSync(join(source, 'about'), join(repoRoot, 'about'), { recursive: true });
+cpSync(join(source, 'imprint'), join(repoRoot, 'imprint'), { recursive: true });
 cpSync(join(source, 'miso.css'), join(repoRoot, 'miso.css'));
 
 // 3. Retarget root: /new/ scoped URLs -> root, in the four built pages only.
@@ -50,6 +52,7 @@ const htmlTargets = [
   join(repoRoot, 'tokyo', 'index.html'),
   join(repoRoot, 'adelaide', 'index.html'),
   join(repoRoot, 'about', 'index.html'),
+  join(repoRoot, 'imprint', 'index.html'),
 ];
 for (const path of htmlTargets) {
   const original = readFileSync(path, 'utf8');

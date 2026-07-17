@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const title = 'Imprint — Make It So Camp';
+const description = 'Legal notice (Imprint, § 5 DDG) for misocamp.com.';
+---
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/new/imprint/"
+>
+  <Header links={[
+    { label: 'Home', href: '/new/' },
+    { label: 'About', href: '/new/about/' },
+    { label: 'Request an invitation', href: 'mailto:hello@misocamp.com?subject=Invitation%20request', accent: true },
+  ]} />
+
+  <section class="section" id="imprint" aria-labelledby="imprint-label">
+    <div class="section-label"><h2 class="label" id="imprint-label">Imprint</h2></div>
+    <p class="imprint">Legal notice according to § 5 DDG<br><br>
+    Known Unknowns GmbH<br>
+    Fregestraße 65<br>
+    12159 Berlin, Germany<br><br>
+    Managing director: Igor Schwarzmann<br>
+    Commercial register: Amtsgericht Charlottenburg, HRB 129945 B<br>
+    VAT ID: DE273843619<br>
+    Contact: <a class="accent" href="mailto:hello@misocamp.com">hello@misocamp.com</a></p>
+  </section>
+
+  <Footer />
+</BaseLayout>

@@ -78,6 +78,9 @@ img, svg { display:block; max-width:100%; }
 .hero-cta { margin-top:clamp(1.2rem, 2.5vw, 2rem); font-size:clamp(1.05rem, 1.4vw, 1.3rem); font-weight:600; }
 .hero-cta a { color:var(--accent); text-decoration:none; border-bottom:2px solid var(--accent); }
 .hero-cta a:hover { color:var(--accent-hover); border-color:var(--accent-hover); }
+.hero-cta-alt { margin-left:1.4rem; }
+.hero-cta a.hero-cta-alt { color:var(--muted); border-bottom:2px solid var(--line); }
+.hero-cta a.hero-cta-alt:hover { color:var(--ink); border-color:var(--ink); }
 
 /* Section shell */
 .section { max-width:var(--wide); margin:0 auto; padding:clamp(3.5rem, 7vw, 6.5rem) var(--pad); }
@@ -127,6 +130,9 @@ img, svg { display:block; max-width:100%; }
 .move .num { display:block; margin-bottom:0.6rem; }
 .move h3 { font-weight:700; font-size:clamp(1.3rem, 1.8vw, 1.65rem); letter-spacing:-0.01em; margin-bottom:0.45rem; }
 .move p { color:var(--ink); }
+.moves-four { grid-template-columns:repeat(4, 1fr); }
+@media (max-width:1100px) { .moves-four { grid-template-columns:repeat(2, 1fr); } }
+@media (max-width:640px) { .moves-four { grid-template-columns:1fr; } }
 
 /* How it works — labeled rows */
 .day-list { display:grid; }
@@ -157,6 +163,8 @@ img, svg { display:block; max-width:100%; }
 .invite .email { font-weight:700; font-size:clamp(2rem, 5.5vw, 4.2rem); letter-spacing:-0.02em; }
 .invite .email a { color:var(--accent); text-decoration:none; border-bottom:3px solid var(--accent); }
 .invite .email a:hover { color:var(--accent-hover); border-color:var(--accent-hover); }
+.imprint { font-size:0.85rem; line-height:1.65; color:var(--muted); }
+.imprint a { font-size:inherit; }
 
 /* Footer */
 .footer {

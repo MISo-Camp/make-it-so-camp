@@ -10,27 +10,46 @@ export interface CampFactsRow {
 export interface Partner {
   /** Display name, exactly as the partner writes it. */
   name: string;
+  /** Shorter label for tight surfaces (hero, camp cards, meta). Falls back to name. */
+  shortName?: string;
   /** Canonical public URL. */
   url: string;
 }
+
+/** Short label where one exists, otherwise the full name. */
+const label = (p: Partner, short: boolean) => (short && p.shortName ? p.shortName : p.name);
 
 /**
  * Render partners as an inline, linked, prose-joined list:
  * one -> "A"; two -> "A and B"; three+ -> "A, B, and C" (Oxford comma).
  * Returns trusted HTML — only ever pass it to set:html, never to a meta tag.
  */
-export function partnerLinks(partners: Partner[]): string {
+export function partnerLinks(partners: Partner[], short = false): string {
   const links = partners.map(
-    (p) => `<a href="${p.url}" target="_blank" rel="noopener">${p.name}</a>`,
+    (p) => `<a href="${p.url}" target="_blank" rel="noopener">${label(p, short)}</a>`,
   );
   if (links.length === 1) return links[0];
   if (links.length === 2) return `${links[0]} and ${links[1]}`;
   return `${links.slice(0, -1).join(', ')}, and ${links[links.length - 1]}`;
 }
 
+/**
+ * "In collaboration with A and B." — with the terminal period omitted when the
+ * last name already ends in one, so "Mousterian, Inc." doesn't render "Inc..".
+ * Pass linked: true for HTML (set:html only), false for plain text.
+ */
+export function collaborationSentence(
+  partners: Partner[],
+  { short = false, linked = false } = {},
+): string {
+  const body = linked ? partnerLinks(partners, short) : partnerNames(partners, short);
+  const tail = label(partners[partners.length - 1], short).endsWith('.') ? '' : '.';
+  return `In collaboration with ${body}${tail}`;
+}
+
 /** Plain-text equivalent of partnerLinks, for meta descriptions and JSON-LD. */
-export function partnerNames(partners: Partner[]): string {
-  const names = partners.map((p) => p.name);
+export function partnerNames(partners: Partner[], short = false): string {
+  const names = partners.map((p) => label(p, short));
   if (names.length === 1) return names[0];
   if (names.length === 2) return `${names[0]} and ${names[1]}`;
   return `${names.slice(0, -1).join(', ')}, and ${names[names.length - 1]}`;
@@ -105,12 +124,15 @@ const sharedSchedule: CampScheduleDay[] = [
   },
 ];
 
-/** Crypto Café & Bar on Google Maps. Session/tracking params stripped from the shared URL. */
-export const tokyoVenueMapUrl =
-  'https://www.google.com/maps/place/Crypto+Cafe%26Bar/@35.6461743,139.7012016,17z/data=!3m2!4b1!4m6!3m5!1s0x60188b396c4d702b:0x21ba70844af40fc8!8m2!3d35.6461743!4d139.7037819!16s%2Fg%2F11vdmxv4by';
+/** Crypto Café & Bar on Google Maps (official share link). */
+export const tokyoVenueMapUrl = 'https://maps.app.goo.gl/x6EjwSkvSXaTQC9L7';
 
 const tokyoPartners: Partner[] = [
-  { name: 'Chiba Institute of Technology Henkaku Center', url: 'https://www.henkaku.center/en/' },
+  {
+    name: 'Henkaku Center for Radical Transformation at Chiba Institute of Technology',
+    shortName: 'Henkaku Center',
+    url: 'https://www.henkaku.center/en/',
+  },
   { name: 'Mousterian, Inc.', url: 'https://www.mousterian.com' },
 ];
 
@@ -123,7 +145,7 @@ export const camps: Camp[] = [
   {
     slug: 'tokyo',
     title: 'Make It So Camp Tokyo — 24–25 August 2026',
-    description: 'Make It So Camp Tokyo is a two-day AI workshop at Crypto Café Tokyo, in collaboration with Chiba Institute of Technology Henkaku Center and Mousterian, Inc.',
+    description: 'Make It So Camp Tokyo is a two-day AI workshop at Crypto Café Tokyo, in collaboration with the Henkaku Center and Mousterian, Inc.',
     ogDescription: 'Two days to make your way of working legible — to a machine, and to people who work nothing like you.',
     statement: 'Make It So Camp Tokyo.',
     metaLine: 'Tokyo · 24–25 August 2026',
@@ -132,7 +154,7 @@ export const camps: Camp[] = [
     overviewLead: 'Two days to make your way of working legible — to a machine, and to people who work nothing like you.',
     overviewDim: 'This page is what to expect in Tokyo.',
     overviewLeft: [
-      'Make It So Camp Tokyo runs over two days at Crypto Café Tokyo, in collaboration with Chiba Institute of Technology Henkaku Center and Mousterian, Inc. The cohort is deliberately mixed: researchers, strategists, designers, operators — people from the region who share a problem type, not a job title.',
+      'Make It So Camp Tokyo runs over two days at Crypto Café Tokyo, in collaboration with the Henkaku Center for Radical Transformation at Chiba Institute of Technology and Mousterian, Inc. The cohort is deliberately mixed: researchers, strategists, designers, operators — people from the region who share a problem type, not a job title.',
       'You bring real work. Not a case study, not a sandbox exercise: a live problem where your judgment matters and your method has never been written down. That problem is your material for both days.',
     ],
     overviewRight: [

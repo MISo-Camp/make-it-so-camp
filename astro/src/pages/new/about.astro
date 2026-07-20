@@ -57,7 +57,7 @@ const jsonldGraph = [igorObj, noahObj, breadcrumbObj];
 
   <section class="section" id="founders" aria-labelledby="founders-label">
     <div class="section-label"><span class="num">01</span><h2 class="label" id="founders-label">Founders</h2></div>
-    <p class="lead-statement">Make It So Camp was created by Igor Schwarzmann and Noah Raford. <span class="dim">Two practices, one thesis: articulation is the bottleneck.</span></p>
+    <p class="lead-statement">Make It So Camp was created by Igor Schwarzmann and Noah Raford.</p>
     <div class="camps" style="margin-top:clamp(2rem,3.5vw,3rem)">
       <div class="camp">
         <h2><a href="https://igorschwarzmann.com" style="text-decoration:none; color:inherit">Igor Schwarzmann ↗︎</a></h2>
@@ -72,10 +72,20 @@ const jsonldGraph = [igorObj, noahObj, breadcrumbObj];
 
   <section class="section" id="collaborators" aria-labelledby="collaborators-label">
     <div class="section-label"><span class="num">02</span><h2 class="label" id="collaborators-label">Collaborators</h2></div>
-    <p class="lead-statement">Each camp is made by people on the ground. <span class="dim">They bring the room, the cohort, and the institutions behind it.</span></p>
-    <dl class="facts" style="margin-top:clamp(2rem,3.5vw,3rem)">
-      <dt>Tokyo</dt><dd>Joseph Austerweil, with <Fragment set:html={partnerLinks(getCamp('tokyo').partners)} /></dd>
-      <dt>Adelaide</dt><dd>Ariella Helfgott, with <Fragment set:html={partnerLinks(getCamp('adelaide').partners)} /></dd>
+    <p class="lead-statement">Each camp was built with someone on the ground. <span class="dim">They brought the room, the cohort, and the institutions behind it.</span></p>
+    <div class="camps" style="margin-top:clamp(2rem,3.5vw,3rem)">
+      <div class="camp">
+        <h2><a href="https://www.henkaku.center/en/people/joseph-austerweil/" target="_blank" rel="noopener" style="text-decoration:none; color:inherit">Joseph Austerweil ↗︎</a></h2>
+        <p>Cognitive psychologist and machine learning researcher. Senior Researcher at the Henkaku Center and co-founding faculty of Chiba Institute of Technology's new School of Design and Science. He has worked on the Tokyo camp with us from the first conversation.</p>
+      </div>
+      <div class="camp">
+        <h2><a href="https://www.linkedin.com/in/prof-ariella-helfgott-68275132/" target="_blank" rel="noopener" style="text-decoration:none; color:inherit">Ariella Helfgott ↗︎</a></h2>
+        <p>Co-founder of the SA Futures Agency and Professor at the University of Adelaide. Systems thinker working across complexity science, policy, and institutional change. She has worked on the Adelaide camp with us from the first conversation.</p>
+      </div>
+    </div>
+    <dl class="facts" style="margin-top:clamp(3.5rem,6vw,5.5rem)">
+      <dt>Tokyo</dt><dd set:html={partnerLinks(getCamp('tokyo').partners)} />
+      <dt>Adelaide</dt><dd set:html={partnerLinks(getCamp('adelaide').partners)} />
     </dl>
   </section>
 

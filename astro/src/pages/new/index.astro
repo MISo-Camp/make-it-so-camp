@@ -3,6 +3,12 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Hero from '../../components/Hero.astro';
 import Footer from '../../components/Footer.astro';
+import { getCamp, partnerLinks, partnerNames } from '../../data/camps';
+
+const tokyo = getCamp('tokyo');
+const adelaide = getCamp('adelaide');
+const contributors = (camp: typeof tokyo) =>
+  camp.partners.map((p) => ({ "@type": "Organization", "name": p.name, "url": p.url }));
 
 const title = 'Make It So Camp — You cannot delegate what you cannot articulate';
 const description = 'Make It So Camp is a selective two-day AI workshop for experienced practitioners. Day 1 you make your working method explicit; Day 2 you build with others and demo. Tokyo and Adelaide, 2026. By invitation.';
@@ -14,8 +20,8 @@ const jsonldGraph = [
       { "@type": "WebSite", "@id": "https://misocamp.com/new/#website", "name": "Make It So Camp", "url": "https://misocamp.com/new/", "inLanguage": "en", "publisher": { "@id": "https://misocamp.com/new/#org" } },
       { "@type": "Person", "@id": "https://misocamp.com/new/#igor", "name": "Igor Schwarzmann", "sameAs": ["https://igorschwarzmann.com"] },
       { "@type": "Person", "@id": "https://misocamp.com/new/#noah", "name": "Noah Raford", "jobTitle": "Managing Partner", "affiliation": { "@type": "Organization", "name": "EMIR" }, "alumniOf": [{ "@type": "EducationalOrganization", "name": "Massachusetts Institute of Technology" }], "hasCredential": "PhD, Massachusetts Institute of Technology", "sameAs": ["https://noahraford.com"] },
-      { "@type": "Event", "@id": "https://misocamp.com/new/#tokyo-event", "name": "Make It So Camp Tokyo", "description": "Selective two-day AI workshop, by invitation. In collaboration with Chiba Institute of Technology.", "startDate": "2026-08-24", "endDate": "2026-08-25", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "eventStatus": "https://schema.org/EventScheduled", "organizer": { "@id": "https://misocamp.com/new/#org" }, "contributor": [{ "@type": "Organization", "name": "Chiba Institute of Technology" }], "location": { "@type": "Place", "name": "Crypto Café Tokyo", "address": { "@type": "PostalAddress", "addressLocality": "Tokyo", "addressCountry": "JP" } } },
-      { "@type": "Event", "@id": "https://misocamp.com/new/#adelaide-event", "name": "Make It So Camp Adelaide", "description": "Selective two-day AI workshop, by invitation. In collaboration with Flinders University New Venture Institute and SA Futures Agency.", "startDate": "2026-09-17", "endDate": "2026-09-18", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "eventStatus": "https://schema.org/EventScheduled", "organizer": { "@id": "https://misocamp.com/new/#org" }, "contributor": [ { "@type": "Organization", "name": "Flinders University New Venture Institute" }, { "@type": "Organization", "name": "SA Futures Agency" } ], "location": { "@type": "Place", "name": "Venue to be announced", "address": { "@type": "PostalAddress", "addressLocality": "Adelaide", "addressCountry": "AU" } } }
+      { "@type": "Event", "@id": "https://misocamp.com/new/#tokyo-event", "name": "Make It So Camp Tokyo", "description": `Selective two-day AI workshop, by invitation. In collaboration with ${partnerNames(tokyo.partners)}.`, "startDate": "2026-08-24", "endDate": "2026-08-25", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "eventStatus": "https://schema.org/EventScheduled", "organizer": { "@id": "https://misocamp.com/new/#org" }, "contributor": contributors(tokyo), "location": { "@type": "Place", "name": "Crypto Café Tokyo", "address": { "@type": "PostalAddress", "addressLocality": "Tokyo", "addressCountry": "JP" } } },
+      { "@type": "Event", "@id": "https://misocamp.com/new/#adelaide-event", "name": "Make It So Camp Adelaide", "description": `Selective two-day AI workshop, by invitation. In collaboration with ${partnerNames(adelaide.partners)}.`, "startDate": "2026-09-17", "endDate": "2026-09-18", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "eventStatus": "https://schema.org/EventScheduled", "organizer": { "@id": "https://misocamp.com/new/#org" }, "contributor": contributors(adelaide), "location": { "@type": "Place", "name": "Venue to be announced", "address": { "@type": "PostalAddress", "addressLocality": "Adelaide", "addressCountry": "AU" } } }
     ]
   }
 ];
@@ -120,7 +126,7 @@ const jsonldGraph = [
         <dl>
           <dt>Dates</dt><dd>24–25 August 2026</dd>
           <dt>Venue</dt><dd>Crypto Café Tokyo</dd>
-          <dt>Partner</dt><dd>Chiba Institute of Technology</dd>
+          <dt>Partners</dt><dd set:html={partnerLinks(tokyo.partners)} />
         </dl>
         <p class="cta"><a class="accent" href="/new/tokyo/">View Tokyo ↗︎</a></p>
       </div>
@@ -129,7 +135,7 @@ const jsonldGraph = [
         <dl>
           <dt>Dates</dt><dd>17–18 September 2026</dd>
           <dt>Venue</dt><dd>TBD</dd>
-          <dt>Partner</dt><dd>Flinders University New Venture Institute and SA Futures Agency</dd>
+          <dt>Partners</dt><dd set:html={partnerLinks(adelaide.partners)} />
         </dl>
         <p class="cta"><a class="accent" href="/new/adelaide/">View Adelaide ↗︎</a></p>
       </div>

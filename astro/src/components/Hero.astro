@@ -10,7 +10,7 @@ export interface Props {
   small?: boolean;
   /** Optional inline min-height style override, e.g. "48svh". */
   minHeight?: string;
-  /** Optional collaboration/supporting line below the statement. */
+  /** Optional collaboration/supporting line below the statement. May contain HTML. */
   heroSub?: string;
   /** Optional CTA. When provided, renders the hero-cta block. */
   cta?: { href: string; label: string };
@@ -28,7 +28,7 @@ const { leftMeta, rightMeta, statement, small, minHeight, heroSub, cta, ctaAlt }
   <div class="spacer"></div>
   <h1 class={`statement${small ? ' statement-sm' : ''}`}>{statement}</h1>
   {heroSub && (
-    <p class="hero-sub">{heroSub}</p>
+    <p class="hero-sub" set:html={heroSub} />
   )}
   {cta && (
     <p class="hero-cta"><a href={cta.href}>{cta.label}</a>{ctaAlt && <a class="hero-cta-alt" href={ctaAlt.href}>{ctaAlt.label}</a>}</p>

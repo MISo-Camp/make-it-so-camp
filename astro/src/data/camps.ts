@@ -3,6 +3,37 @@ export interface CampFactsRow {
   term: string;
   /** Value cell. */
   value: string;
+  /** When true, `value` is trusted HTML (built by partnerLinks) and rendered with set:html. */
+  html?: boolean;
+}
+
+export interface Partner {
+  /** Display name, exactly as the partner writes it. */
+  name: string;
+  /** Canonical public URL. */
+  url: string;
+}
+
+/**
+ * Render partners as an inline, linked, prose-joined list:
+ * one -> "A"; two -> "A and B"; three+ -> "A, B, and C" (Oxford comma).
+ * Returns trusted HTML — only ever pass it to set:html, never to a meta tag.
+ */
+export function partnerLinks(partners: Partner[]): string {
+  const links = partners.map(
+    (p) => `<a href="${p.url}" target="_blank" rel="noopener">${p.name}</a>`,
+  );
+  if (links.length === 1) return links[0];
+  if (links.length === 2) return `${links[0]} and ${links[1]}`;
+  return `${links.slice(0, -1).join(', ')}, and ${links[links.length - 1]}`;
+}
+
+/** Plain-text equivalent of partnerLinks, for meta descriptions and JSON-LD. */
+export function partnerNames(partners: Partner[]): string {
+  const names = partners.map((p) => p.name);
+  if (names.length === 1) return names[0];
+  if (names.length === 2) return `${names[0]} and ${names[1]}`;
+  return `${names.slice(0, -1).join(', ')}, and ${names[names.length - 1]}`;
 }
 
 export interface CampScheduleSlot {
@@ -26,12 +57,12 @@ export interface Camp {
   ogDescription: string;
   /** Hero <h1> statement, including trailing period. */
   statement: string;
-  /** Hero collaboration line. */
-  heroSub: string;
   /** Hero meta line after the middot, e.g. "Tokyo · 24–25 August 2026". */
   metaLine: string;
   /** Mailto subject slug without the host, percent-encoded, e.g. "Tokyo%20invitation%20request". */
   subject: string;
+  /** Collaborating organisations for this camp, in credit order. */
+  partners: Partner[];
   /** Overview lead-statement text before the <span class="dim">. */
   overviewLead: string;
   /** Overview lead-statement dim text. */
@@ -74,20 +105,33 @@ const sharedSchedule: CampScheduleDay[] = [
   },
 ];
 
+const tokyoPartners: Partner[] = [
+  { name: 'Chiba Institute of Technology Henkaku Center', url: 'https://www.henkaku.center/en/' },
+  { name: 'Mousterian', url: 'https://www.mousterian.com' },
+];
+
+const adelaidePartners: Partner[] = [
+  { name: 'Flinders University New Venture Institute', url: 'https://www.flinders.edu.au/new-venture-institute' },
+  { name: 'SA Futures Agency', url: 'https://www.safuturesagency.com.au' },
+];
+
+/** Every collaborating organisation across all camps, in footer credit order. */
+export const allPartners: Partner[] = [...tokyoPartners, ...adelaidePartners];
+
 export const camps: Camp[] = [
   {
     slug: 'tokyo',
     title: 'Make It So Camp Tokyo — 24–25 August 2026',
-    description: 'Make It So Camp Tokyo is a two-day AI workshop at Crypto Café Tokyo, in collaboration with Chiba Institute of Technology.',
+    description: 'Make It So Camp Tokyo is a two-day AI workshop at Crypto Café Tokyo, in collaboration with Chiba Institute of Technology Henkaku Center and Mousterian.',
     ogDescription: 'Two days to make your way of working legible — to a machine, and to people who work nothing like you.',
     statement: 'Make It So Camp Tokyo.',
-    heroSub: 'In collaboration with Chiba Institute of Technology.',
     metaLine: 'Tokyo · 24–25 August 2026',
     subject: 'Tokyo%20invitation%20request',
+    partners: tokyoPartners,
     overviewLead: 'Two days to make your way of working legible — to a machine, and to people who work nothing like you.',
     overviewDim: 'This page is what to expect in Tokyo.',
     overviewLeft: [
-      'Make It So Camp Tokyo runs over two days at Crypto Café Tokyo, in collaboration with Chiba Institute of Technology. The cohort is deliberately mixed: researchers, strategists, designers, operators — people from the region who share a problem type, not a job title.',
+      'Make It So Camp Tokyo runs over two days at Crypto Café Tokyo, in collaboration with Chiba Institute of Technology Henkaku Center and Mousterian. The cohort is deliberately mixed: researchers, strategists, designers, operators — people from the region who share a problem type, not a job title.',
       'You bring real work. Not a case study, not a sandbox exercise: a live problem where your judgment matters and your method has never been written down. That problem is your material for both days.',
     ],
     overviewRight: [
@@ -98,7 +142,7 @@ export const camps: Camp[] = [
     facts: [
       { term: 'Dates', value: '24–25 August 2026' },
       { term: 'Venue', value: 'Crypto Café Tokyo' },
-      { term: 'In collaboration with', value: 'Chiba Institute of Technology' },
+      { term: 'In collaboration with', value: partnerLinks(tokyoPartners), html: true },
       { term: 'Format', value: 'Two days, hands-on' },
       { term: 'Cohort', value: 'Deliberately mixed: academic, creative industries, corporate' },
       { term: 'Bring', value: 'A real problem you are working on' },
@@ -110,9 +154,9 @@ export const camps: Camp[] = [
     description: 'Make It So Camp Adelaide is a two-day AI workshop in Adelaide, in collaboration with Flinders University New Venture Institute and SA Futures Agency.',
     ogDescription: 'Two days to make your way of working legible — to a machine, and to people who work nothing like you.',
     statement: 'Make It So Camp Adelaide.',
-    heroSub: 'In collaboration with Flinders University New Venture Institute and SA Futures Agency.',
     metaLine: 'Adelaide · 17–18 September 2026',
     subject: 'Adelaide%20invitation%20request',
+    partners: adelaidePartners,
     overviewLead: 'Two days to make your way of working legible — to a machine, and to people who work nothing like you.',
     overviewDim: 'This page is what to expect in Adelaide.',
     overviewLeft: [
@@ -127,7 +171,7 @@ export const camps: Camp[] = [
     facts: [
       { term: 'Dates', value: '17–18 September 2026' },
       { term: 'Venue', value: 'TBD' },
-      { term: 'In collaboration with', value: 'Flinders University New Venture Institute and SA Futures Agency' },
+      { term: 'In collaboration with', value: partnerLinks(adelaidePartners), html: true },
       { term: 'Format', value: 'Two days, hands-on' },
       { term: 'Cohort', value: 'Deliberately mixed: academic, creative industries, corporate' },
       { term: 'Bring', value: 'A real problem you are working on' },

@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Hero from '../../components/Hero.astro';
 import Footer from '../../components/Footer.astro';
+import { getCamp, partnerLinks } from '../../data/camps';
 
 const title = 'About — Make It So Camp';
 const description = 'Make It So Camp was created by Igor Schwarzmann and Noah Raford. A selective two-day AI workshop. Tokyo and Adelaide, 2026.';
@@ -72,8 +73,8 @@ const jsonldGraph = [igorObj, noahObj, breadcrumbObj];
   <section class="section" id="collaborators" aria-labelledby="collaborators-label">
     <div class="section-label"><span class="num">02</span><h2 class="label" id="collaborators-label">Collaborators</h2></div>
     <dl class="facts">
-      <dt>Tokyo</dt><dd>In collaboration with Chiba Institute of Technology</dd>
-      <dt>Adelaide</dt><dd>In collaboration with Flinders University New Venture Institute and SA Futures Agency</dd>
+      <dt>Tokyo</dt><dd>In collaboration with <Fragment set:html={partnerLinks(getCamp('tokyo').partners)} /></dd>
+      <dt>Adelaide</dt><dd>In collaboration with <Fragment set:html={partnerLinks(getCamp('adelaide').partners)} /></dd>
     </dl>
   </section>
 

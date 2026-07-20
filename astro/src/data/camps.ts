@@ -105,6 +105,10 @@ const sharedSchedule: CampScheduleDay[] = [
   },
 ];
 
+/** Crypto Café & Bar on Google Maps. Session/tracking params stripped from the shared URL. */
+export const tokyoVenueMapUrl =
+  'https://www.google.com/maps/place/Crypto+Cafe%26Bar/@35.6461743,139.7012016,17z/data=!3m2!4b1!4m6!3m5!1s0x60188b396c4d702b:0x21ba70844af40fc8!8m2!3d35.6461743!4d139.7037819!16s%2Fg%2F11vdmxv4by';
+
 const tokyoPartners: Partner[] = [
   { name: 'Chiba Institute of Technology Henkaku Center', url: 'https://www.henkaku.center/en/' },
   { name: 'Mousterian', url: 'https://www.mousterian.com' },
@@ -114,9 +118,6 @@ const adelaidePartners: Partner[] = [
   { name: 'Flinders University New Venture Institute', url: 'https://www.flinders.edu.au/new-venture-institute' },
   { name: 'SA Futures Agency', url: 'https://www.safuturesagency.com.au' },
 ];
-
-/** Every collaborating organisation across all camps, in footer credit order. */
-export const allPartners: Partner[] = [...tokyoPartners, ...adelaidePartners];
 
 export const camps: Camp[] = [
   {
@@ -141,7 +142,7 @@ export const camps: Camp[] = [
     schedule: sharedSchedule,
     facts: [
       { term: 'Dates', value: '24–25 August 2026' },
-      { term: 'Venue', value: 'Crypto Café Tokyo' },
+      { term: 'Venue', value: `<a href="${tokyoVenueMapUrl}" target="_blank" rel="noopener">Crypto Café Tokyo ↗︎</a>`, html: true },
       { term: 'In collaboration with', value: partnerLinks(tokyoPartners), html: true },
       { term: 'Format', value: 'Two days, hands-on' },
       { term: 'Cohort', value: 'Deliberately mixed: academic, creative industries, corporate' },

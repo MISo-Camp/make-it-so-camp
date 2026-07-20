@@ -3,7 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Hero from '../../components/Hero.astro';
 import Footer from '../../components/Footer.astro';
-import { camps, getCamp, partnerLinks, partnerNames } from '../../data/camps';
+import { camps, getCamp, partnerLinks, partnerNames, tokyoVenueMapUrl } from '../../data/camps';
 
 export function getStaticPaths() {
   return camps.map((camp) => ({ params: { camp: camp.slug } }));
@@ -16,7 +16,7 @@ const campName = camp.slug === 'tokyo' ? 'Make It So Camp Tokyo' : 'Make It So C
 const heroSub = `In collaboration with ${partnerLinks(camp.partners)}.`;
 const campDescription = `Selective two-day AI workshop, by invitation. In collaboration with ${partnerNames(camp.partners)}.`;
 const campPlace = camp.slug === 'tokyo'
-  ? { "@type": "Place", "name": "Crypto Café Tokyo", "address": { "@type": "PostalAddress", "addressLocality": "Tokyo", "addressCountry": "JP" } }
+  ? { "@type": "Place", "name": "Crypto Café Tokyo", "hasMap": tokyoVenueMapUrl, "address": { "@type": "PostalAddress", "addressLocality": "Tokyo", "addressCountry": "JP" } }
   : { "@type": "Place", "name": "Venue to be announced", "address": { "@type": "PostalAddress", "addressLocality": "Adelaide", "addressCountry": "AU" } };
 const campContributor = camp.partners.map((p) => ({ "@type": "Organization", "name": p.name, "url": p.url }));
 const eventObj = {

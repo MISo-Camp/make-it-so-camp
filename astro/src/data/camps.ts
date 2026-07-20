@@ -111,7 +111,7 @@ export const tokyoVenueMapUrl =
 
 const tokyoPartners: Partner[] = [
   { name: 'Chiba Institute of Technology Henkaku Center', url: 'https://www.henkaku.center/en/' },
-  { name: 'Mousterian', url: 'https://www.mousterian.com' },
+  { name: 'Mousterian, Inc.', url: 'https://www.mousterian.com' },
 ];
 
 const adelaidePartners: Partner[] = [
@@ -123,7 +123,7 @@ export const camps: Camp[] = [
   {
     slug: 'tokyo',
     title: 'Make It So Camp Tokyo — 24–25 August 2026',
-    description: 'Make It So Camp Tokyo is a two-day AI workshop at Crypto Café Tokyo, in collaboration with Chiba Institute of Technology Henkaku Center and Mousterian.',
+    description: 'Make It So Camp Tokyo is a two-day AI workshop at Crypto Café Tokyo, in collaboration with Chiba Institute of Technology Henkaku Center and Mousterian, Inc.',
     ogDescription: 'Two days to make your way of working legible — to a machine, and to people who work nothing like you.',
     statement: 'Make It So Camp Tokyo.',
     metaLine: 'Tokyo · 24–25 August 2026',
@@ -132,7 +132,7 @@ export const camps: Camp[] = [
     overviewLead: 'Two days to make your way of working legible — to a machine, and to people who work nothing like you.',
     overviewDim: 'This page is what to expect in Tokyo.',
     overviewLeft: [
-      'Make It So Camp Tokyo runs over two days at Crypto Café Tokyo, in collaboration with Chiba Institute of Technology Henkaku Center and Mousterian. The cohort is deliberately mixed: researchers, strategists, designers, operators — people from the region who share a problem type, not a job title.',
+      'Make It So Camp Tokyo runs over two days at Crypto Café Tokyo, in collaboration with Chiba Institute of Technology Henkaku Center and Mousterian, Inc. The cohort is deliberately mixed: researchers, strategists, designers, operators — people from the region who share a problem type, not a job title.',
       'You bring real work. Not a case study, not a sandbox exercise: a live problem where your judgment matters and your method has never been written down. That problem is your material for both days.',
     ],
     overviewRight: [

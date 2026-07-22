@@ -8,7 +8,7 @@ import { getCamp, collaborationSentence, partnerLinks, tokyoVenueMapUrl } from '
 const tokyo = getCamp('tokyo');
 const adelaide = getCamp('adelaide');
 const contributors = (camp: typeof tokyo) =>
-  camp.partners.map((p) => ({ "@type": "Organization", "name": p.name, "url": p.url }));
+  [...camp.partners, ...(camp.supporters ?? [])].map((p) => ({ "@type": "Organization", "name": p.name, "url": p.url }));
 
 const title = 'Make It So Camp — You cannot delegate what you cannot articulate';
 const description = 'Make It So Camp is a selective two-day AI workshop for experienced practitioners. Day 1 you make your working method explicit; Day 2 you build with others and demo. Tokyo and Adelaide, 2026. By invitation.';

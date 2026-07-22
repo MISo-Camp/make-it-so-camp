@@ -82,6 +82,8 @@ export interface Camp {
   subject: string;
   /** Collaborating organisations for this camp, in credit order. */
   partners: Partner[];
+  /** Lighter-weight supporters, credited under "Supported by". Optional. */
+  supporters?: Partner[];
   /** Overview lead-statement text before the <span class="dim">. */
   overviewLead: string;
   /** Overview lead-statement dim text. */
@@ -133,7 +135,11 @@ const tokyoPartners: Partner[] = [
     shortName: 'Henkaku Center',
     url: 'https://www.henkaku.center/en/',
   },
+];
+
+const tokyoSupporters: Partner[] = [
   { name: 'Mousterian, Inc.', url: 'https://www.mousterian.com' },
+  { name: 'Puddin AI', url: 'https://puddin.ai' },
 ];
 
 const adelaidePartners: Partner[] = [
@@ -145,16 +151,17 @@ export const camps: Camp[] = [
   {
     slug: 'tokyo',
     title: 'Make It So Camp Tokyo — 24–25 August 2026',
-    description: 'Make It So Camp Tokyo is a two-day AI workshop at Crypto Café Tokyo, in collaboration with the Henkaku Center and Mousterian, Inc.',
+    description: 'Make It So Camp Tokyo is a two-day AI workshop at Crypto Café Tokyo, in collaboration with the Henkaku Center.',
     ogDescription: 'Two days to make your way of working legible — to a machine, and to people who work nothing like you.',
     statement: 'Make It So Camp Tokyo.',
     metaLine: 'Tokyo · 24–25 August 2026',
     subject: 'Tokyo%20invitation%20request',
     partners: tokyoPartners,
+    supporters: tokyoSupporters,
     overviewLead: 'Two days to make your way of working legible — to a machine, and to people who work nothing like you.',
     overviewDim: 'This page is what to expect in Tokyo.',
     overviewLeft: [
-      'Make It So Camp Tokyo runs over two days at Crypto Café Tokyo, in collaboration with the Henkaku Center for Radical Transformation at Chiba Institute of Technology and Mousterian, Inc. The cohort is deliberately mixed: researchers, strategists, designers, operators — people from the region who share a problem type, not a job title.',
+      'Make It So Camp Tokyo runs over two days at Crypto Café Tokyo, in collaboration with the Henkaku Center for Radical Transformation at Chiba Institute of Technology. The cohort is deliberately mixed: researchers, strategists, designers, operators — people from the region who share a problem type, not a job title.',
       'You bring real work. Not a case study, not a sandbox exercise: a live problem where your judgment matters and your method has never been written down. That problem is your material for both days.',
     ],
     overviewRight: [
@@ -166,6 +173,7 @@ export const camps: Camp[] = [
       { term: 'Dates', value: '24–25 August 2026' },
       { term: 'Venue', value: `<a href="${tokyoVenueMapUrl}" target="_blank" rel="noopener">Crypto Café Tokyo ↗︎</a>`, html: true },
       { term: 'In collaboration with', value: partnerLinks(tokyoPartners), html: true },
+      { term: 'Supported by', value: partnerLinks(tokyoSupporters), html: true },
       { term: 'Format', value: 'Two days, hands-on' },
       { term: 'Cohort', value: 'Deliberately mixed: academic, creative industries, corporate' },
       { term: 'Bring', value: 'A real problem you are working on' },

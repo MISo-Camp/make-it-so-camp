@@ -18,7 +18,7 @@ const campDescription = `Selective two-day AI workshop, by invitation. ${collabo
 const campPlace = camp.slug === 'tokyo'
   ? { "@type": "Place", "name": "Crypto Café Tokyo", "hasMap": tokyoVenueMapUrl, "address": { "@type": "PostalAddress", "addressLocality": "Tokyo", "addressCountry": "JP" } }
   : { "@type": "Place", "name": "Venue to be announced", "address": { "@type": "PostalAddress", "addressLocality": "Adelaide", "addressCountry": "AU" } };
-const campContributor = camp.partners.map((p) => ({ "@type": "Organization", "name": p.name, "url": p.url }));
+const campContributor = [...camp.partners, ...(camp.supporters ?? [])].map((p) => ({ "@type": "Organization", "name": p.name, "url": p.url }));
 const eventObj = {
   "@context": "https://schema.org",
   "@type": "Event",

@@ -172,8 +172,8 @@ export const camps: Camp[] = [
     facts: [
       { term: 'Dates', value: '24–25 August 2026' },
       { term: 'Venue', value: `<a href="${tokyoVenueMapUrl}" target="_blank" rel="noopener">Crypto Café Tokyo ↗︎</a>`, html: true },
-      { term: 'In collaboration with', value: partnerLinks(tokyoPartners), html: true },
-      { term: 'Supported by', value: partnerLinks(tokyoSupporters), html: true },
+      { term: 'Collaborators', value: partnerLinks(tokyoPartners), html: true },
+      { term: 'Supporters', value: partnerLinks(tokyoSupporters), html: true },
       { term: 'Format', value: 'Two days, hands-on' },
       { term: 'Cohort', value: 'Deliberately mixed: academic, creative industries, corporate' },
       { term: 'Bring', value: 'A real problem you are working on' },
@@ -202,7 +202,7 @@ export const camps: Camp[] = [
     facts: [
       { term: 'Dates', value: '17–18 September 2026' },
       { term: 'Venue', value: 'TBD' },
-      { term: 'In collaboration with', value: partnerLinks(adelaidePartners), html: true },
+      { term: 'Collaborators', value: partnerLinks(adelaidePartners), html: true },
       { term: 'Format', value: 'Two days, hands-on' },
       { term: 'Cohort', value: 'Deliberately mixed: academic, creative industries, corporate' },
       { term: 'Bring', value: 'A real problem you are working on' },

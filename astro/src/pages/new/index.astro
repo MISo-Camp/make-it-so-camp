@@ -126,7 +126,8 @@ const jsonldGraph = [
         <dl>
           <dt>Dates</dt><dd>24–25 August 2026</dd>
           <dt>Venue</dt><dd><a href={tokyoVenueMapUrl} target="_blank" rel="noopener">Crypto Café Tokyo ↗︎</a></dd>
-          <dt>Partners</dt><dd set:html={partnerLinks(tokyo.partners, true)} />
+          <dt>Collaborators</dt><dd set:html={partnerLinks(tokyo.partners, true)} />
+          {tokyo.supporters && <><dt>Supporters</dt><dd set:html={partnerLinks(tokyo.supporters, true)} /></>}
         </dl>
         <p class="cta"><a class="accent" href="/new/tokyo/">View Tokyo ↗︎</a></p>
       </div>
@@ -135,7 +136,8 @@ const jsonldGraph = [
         <dl>
           <dt>Dates</dt><dd>17–18 September 2026</dd>
           <dt>Venue</dt><dd>TBD</dd>
-          <dt>Partners</dt><dd set:html={partnerLinks(adelaide.partners, true)} />
+          <dt>Collaborators</dt><dd set:html={partnerLinks(adelaide.partners, true)} />
+          {adelaide.supporters && <><dt>Supporters</dt><dd set:html={partnerLinks(adelaide.supporters, true)} /></>}
         </dl>
         <p class="cta"><a class="accent" href="/new/adelaide/">View Adelaide ↗︎</a></p>
       </div>

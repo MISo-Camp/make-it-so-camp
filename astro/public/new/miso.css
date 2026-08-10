@@ -113,6 +113,8 @@ img, svg { display:block; max-width:100%; }
 
 @media (max-width:820px) {
   .cols { grid-template-columns:1fr; gap:0; }
+  /* Stacked columns need their own separation: the last p in each column has no margin. */
+  .cols > div + div { margin-top:1.05rem; }
 }
 
 /* Camps as Swiss metadata entries */

@@ -40,11 +40,14 @@ the same set plus `/tokyo/agenda/`.
 
 ---
 
-## Task 1 — branch
+## Task 1 — confirm the branch
+
+The branch already exists and this plan is already committed on it. Confirm you
+are on it; do NOT create it.
 
 ```bash
 cd ~/GitHub/make-it-so-camp
-git checkout -b agenda-page
+git checkout agenda-page
 ```
 
 Verify:

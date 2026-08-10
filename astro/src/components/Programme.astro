@@ -1,0 +1,37 @@
+---
+export interface ProgrammeBlock {
+  /** Time or time range, e.g. "09:30 – 11:00". */
+  time: string;
+  /** Block name. */
+  title: string;
+  /** Optional one-line framing under the title. */
+  kicker?: string;
+  /** Optional description of what happens in the block. */
+  body?: string;
+  /** Optional "you leave with" line. */
+  takeaway?: string;
+  /** Breaks, lunch and travel rows render quieter. */
+  rest?: boolean;
+}
+
+export interface Props {
+  blocks: ProgrammeBlock[];
+}
+
+const { blocks } = Astro.props;
+---
+<div class="programme">
+  {blocks.map((block) => (
+    <div class={block.rest ? 'prog-row rest' : 'prog-row'}>
+      <p class="prog-time">{block.time}</p>
+      <div>
+        <h3>{block.title}</h3>
+        {block.kicker && <p class="prog-kicker">{block.kicker}</p>}
+        {block.body && <p class="prog-body">{block.body}</p>}
+        {block.takeaway && (
+          <p class="prog-take"><span class="prog-take-label">You leave with </span>{block.takeaway}</p>
+        )}
+      </div>
+    </div>
+  ))}
+</div>

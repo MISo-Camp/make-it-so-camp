@@ -7,6 +7,8 @@ export interface Props {
   ogDescription?: string;
   twitterTitle?: string;
   twitterDescription?: string;
+  /** Robots directive. Defaults to indexable; pass "noindex, nofollow" for unlisted pages. */
+  robots?: string;
   /** Optional JSON-LD objects; one application/ld+json script is rendered per object. */
   jsonldGraph?: Record<string, unknown>[];
 }
@@ -19,6 +21,7 @@ const {
   ogDescription = description,
   twitterTitle = ogTitle,
   twitterDescription = ogDescription,
+  robots = 'index, follow',
   jsonldGraph,
 } = Astro.props;
 
@@ -34,7 +37,7 @@ const ogImage = `${site}/og-image.jpg`;
   <title>{title}</title>
   <meta name="description" content={description}>
   <meta name="author" content="Make It So Camp">
-  <meta name="robots" content="index, follow">
+  <meta name="robots" content={robots}>
   <link rel="canonical" href={canonical}>
   <meta property="og:type" content="website">
   <meta property="og:url" content={canonical}>

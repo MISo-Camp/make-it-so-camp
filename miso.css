@@ -235,3 +235,27 @@ img, svg { display:block; max-width:100%; }
 .imprint-strip .imprint { font-size:0.78rem; line-height:1.55; color:var(--muted); max-width:none; }
 .imprint-strip .imprint a { color:var(--muted); }
 .imprint-strip .imprint a:hover { color:var(--ink); }
+
+/* Programme — timed blocks with a takeaway (agenda page) */
+.programme { display:grid; }
+.prog-row {
+  display:grid; grid-template-columns:8rem minmax(0, 1fr);
+  gap:1.5rem; align-items:start;
+  padding:1.4rem 0;
+  border-top:2px solid var(--ink);
+}
+.prog-time { font-size:0.82rem; font-weight:700; color:var(--accent); padding-top:0.35rem; white-space:nowrap; }
+.prog-row h3 { font-weight:700; font-size:clamp(1.3rem, 1.8vw, 1.65rem); letter-spacing:-0.01em; margin-bottom:0.35rem; }
+.prog-kicker { color:var(--muted); font-weight:600; max-width:52ch; margin-bottom:0.5rem; }
+.prog-row p.prog-body { color:var(--ink); max-width:62ch; }
+.prog-take { margin-top:0.7rem; font-size:0.95rem; font-weight:600; color:var(--accent); max-width:62ch; }
+.prog-take .prog-take-label { color:var(--muted); font-weight:500; }
+
+.prog-row.rest { border-top-width:1px; padding:0.7rem 0; }
+.prog-row.rest .prog-time { color:var(--muted); }
+.prog-row.rest h3 { font-size:1.05rem; font-weight:600; color:var(--muted); margin-bottom:0; }
+
+@media (max-width:820px) {
+  .prog-row { grid-template-columns:1fr; gap:0.4rem; border-top-width:1.5px; }
+  .prog-row.rest { gap:0.2rem; }
+}

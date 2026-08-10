@@ -39,6 +39,10 @@ const pages = [
 for (const path of pages) {
   if (!existsSync(path)) throw new Error(`Missing production output: ${path}`);
 }
+const agendaSource = join(source, 'tokyo', 'agenda', 'index.html');
+if (!existsSync(agendaSource)) {
+  throw new Error(`Missing production output: ${agendaSource}`);
+}
 cpSync(join(source, 'index.html'), join(repoRoot, 'index.html'));
 cpSync(join(source, 'tokyo'), join(repoRoot, 'tokyo'), { recursive: true });
 cpSync(join(source, 'adelaide'), join(repoRoot, 'adelaide'), { recursive: true });
@@ -47,13 +51,17 @@ cpSync(join(source, 'imprint'), join(repoRoot, 'imprint'), { recursive: true });
 cpSync(join(source, 'miso.css'), join(repoRoot, 'miso.css'));
 
 // 3. Retarget root: /new/ scoped URLs -> root, in the four built pages only.
+const agendaTarget = join(repoRoot, 'tokyo', 'agenda', 'index.html');
 const htmlTargets = [
   join(repoRoot, 'index.html'),
   join(repoRoot, 'tokyo', 'index.html'),
   join(repoRoot, 'adelaide', 'index.html'),
   join(repoRoot, 'about', 'index.html'),
   join(repoRoot, 'imprint', 'index.html'),
+  agendaTarget,
 ];
+// Unlisted pages: must be noindex, and are never asserted as indexable.
+const noindexTargets = new Set([agendaTarget]);
 for (const path of htmlTargets) {
   const original = readFileSync(path, 'utf8');
   const rewritten = original
@@ -68,7 +76,11 @@ for (const path of htmlTargets) {
 // 4. Guards on the four root pages: index,follow; no /new/; root stylesheet; zero client scripts.
 for (const path of htmlTargets) {
   const html = readFileSync(path, 'utf8');
-  if (!html.includes('content="index, follow"')) {
+  if (noindexTargets.has(path)) {
+    if (!html.includes('content="noindex, nofollow"')) {
+      throw new Error(`Unlisted page must be noindex: ${path}`);
+    }
+  } else if (!html.includes('content="index, follow"')) {
     throw new Error(`Production robots directive missing: ${path}`);
   }
   if (html.includes('/new/')) {
@@ -93,4 +105,4 @@ if (!readFileSync(join(repoRoot, 'miso.css')).equals(readFileSync(join(source, '
   throw new Error('Production CSS parity check');
 }
 
-console.log('PASS production artifact: 4 root pages, root URLs, index,follow, zero scripts, root CSS');
+console.log('PASS production artifact: 5 root pages (1 unlisted noindex), root URLs, zero scripts, root CSS');

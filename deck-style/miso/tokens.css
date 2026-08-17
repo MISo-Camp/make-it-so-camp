@@ -1,0 +1,27 @@
+/* Make It So Camp — deck skin.
+   Derived from the live site system (misocamp.com, miso.css): Swiss poster —
+   bone ground, near-black ink, terracotta accent, Helvetica Neue grotesque.
+   Palette values are copied from miso.css :root, not re-invented. */
+:root{
+  /* accent — terracotta, used as a scalpel (rules, labels, markers) */
+  --accent:#8F2E20; --accent-light:#A63D2F; --accent-dark:#6E2118;
+  --accent-fade:rgba(143,46,32,0.14); --accent-tint:rgba(143,46,32,0.07);
+  /* light palette — bone ground, ink text, site line colour */
+  --lt-bg:#EAE6DD; --lt-bg2:#E3DED3; --lt-bg3:#DBD5C8; --lt-card-bg:#E3DED3;
+  --lt-text:#1A1712; --lt-muted:#8C877D; --lt-rule:#D6D0C4;
+  --lt-footer-bg:#E3DED3; --lt-card-rule:#D6D0C4;
+  /* dark palette — the site has no dark mode; ink ground is the extension */
+  --deck-bg:#1A1712; --deck-bg2:#221E18; --deck-bg3:#2B2620;
+  --dk-text:#EAE6DD; --dk-muted:#A79F91;
+  --deck-rule:rgba(234,230,221,0.26); --deck-border:rgba(234,230,221,0.14);
+  /* keynote caption family */
+  --kn-ink:#1A1712; --kn-paper:#EAE6DD;
+  /* fonts — one grotesque, as on the site. System Helvetica Neue, no webfont. */
+  --display:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  --wordmark:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  --body-font:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  /* cover — flat bone. The poster system has no gradients. */
+  --cover-bg:#EAE6DD;
+  /* geometry (invariant) */
+  --W:1920px; --H:1080px;
+}

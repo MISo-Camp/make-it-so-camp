@@ -15,9 +15,12 @@ De-personalised versions of the Claude Code skills demonstrated at Make It So Ca
 
 A skill is a folder containing a `SKILL.md` file, placed under `~/.claude/skills/`. The file is plain markdown — read it, edit it, understand it before you rely on it. There's no build step and no hidden format.
 
-## Not included here
+## Linked, not copied
 
-`frontend-design` is a skill that ships with Claude Code itself. It's Anthropic's, carries its own licence, and isn't reproduced in this folder — look for it in your own Claude Code installation.
+Two things shown at the camp are published by the people who made them. Use theirs — a copy here would only go stale.
+
+- **`frontend-design`** — the skill behind the live website build. It ships with Claude Code, so you may already have it; the source is at [anthropics/skills](https://github.com/anthropics/skills/tree/main/skills/frontend-design). Anthropic's, under its own licence.
+- **DESIGN.md** — the format for describing a visual identity to an agent, open-sourced by Google Labs: [google-labs-code/design.md](https://github.com/google-labs-code/design.md). A good skeleton for the token half of a design system. It does not cover the mode router or the per-mode prose rules — the `design-system/` template here is about those.
 
 ## Caution
 

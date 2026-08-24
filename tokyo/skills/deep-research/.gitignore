@@ -19,8 +19,10 @@ venv/
 research/
 round1/
 round2/
+round2_5/
 round3/
 round4/
+retrieval_ledger.json
 
 # OS / editor
 .DS_Store
@@ -34,3 +36,9 @@ round4/
 # Deep Research config — holds inline API keys
 deep-research.toml
 **/config.toml
+
+# Local rollback substrate — never publish (holds a copy of the live config)
+config-backups/
+
+# Internal build/process docs — kept on disk, not published (contain local absolute paths)
+docs/

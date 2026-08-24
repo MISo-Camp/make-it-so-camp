@@ -23,6 +23,10 @@ Complete, working skills copied from a live setup, snapshot 2026-08-24. These ru
 - **`creative-diversification/`**: breaks mode collapse in ideation. Asks how weird you want to get (creative / weird / feral), then generates under different cognitive frames.
 - **`art-direct/`**: reads any content and proposes 2-3 creative directions, then writes AI image prompts and visual briefs section by section. Includes a fal.ai model table for direct generation.
 
+## Tools (not skills)
+
+- **`pagesmith/`**: a WYSIWYG editor for AI-generated HTML — visually edit websites, reports, and slide decks, then export PDF (A4 or 16:9). An npm package, not a SKILL.md skill: `cd pagesmith && npm install && npm run dev`, or use the published package via `npx pagesmith --dir ./my-project`. Canonical: [nraford7/pagesmith](https://github.com/nraford7/pagesmith). Pairs naturally with keynote-create and narrative-engine output. Sample HTML files included; the optional revision-chat integration expects an external API and can be ignored.
+
 ## How a skill gets installed
 
 A skill is a folder containing a `SKILL.md` file, placed under `~/.claude/skills/`. The file is plain markdown — read it, edit it, understand it before you rely on it. There's no build step and no hidden format.

@@ -1,0 +1,417 @@
+---
+name: do-it
+description: End-to-end autonomous build pipeline. Takes a user instruction and runs spec → fresheyes-loop → plan → fresheyes-loop → Agency execution → post-build review → commit + push. Each review loop is governed by a Claude diminishing-returns judge that calls the loop between passes 3 and 10. If reviewers keep finding new categories of issues, the artifact is split into chunks and the pipeline recurses. Trigger on `/do-it` or when the user explicitly says "do it" / "just build it" / "run the full pipeline" on a non-trivial task.
+---
+
+# /do-it — Autonomous Build Pipeline
+
+End-to-end execution. User gives an instruction; this skill drives spec, plan, build, review, commit, push without further permission asks. The only place clarifying questions are allowed is **at the very start, before the spec is written**.
+
+The loop has one job: ship working code that passes review without burning tokens on diminishing returns.
+
+## When to Use
+
+- User says `/do-it <instruction>`
+- User says "just do it", "build it end-to-end", "run the full pipeline" on a non-trivial change
+- User wants the full Plan-with-superpowers / Execute-with-Agency / Review-with-superpowers workflow but does not want to be asked at every gate
+
+**Do NOT use** for trivial single-file edits, exploratory research, or anything where the user expects to steer mid-flight. This skill assumes a single shot.
+
+## The Pipeline
+
+```
+[0] Clarify (only if blocking)
+      ↓
+[1] Spec        ─→  fresheyes-loop  ─→  (split? recurse) ─→  ✓
+      ↓
+[2] Plan        ─→  fresheyes-loop  ─→  (split? recurse) ─→  ✓
+      ↓
+[3] Agency execution  (no permission asks)
+      ↓
+[4] Post-build review (Stage 1 + Stage 2)
+      ↓
+[5] Commit + push
+```
+
+Every fresheyes loop has a **Claude diminishing-returns judge** sitting on top deciding CONTINUE / STOP / SPLIT after each pass.
+
+---
+
+## Mandatory Artifacts (NO EXCEPTIONS)
+
+By the time the pipeline reaches Step 5 (commit), ALL of the following files MUST exist on disk:
+
+1. **Spec file** at `docs/superpowers/specs/YYYY-MM-DD-<slug>-design.md`
+2. **Plan file** at `docs/superpowers/plans/YYYY-MM-DD-<slug>.md`
+3. The actual code/doc deliverables for the work
+
+**These are non-negotiable. The skill explicitly forbids the following rationalizations:**
+
+- ❌ "The spec is detailed enough that the plan is implicit." → write the plan anyway, even if it's 30 lines.
+- ❌ "This task is small / well-spec'd already." → small tasks get short plans, not no plans.
+- ❌ "The parent spec already covers chunk X, so chunk X doesn't need its own plan." → write a chunk-specific plan that names files, line numbers, and acceptance criteria for that chunk.
+- ❌ "The subagent prompt IS effectively the plan." → no, the plan is a versioned, fresheyes-reviewed artifact in git. The dispatch prompt is ephemeral.
+- ❌ "Context budget is tight, so let's skip the plan step." → if the budget can't hold the cycle, save state and start fresh; don't skip.
+- ❌ "Letting the cycle run feels heavy." → it's heavy by design. The discipline IS the value.
+
+**If you (the executor) are tempted to skip a step in the cycle for ANY reason, you MUST stop and surface the temptation to the user before acting on it. Do not decide alone.** The acceptable phrasing is: "I'm tempted to skip step X for reason Y. Want me to (a) write the [missing artifact] anyway, (b) skip with explicit acknowledgment, (c) abort?" Wait for user response. Acting unilaterally on the skip is the failure mode this rule prohibits.
+
+The plan's value is independent of the spec's value:
+- The spec describes WHAT and WHY.
+- The plan describes HOW and IN WHAT ORDER.
+- The plan's fresheyes pass surfaces issues the spec's fresheyes pass cannot — different artifact, different review angle, different findings.
+- The plan creates the audit trail of implementation decisions.
+- The fact that subagent execution succeeds without a plan does NOT validate the skip; it validates that the spec was sufficient *that one time*. The discipline is insurance, not always-load-bearing.
+
+**Plan length scales with task size; plan EXISTENCE does not.** A 1-hour task gets a 30-line plan. A 1-week project gets a 500-line plan. Both go through fresheyes ≥2 passes.
+
+---
+
+## Step 0 — Clarify (only at the start)
+
+Read the user's instruction. If anything is genuinely blocking — ambiguous deliverable, missing acceptance criteria, conflicting constraints — ask **at most three** focused questions in a single message before doing anything else.
+
+Do NOT ask about:
+- Style / cosmetic preferences (use project conventions)
+- Implementation choices that the spec/plan loop will surface anyway
+- Whether to proceed (the answer is yes; that's why they invoked `/do-it`)
+
+If nothing is blocking, skip this step and go straight to the spec.
+
+---
+
+## Step 1 — Spec
+
+Use **`superpowers:brainstorming`** first if scope is fuzzy. Then author the spec yourself at:
+
+```
+docs/superpowers/specs/YYYY-MM-DD-<slug>-design.md
+```
+
+The spec must include: problem statement, success criteria (measurable), proposed approach, alternatives considered with why-not, blast radius / rollback plan, and any open questions.
+
+Then enter the **spec review loop** (see Review Loop section below).
+
+---
+
+## Step 2 — Plan (MANDATORY — see Mandatory Artifacts above)
+
+**This step is NOT skippable. No exceptions, no judgment calls, no "the spec covers it."**
+
+After the spec passes review, invoke **`superpowers:writing-plans`** with the approved spec as input. Plans land at:
+
+```
+docs/superpowers/plans/YYYY-MM-DD-<slug>.md
+```
+
+Plan must have checkbox steps grouped into chunks. Each chunk is the meaningful shippable unit (per the user's CLAUDE.md). Verification commands and acceptance criteria are mandatory per chunk.
+
+For SMALL tasks (single-file edit, brief investigation, parameter ship): write a SHORT plan — 30-100 lines is fine — but write one. The plan describes:
+- Files to touch with line numbers
+- The change at each location
+- Verification commands (tests, lint, smoke run)
+- Acceptance criteria
+- Rollback steps
+
+For LARGE tasks (multi-system, schema migration, refactor): write a full plan — typically 200-1000 lines — with chunked structure, dependency ordering, per-chunk acceptance criteria.
+
+Then enter the **plan review loop** (≥2 fresheyes passes minimum, even on short plans).
+
+**Self-check before advancing to Step 3:**
+- [ ] Plan file exists at `docs/superpowers/plans/YYYY-MM-DD-<slug>.md`
+- [ ] Plan has gone through fresheyes ≥2 passes
+- [ ] Diminishing-returns judge has emitted a STOP decision at pass 3+ OR passes 1-2 returned with no impact-YES findings
+- [ ] Scorecard line was printed for every plan-loop pass
+
+If any checkbox is unchecked, DO NOT advance. Either complete it or surface to user.
+
+---
+
+## Step 3 — Agency Execution
+
+This is non-negotiable: **execution uses Agency, not `superpowers:subagent-driven-development` or `superpowers:executing-plans`** (per the user's CLAUDE.md).
+
+```
+mcp__agency__agency_create_project   # mirror the plan's chunk/task structure
+mcp__agency__agency_assign           # one assign per task, with the plan section as context
+mcp__agency__agency_evaluator        # after each task
+mcp__agency__agency_submit_evaluation
+```
+
+Do not ask the user for permission to start, to assign tasks, or to mark tasks complete. The plan was approved; execute it.
+
+If a task fails the Agency evaluator twice with the same root cause, **stop and re-plan** rather than thrashing. Document the failure and surface to the user.
+
+---
+
+## Step 4 — Post-Build Review (chunk boundary)
+
+Per the user's CLAUDE.md, review runs at **chunk boundaries, not per task**. After all tasks in a chunk are Agency-evaluator-clean, run the **two-stage review on the chunk's combined diff**:
+
+1. **Stage 1** — `superpowers:requesting-code-review` against the combined diff.
+2. **Stage 2** — `superpowers:fresheyes` for independent cross-validation (different model, no shared context). Drop the `--model` flag (it 400s on ChatGPT-account auth as of 2026-04-19). **Always run fresheyes under the Fresheyes Watchdog Protocol below — never `await` a bare fresheyes call that could hang forever.** If fresheyes fails or stalls, fall back to `code-review:code-review` (PRs only) or a fresh general-purpose subagent with no shared context.
+3. Apply findings via `superpowers:receiving-code-review` (technical rigor, no performative agreement). Re-run both stages if substantive changes land.
+
+Wrap this stage in the **review loop** as well — same diminishing-returns judge, same 5-pass implementation cap from CLAUDE.md.
+
+Only when both stages return clean does the chunk move to commit.
+
+---
+
+## Fresheyes Watchdog Protocol (MANDATORY for EVERY fresheyes invocation)
+
+**The wall this prevents:** codex/fresheyes (Stage 2, and the spec/plan fresheyes loops) can hang indefinitely — process alive, near-zero CPU, no output — and a foreground `await` or a naive `until grep` waiter then blocks the whole pipeline for an unbounded time. This was observed stalling a run ~48 minutes before manual intervention. **A fresheyes call must never be able to stall the loop. Bound it in time, watch it for liveness, and reboot-or-fall-back automatically.**
+
+Apply this to spec fresheyes, plan fresheyes, AND Stage-2 code fresheyes — every time.
+
+**Rules:**
+1. **Never block unbounded.** Do not run `fresheyes.sh` in the foreground with no timeout, and do not write an `until grep …; do sleep; done` waiter with no deadline. Both can wait forever. Always launch with stdin redirected from `/dev/null` — codex hangs forever reading a non-TTY stdin pipe.
+2. **Hard ceiling: 20 minutes per fresheyes attempt.** Healthy gpt-5.5 high-reasoning reviews run 5–15 min. Past 20 min it is hung, not slow.
+3. **Stall detection — watch the CODEX LOG, never fresheyes.sh's stdout.** `fresheyes.sh` buffers: its stdout stays **0 bytes for the entire healthy run** and only fills after codex exits. Watching stdout for growth false-positives on every run (this exact bug killed every review at ~90s on 2026-07-02). Liveness lives in the codex log under `$TMPDIR/fresheyes-logs/`. A fresheyes attempt is STALLED only when that log has not grown for **300 consecutive seconds** — codex legitimately goes log-silent 2–4 min while composing the final verdict, so do NOT lower this tolerance.
+4. **On stall or ceiling hit:** kill the whole fresheyes/codex process group, then **retry ONCE** from scratch. If the retry also stalls or hits the ceiling, **immediately fall back** to a fresh `general-purpose` subagent reviewer (no shared context) — do NOT retry a third time, do NOT wait, do NOT spiral. The fallback subagent is a first-class substitute for fresheyes (it satisfies the "independent cross-validation" requirement).
+5. **Always emit a scorecard line** for the pass regardless of which reviewer produced it (fresheyes vs fallback subagent) — the loop must keep converging.
+6. **Surface it briefly.** When you reboot or fall back, say so in one line ("fresheyes stalled at N min — rebooted / fell back to independent subagent"). Do not go silent.
+
+**Reference implementation** (run fresheyes detached, watchdog it, kill+reboot on stall, else fall back):
+
+```bash
+# Launch fresheyes detached, writing to a known file. stdin MUST be </dev/null (codex hangs on a pipe).
+OUT=/tmp/fresheyes-$$.out
+"<fresheyes.sh path>" "<scope>" >"$OUT" 2>&1 </dev/null &
+FE_PID=$!
+# $OUT stays 0 bytes until codex FINISHES (fresheyes.sh buffers) — liveness is in the codex log.
+sleep 10
+LOG=$(ls -t "${TMPDIR:-/tmp}"/fresheyes-logs/*.log 2>/dev/null | head -1)
+deadline=$(( $(date +%s) + 1200 ))   # 20-min hard ceiling; healthy reviews run 5-15 min
+last_size=-1; flat=0; stalled=0
+while kill -0 "$FE_PID" 2>/dev/null; do
+  sleep 15
+  now=$(date +%s); size=$(wc -c <"$LOG" 2>/dev/null || echo 0)
+  if [ "$size" = "$last_size" ]; then flat=$((flat+15)); else flat=0; fi
+  last_size=$size
+  # 300s tolerance: codex goes log-silent 2-4 min composing the verdict. Do NOT tighten.
+  if [ "$flat" -ge 300 ] || [ "$now" -ge "$deadline" ]; then stalled=1; break; fi
+done
+if [ "$stalled" = 1 ]; then
+  pkill -P "$FE_PID" 2>/dev/null; kill "$FE_PID" 2>/dev/null
+  pkill -f "codex exec" 2>/dev/null; pkill -f fresheyes.sh 2>/dev/null
+  echo "FRESHEYES_STALLED"   # → retry once, then fall back to a general-purpose subagent
+else
+  wait "$FE_PID" 2>/dev/null
+  grep -qE "INDEPENDENT CODE REVIEW (PASSED|FAILED)" "$OUT" && echo "FRESHEYES_DONE" || echo "FRESHEYES_STALLED"
+fi
+```
+
+Run this watchdog block itself with `run_in_background: true` (Bash) so the pipeline is re-invoked on completion — but because it self-terminates at the 20-min ceiling, it can never hang the loop. When it prints `FRESHEYES_STALLED`, retry once; on a second stall, dispatch the `general-purpose` fallback reviewer instead. Never leave a hung `codex`/`fresheyes.sh` process alive — `pkill -f "codex exec"` and `pkill -f fresheyes.sh` as part of teardown.
+
+---
+
+## Pre-Commit Artifact Verification (MANDATORY before Step 5)
+
+Before staging anything for commit, run this self-check:
+
+```bash
+test -f docs/superpowers/specs/YYYY-MM-DD-<slug>-design.md && echo "spec ✓" || echo "spec MISSING"
+test -f docs/superpowers/plans/YYYY-MM-DD-<slug>.md && echo "plan ✓" || echo "plan MISSING"
+```
+
+Both files must exist. If either is missing:
+- **STOP.**
+- **Do NOT commit.**
+- **Surface the missing artifact to the user.** Acceptable surfacing: "I notice the [spec|plan] file is missing because I [skipped step X | reason]. Per the skill's Mandatory Artifacts rule I cannot commit without it. Want me to (a) write the missing file now, (b) abort the run, (c) explicit override (you take responsibility for the skip)?"
+
+This check is the audit-trail backstop. The earlier anti-skip rules prevent the skip in real-time; this check catches it if it slipped through anyway.
+
+---
+
+## Step 5 — Commit + Push
+
+**Runs in the git repo of the current working directory at invocation time.** This skill is global — it does not have an opinion about which project it belongs to. Whatever repo `pwd` resolves to is the target.
+
+Before doing anything in this step:
+
+1. Run `git rev-parse --show-toplevel` from cwd. If it errors (no enclosing repo), STOP and surface the wall. Offer to (a) `git init` here, or (b) point at a different directory. Do not invent a target.
+2. Verify a remote exists (`git remote -v`). If none, STOP and surface — there is nothing to push to.
+3. Confirm the current branch (`git branch --show-current`).
+
+Then:
+
+4. Stage only the files changed by this pipeline. Never `git add -A` / `git add .`.
+5. Commit using a descriptive message ending with the standard Co-Authored-By trailer.
+6. Push to the **current branch** of the cwd's repo. Never force-push. Never push to `master`/`main` if the current branch is master/main without explicit user confirmation in this session.
+7. Report the final commit SHA + remote URL. Do not open a PR (user can run `commit-commands:commit-push-pr` separately if they want one).
+
+If the working tree has unrelated dirty files, list them and ask before staging — do not auto-stage other people's work.
+
+---
+
+## The Review Loop (used in Steps 1, 2, 4)
+
+Each loop iteration:
+
+1. Run the reviewer (fresheyes for spec/plan; Stage 1 + Stage 2 for code). **Every fresheyes call here is governed by the Fresheyes Watchdog Protocol (Step 4) — bounded, liveness-watched, auto-rebooted or fallen back; a fresheyes pass may never stall the loop.**
+2. Run the **Claude diminishing-returns judge** (see below).
+3. **Print the one-line scorecard** (see below) — mandatory, every pass, no exceptions.
+4. Judge returns one of: `CONTINUE`, `STOP`, `SPLIT`.
+
+### The One-Line Scorecard (mandatory after every pass)
+
+After every reviewer pass, before moving on, print exactly one line in this format:
+
+```
+Pass N [<artifact>]: <B>B/<S>S/<C>C/<R>R · fixed <F>/<P> prior · velocity <↑|↓|=> (<prior>→<current>, escalation <yes|no>) · judge: <DECISION>
+```
+
+Where:
+- `N` = pass number (1-indexed).
+- `<artifact>` = `spec` | `plan` | `code:<chunk-name>`.
+- `B / S / C / R` = count of BLOCKER / SUBSTANTIVE / COSMETIC / (RESTATEMENT + EXTENSION + DEFERRED) findings this pass.
+- `F / P` = of the prior pass's BLOCKER+SUBSTANTIVE findings, how many are now resolved (`F`) out of the total that needed fixing (`P`). Pass 1 prints `fixed -/-`.
+- `velocity` arrow: `↓` if `current_count < prior_count`, `=` if equal, `↑` if growing. Show raw counts in parens.
+- `escalation` = `yes` if any current finding is more severe than the worst finding in the prior pass.
+- `judge` = the verdict returned by the diminishing-returns judge (`CONTINUE`, `STOP-IMPACT`, `STOP-CLASS`, `STOP-VELOCITY`, `SPLIT`). At passes 1–2 the judge does not run; print `judge: pre-floor`.
+
+**Example lines:**
+
+```
+Pass 1 [spec]: 3B/5S/2C/0R · fixed -/- · velocity = (—→10, escalation no) · judge: pre-floor
+Pass 2 [spec]: 1B/4S/3C/2R · fixed 7/8 prior · velocity ↓ (10→10, escalation no) · judge: pre-floor
+Pass 3 [spec]: 0B/1S/4C/5R · fixed 4/5 prior · velocity ↓ (10→10, escalation no) · judge: STOP-VELOCITY
+Pass 4 [code:ingest]: 0B/0S/6C/3R · fixed 1/1 prior · velocity ↓ (4→9, escalation no) · judge: STOP-CLASS
+```
+
+The scorecard is the user-visible signal that the loop is converging. If three consecutive passes show all-COSMETIC + RESTATEMENT findings and the judge has not yet called STOP, the scorecard makes that obvious — the user can call STOP manually. Never skip the scorecard, even when the judge says CONTINUE; it is the audit trail.
+
+### Pass caps (hard ceilings)
+
+**This skill explicitly overrides the global CLAUDE.md "review-round cap: 5 passes total per chunk" rule.** When `/do-it` is invoked, the cap is **10 passes** per artifact, not 5. The diminishing-returns judge is the primary brake; the cap is the backstop.
+
+- **Spec loop**: cap at **10 passes**.
+- **Plan loop**: cap at **10 passes**.
+- **Code-review loop per chunk**: cap at **10 passes**.
+
+Floor is **3 passes** before the judge is even allowed to call STOP — three independent looks at an artifact is the minimum to trust "clean."
+
+If pass 10 still finds blockers, the judge MUST emit `SPLIT`. The artifact is too large or too underspecified; iterate-to-exhaustion is forbidden.
+
+> The judge is expected to call STOP well before pass 10 on most runs. The 10-pass ceiling exists for genuinely hard artifacts (multi-system specs, large refactor plans, security-sensitive code) where the user has already accepted the token cost of deeper review by invoking `/do-it`. If the user explicitly says "stay strict, cap at 5 on this one," honor that override.
+
+### The Diminishing-Returns Judge
+
+After each review pass starting at pass 3, dispatch a Claude subagent with this prompt:
+
+```
+You are a diminishing-returns judge for a code/spec/plan review loop.
+
+INPUT:
+- Original artifact (spec | plan | combined diff)
+- All prior reviewer outputs (passes 1..N), with finding counts per pass
+- This pass's reviewer output (pass N+1)
+- Pass count so far
+
+TASK: Decide whether further review passes will produce material improvement.
+
+STEP 1 — Categorize each finding in this pass as:
+  (a) BLOCKER       — correctness, security, or contract bug; must be fixed
+  (b) SUBSTANTIVE   — design issue or maintainability problem worth fixing now
+  (c) COSMETIC      — style, naming, comment quality, formatting
+  (d) DEFERRED      — valid concern, but properly belongs to a later chunk
+  (e) RESTATEMENT   — repeats a finding from an earlier pass without new substance
+  (f) EXTENSION     — applies an already-acknowledged finding/thread to a sibling
+                      location, case, or instance. Example: an earlier pass said
+                      "fix nullability on table A", this pass says "also fix it
+                      on table B." The thread is known; only the surface area
+                      grew. Counts as RESTATEMENT-class for STOP purposes.
+                      (If the sibling location reveals a genuinely different
+                      failure mode, classify as SUBSTANTIVE or NEW-CATEGORY
+                      instead — extension means the *same* fix pattern applies.)
+  (g) NEW-CATEGORY  — finding in a domain reviewers had not raised before
+
+STEP 2 — For EVERY finding, answer the Implementation Impact Test:
+  "Would a competent implementer, given the current artifact, produce
+   materially different code/text if this finding is fixed vs. not fixed?"
+  Answer YES or NO per finding. A YES requires a concrete delta the implementer
+  would actually make (different function signature, different control flow,
+  different acceptance criterion, etc.) — not "they'd think about it more."
+
+STEP 3 — Compute finding velocity:
+  - prior_count  = number of findings in pass N
+  - current_count = number of findings in pass N+1
+  - escalation   = TRUE if any current finding is more severe than the most
+                   severe finding in pass N (e.g., a new BLOCKER appeared after
+                   a pass that had only SUBSTANTIVE/COSMETIC). Otherwise FALSE.
+
+DECIDE (evaluate in this order; first match wins, all STOP paths require pass ≥ 3):
+
+  STOP-IMPACT   — Implementation Impact Test is NO for ALL findings. No fix
+                  would change what gets built. Ship.
+  STOP-CLASS    — only COSMETIC + DEFERRED + RESTATEMENT + EXTENSION findings.
+                  Remaining items are noise.
+  STOP-VELOCITY — current_count < prior_count AND escalation == FALSE.
+                  Reviewers are converging; further passes will not pay off,
+                  regardless of how the latest findings are classified.
+  CONTINUE      — at least one BLOCKER or SUBSTANTIVE finding that fails STOP-IMPACT
+                  and the velocity/class STOPs do not apply. Fix and re-review.
+  SPLIT         — NEW-CATEGORY findings are still appearing at pass 5+, OR pass 10
+                  still has BLOCKERS. Reviewers cannot converge — the artifact is
+                  too large or too underspecified. Recommend chunk boundaries.
+
+OUTPUT (strict):
+  Decision: CONTINUE | STOP-IMPACT | STOP-CLASS | STOP-VELOCITY | SPLIT
+  Reason: <one sentence>
+  Findings: <numbered list; each item: severity-class | impact YES/NO | one-line summary>
+  Velocity: prior=<N> current=<M> escalation=<TRUE|FALSE>
+  Blockers: <list or "none">
+  Substantive: <list or "none">
+  Split-recommendation: <only if SPLIT — proposed chunk boundaries>
+```
+
+The judge's verdict is binding for this skill. Any `STOP-*` decision advances to the next pipeline step. `CONTINUE` means fix the BLOCKER + SUBSTANTIVE items (those whose Impact Test is YES) and run another pass. `SPLIT` goes to the **Splitting** section.
+
+---
+
+## Splitting (when reviews don't converge)
+
+When the judge emits `SPLIT`:
+
+1. **For a spec** — break the spec into 2+ smaller specs along the boundaries the judge recommended. Each becomes its own pipeline run (Step 1 onward). Run them sequentially unless they are genuinely independent (no shared schema/contract changes), in which case dispatch in parallel.
+2. **For a plan** — split the plan into smaller plans (typically by chunk). Re-enter Step 2 for each. Often the spec was fine but the plan tried to do too much per chunk — re-chunk and re-review.
+3. **For a code review** — split the chunk. The combined diff is too large for reviewers to converge. Pull the most independent slice into its own chunk, ship that first, then re-review the remainder.
+
+Splitting is not failure. It is the system telling you the unit of work was wrong. The split branches inherit the same loop discipline.
+
+---
+
+## Defaults & Guardrails
+
+- **Never enter plan mode.** Per CLAUDE.md, plan mode is forbidden. A hook will block it.
+- **Never `--no-verify` on commits.** Fix hook failures; never bypass.
+- **Never force-push.** Especially not to master/main.
+- **Never auto-merge to master/main.** This skill works on the current branch. If on master/main, ask before pushing.
+- **Spec/plan paths are conventional.** Use `docs/superpowers/specs/` and `docs/superpowers/plans/`. If the project does not have these directories, create them.
+- **Memory writes are allowed.** When the pipeline learns something durable (an architecture decision, a confirmed user preference, a project state change), write a memory per the user's auto-memory rules.
+- **The Oracle posture is active.** Lead with the true sentence. Commit fully. Subtract until what remains refuses to be subtracted.
+- **The cycle is the discipline. The discipline is the value.** Every step in the pipeline exists because skipping it has been observed to fail. Do not treat the skill's instructions as suggestions you can override with judgment; they are guardrails the user has explicitly asked to be enforced. If your judgment says "this step doesn't apply here," your judgment is wrong — surface to the user instead of acting on it.
+
+---
+
+## Output Discipline During the Run
+
+Match the user's CLAUDE.md communication rules:
+
+- One sentence per pipeline-stage transition. ("Spec passing pass 4. Moving to plan.")
+- **One scorecard line per review pass** (see Review Loop § The One-Line Scorecard). This is the only multi-pass status the user sees during a loop.
+- No narration of internal deliberation.
+- No multi-paragraph status updates unless something blocks.
+- End-of-pipeline summary: one paragraph. What shipped, where the commit landed, any deferred items.
+
+If something blocks mid-pipeline (an irrecoverable Agency failure, a merge conflict), stop and surface it immediately — do not spiral through workarounds. Per CLAUDE.md: "When you hit a wall, say so immediately." **A stalled fresheyes is NOT a wall to surface-and-stop on — it is handled automatically by the Fresheyes Watchdog Protocol (kill → retry once → fall back to a general-purpose subagent). The loop keeps moving; you only mention it in one line.**
+
+---
+
+## What This Skill Does Not Do
+
+- It does not open PRs. Use `commit-commands:commit-push-pr` if you want a PR.
+- It does not deploy. Deployment is a separate concern; this skill ends at `git push`.
+- It does not run the test suite as a gate beyond what Agency evaluators and Stage 1 reviewers already check. Add explicit verification steps inside the plan if the work warrants it.
+- It does not negotiate with the user mid-pipeline. Clarification is Step 0 only.

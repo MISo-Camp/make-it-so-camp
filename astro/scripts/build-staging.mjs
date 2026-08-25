@@ -35,7 +35,7 @@ function collectHtml(dir) {
 }
 
 const htmlFiles = collectHtml(target);
-// index, tokyo, adelaide, about, imprint, tokyo/agenda, tokyo/agent
+// index, tokyo, adelaide, about, imprint, tokyo/agenda, tokyo/miso-coach
 const expectedPages = 7;
 if (htmlFiles.length !== expectedPages) {
   throw new Error(`Expected ${expectedPages} staging pages, found ${htmlFiles.length}`);

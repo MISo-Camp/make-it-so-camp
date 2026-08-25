@@ -28,7 +28,7 @@ for (const name of outDirs) {
 }
 // tokyo/ also hosts hand-maintained content (tokyo/skills/) that is not part of
 // the Astro build. Clear only the built outputs inside it, never the directory.
-for (const name of ['index.html', 'agenda', 'agent']) {
+for (const name of ['index.html', 'agenda', 'miso-coach']) {
   rmSync(join(repoRoot, 'tokyo', name), { recursive: true, force: true });
 }
 
@@ -48,7 +48,7 @@ const agendaSource = join(source, 'tokyo', 'agenda', 'index.html');
 if (!existsSync(agendaSource)) {
   throw new Error(`Missing production output: ${agendaSource}`);
 }
-const agentSource = join(source, 'tokyo', 'agent', 'index.html');
+const agentSource = join(source, 'tokyo', 'miso-coach', 'index.html');
 if (!existsSync(agentSource)) {
   throw new Error(`Missing production output: ${agentSource}`);
 }
@@ -61,7 +61,7 @@ cpSync(join(source, 'miso.css'), join(repoRoot, 'miso.css'));
 
 // 3. Retarget root: /new/ scoped URLs -> root, in the four built pages only.
 const agendaTarget = join(repoRoot, 'tokyo', 'agenda', 'index.html');
-const agentTarget = join(repoRoot, 'tokyo', 'agent', 'index.html');
+const agentTarget = join(repoRoot, 'tokyo', 'miso-coach', 'index.html');
 const htmlTargets = [
   join(repoRoot, 'index.html'),
   join(repoRoot, 'tokyo', 'index.html'),

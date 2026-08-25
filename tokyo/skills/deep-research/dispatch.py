@@ -4,9 +4,11 @@ Deep Research Dispatcher — thin slices entry point.
 
 This is a slices-only orchestrator guide, not a runner. It validates the run mode,
 preflights the Exa retrieval key (`EXA_API_KEY`), and prints the ordered Round-1
-retrieval command sequence (scope → slice_search → evidence_gate) that the SKILL.md
-orchestrator executes. Round-1 live retrieval is Exa slices; there is no legacy model
-fleet and no built-in web-search provider.
+retrieval command sequence (scope → slice_search → evidence_gate → citation_chase →
+coverage_audit) that
+the SKILL.md orchestrator executes, plus a reminder that lint_background belongs in the
+Round-4 checklist. Round-1 live retrieval is Exa slices; there is no legacy model fleet
+and no built-in web-search provider.
 
 Usage:
   python3 dispatch.py --topic "Grid battery storage" --scope "Full scope..." --run-dir ./run1/
@@ -70,11 +72,26 @@ def main():
                  "--topic", args.topic, "--run-dir", str(run_dir)] + cap_arg
     gate_cmd = ["python3", "scripts/evidence_gate.py",
                 "--run-dir", str(run_dir)]
+    chase_cmd = ["python3", "scripts/citation_chase.py",
+                 "--run-dir", str(run_dir), "--topic", args.topic]
+    audit_cmd = ["python3", "scripts/coverage_audit.py",
+                 "--run-dir", str(run_dir), "--topic", args.topic]
 
     print("Round-1 retrieval command sequence (run in order):")
     print(f"  1. {_fmt(scope_cmd)}")
     print(f"  2. {_fmt(slice_cmd)}")
     print(f"  3. {_fmt(gate_cmd)}")
+    print(f"  4. {_fmt(chase_cmd)}")
+    print("     (citation_chase exit 0 = ran, expanded or nothing new; a NONZERO "
+          "exit (40 OpenAlex unreachable, 41 no resolvable seeds, 22 still thin) "
+          "means it could not complete: do NOT proceed as if expansion succeeded, "
+          "surface and resolve it.)")
+    print(f"  5. {_fmt(audit_cmd)}")
+    print("     (coverage_audit exit 0 = coverage verified; a NONZERO exit means "
+          "the audit could not complete or the corpus is still thin: do NOT "
+          "proceed to synthesis, surface and resolve it.)")
+    print("Round 4 checklist step: python3 scripts/lint_background.py "
+          f"{shlex.quote(str(run_dir / 'sections'))}")
 
 
 if __name__ == "__main__":

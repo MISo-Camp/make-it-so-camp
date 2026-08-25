@@ -3,202 +3,176 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Header from '../../../components/Header.astro';
 import Hero from '../../../components/Hero.astro';
 import Footer from '../../../components/Footer.astro';
-
-const questions = [
-  { move: 'Open', qs: ['What’s something at work you do regularly that costs more than it should?'], stuck: ['What did you redo this week?', 'What were you waiting on last week, and on whom?', 'What do you put off until the deadline forces it?'] },
-  { move: 'Anchor', qs: ['When did you last do it?', 'What kicked it off?', 'How did it end?'] },
-  { move: 'Goal, provisional', qs: ['When that was finished, what existed that didn’t exist before?'], stuck: ['An activity is named: what was that for?', 'Too large: what did you do on Thursday?'] },
-  { move: 'Dump', qs: ['Everything that happened between the kick-off and the end. Past tense, one thing per line, any order.', 'What else?', 'What did you wait for?', 'Who did you have to remind?', 'What went wrong?'] },
-  { move: 'Order', qs: ['Put those in the order they happened.', 'Where are the natural breaks?', 'What would you call each part?'] },
-  { move: 'Operations', per: 'per part', qs: ['What did you physically do here: open, write, send, check?', 'How many drafts?', 'What would a stranger get wrong doing this?'] },
-  { move: 'Inputs and outputs', per: 'per operation', qs: ['What did you need to start this?', 'Where did it come from?', 'What did it produce?', 'Who got it?'] },
-  { move: 'Allocation', per: 'per operation', qs: ['Where on this ladder does this one sit today?'], stuck: ['Rung 0–2: why do you stay in?', 'None of the four reasons: does it go up one?', 'Kept: is it the gathering, the thinking, the deciding, or the doing you want to keep?'] },
-  { move: 'Goal, revised', qs: ['You kept these. Why do they matter?', 'And why does that matter? Until the answer stops changing.', 'Say that without naming a tool or a step.', 'Suppose the built parts are running and the kept parts are yours. What’s the first thing you notice on a Monday?'] },
-  { move: 'Close', qs: ['What did you notice today that you hadn’t seen before?'] },
-];
 ---
 <BaseLayout
   title="The agent — Make It So Camp Tokyo"
-  description="The Make It So agent: an interview that takes one piece of your work and writes it down well enough to hand to a machine."
+  description="The Make It So agent breaks one piece of your work into goal, subgoals and activities, then decides with you, activity by activity, what an agent takes over and where a person stays in."
   canonicalPath="/new/tokyo/agent/"
   robots="noindex, nofollow"
 >
   <Header links={[
-    { label: 'What it is', href: '#what' },
-    { label: 'The conversation', href: '#flow' },
-    { label: 'The questions', href: '#questions' },
-    { label: 'Where it stands', href: '#status' },
+    { label: 'Why', href: '#why' },
+    { label: 'The process', href: '#process' },
+    { label: 'Three moves', href: '#moves' },
+    { label: 'What you leave with', href: '#card' },
     { label: 'The camp', href: '/new/tokyo/' },
   ]} />
 
   <Hero
     leftMeta="The agent"
     rightMeta={'Make It So Camp Tokyo<br><span class="light">in development</span>'}
-    statement="One piece of your work, written down well enough to hand to a machine."
+    statement="Break one piece of your work into goal, subgoals and activities. Then decide, activity by activity, what an agent takes over and where a person stays in."
     small={true}
     minHeight="42svh"
   />
 
-  <section class="section" id="what" aria-labelledby="what-label">
-    <div class="section-label"><span class="num">01</span><h2 class="label" id="what-label">What it is</h2></div>
-    <p class="lead-statement">An interview, run by an agent. <span class="dim">Not a form.</span></p>
+  <section class="section" id="why" aria-labelledby="why-label">
+    <div class="section-label"><span class="num">01</span><h2 class="label" id="why-label">Why</h2></div>
+    <p class="lead-statement">You cannot delegate what you cannot articulate.</p>
     <div class="cols">
       <div>
-        <p>People cannot describe their own work in the abstract. Asked for a workflow, they draw three boxes or forty, and both are fiction. The time goes into waiting, chasing, rework and exceptions, and none of that appears in a self-report. What people can describe is last Tuesday.</p>
-        <p>So the agent asks about last Tuesday. It takes one thing you do regularly, finds the last time you did it, and walks down from the goal to the parts to the steps, one question at a time. Then it asks, step by step, how much of it you want to keep doing yourself.</p>
+        <p>Most of how we work is tacit. We know how to open the jar, so we never write it down, and a description of our work assumes everything a grown-up would know. That is what the sandwich exercise on day one showed: written for a partner who follows the instructions exactly as written, it goes wrong at the steps nobody thought to mention.</p>
+        <p>An agent is that partner. It does not share the assumptions, and it does the wrong thing at exactly the step that was left out.</p>
       </div>
       <div>
-        <p><strong>What you leave with.</strong> A card: the goal, the steps, what each step needs and produces, which steps stay with you and why, and which ones get built. The card is in your words. It is the written-down method, and it is what any agent can be handed afterwards.</p>
-        <p><strong>The turn.</strong> The goal is asked twice. Once at the start, stated from inside the work as it is now. Once at the end, worked upward from the steps you refused to hand off. If the two differ, the difference is the result.</p>
+        <p>Asked for a workflow cold, people give the tidy version. The time goes into waiting, chasing, rework and exceptions, and none of that shows up because none of it feels like work. What people can describe with the gaps filled in is last Tuesday.</p>
+        <p>The agent is an interview that starts from last Tuesday. It takes one thing you do regularly, finds the last time you did it, and works down from the goal to the activities, one question at a time. Then it asks, activity by activity, where you need to stay in.</p>
       </div>
     </div>
   </section>
 
-  <section class="section" id="flow" aria-labelledby="flow-label">
-    <div class="section-label"><span class="num">02</span><h2 class="label" id="flow-label">The conversation</h2></div>
-    <p class="lead-statement">The work, taken apart.</p>
+  <section class="section" id="process" aria-labelledby="process-label">
+    <div class="section-label"><span class="num">02</span><h2 class="label" id="process-label">The process</h2></div>
+    <p class="lead-statement">One piece of work, taken apart.</p>
     <figure class="flow">
-<svg viewBox="0 0 1200 620" role="img" aria-label="One piece of work decomposed: a goal at the top, three subgoals under it, activities under each, every activity with a rung from 0 to 4 and, for rungs 0 to 2, a reason. Activities at rung 0 to 1 stay with the person and feed a revised goal beside the first. Activities at rung 2 to 4 get built, one per session, and after a real run the tree is redrawn. Everything lands on the card. Rails name steps 1 to 3 of the camp's list.">
-<defs>
-<marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker>
-<marker id="arrA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/></marker>
-</defs>
-<g font-family="var(--sans)" font-size="13">
-<!-- rails -->
-<g fill="var(--muted)" font-size="11" letter-spacing="1.4">
-<text x="20" y="112">1 · THINK OF IT</text><text x="20" y="126">AS A WORKFLOW</text>
-<text x="20" y="262">2 · INPUTS AND</text><text x="20" y="276">OUTPUTS, PER</text><text x="20" y="290">ACTIVITY</text>
-<text x="720" y="196">3 · DECIDE WHERE A PERSON STAYS IN</text>
-</g>
-<g stroke="var(--muted)" stroke-width="1"><line x1="150" y1="40" x2="150" y2="190"/><line x1="150" y1="212" x2="150" y2="360"/></g>
-<!-- goal 1 -->
-<rect x="180" y="40" width="480" height="56" rx="2" fill="var(--bg)" stroke="var(--accent)" stroke-width="1.6"/>
-<text x="196" y="60" font-size="11" fill="var(--muted)" letter-spacing="1.4">GOAL, AS STATED</text>
-<text x="196" y="82" fill="currentColor">The board trusts the numbers without me re-explaining them every month</text>
-<!-- goal 2 -->
-<rect x="720" y="40" width="460" height="56" rx="2" fill="#F2E9E4" stroke="var(--accent)" stroke-width="1.6"/>
-<text x="736" y="60" font-size="11" fill="var(--accent)" letter-spacing="1.4">GOAL, REVISED</text>
-<text x="736" y="82" fill="currentColor">A board that gets a trustworthy number without me explaining it live</text>
-<text x="690" y="64" text-anchor="middle" fill="var(--muted)" font-size="11">same, or</text>
-<text x="690" y="78" text-anchor="middle" fill="var(--muted)" font-size="11">different?</text>
-<!-- goal -> subgoals -->
-<line x1="420" y1="97" x2="420" y2="118" stroke="currentColor" stroke-width="1.2"/>
-<line x1="255" y1="118" x2="585" y2="118" stroke="currentColor" stroke-width="1.2"/>
-<g stroke="currentColor" stroke-width="1.2" marker-end="url(#arr)"><line x1="255" y1="118" x2="255" y2="138"/><line x1="420" y1="118" x2="420" y2="138"/><line x1="585" y1="118" x2="585" y2="138"/></g>
-<!-- subgoals -->
-<g stroke="currentColor" fill="var(--bg)" stroke-width="1.2"><rect x="180" y="140" width="150" height="44" rx="2"/><rect x="345" y="140" width="150" height="44" rx="2"/><rect x="510" y="140" width="150" height="44" rx="2"/></g>
-<g fill="currentColor" font-weight="700" text-anchor="middle"><text x="255" y="159">Pull the metrics</text><text x="420" y="159">Write the narrative</text><text x="585" y="159">Build and send</text></g>
-<g fill="var(--muted)" font-size="11" text-anchor="middle"><text x="255" y="175">subgoal</text><text x="420" y="175">subgoal</text><text x="585" y="175">subgoal</text></g>
-<g stroke="currentColor" stroke-width="1.2" marker-end="url(#arr)"><line x1="255" y1="185" x2="255" y2="218"/><line x1="420" y1="185" x2="420" y2="218"/><line x1="585" y1="185" x2="585" y2="218"/></g>
-<!-- activities -->
-<g stroke="currentColor" fill="var(--bg)" stroke-width="1">
-<rect x="180" y="220" width="150" height="40" rx="2"/><rect x="180" y="268" width="150" height="40" rx="2"/><rect x="180" y="316" width="150" height="40" rx="2"/>
-<rect x="345" y="220" width="150" height="40" rx="2"/><rect x="345" y="268" width="150" height="40" rx="2"/>
-<rect x="510" y="220" width="150" height="40" rx="2"/><rect x="510" y="268" width="150" height="40" rx="2"/><rect x="510" y="316" width="150" height="40" rx="2"/>
-</g>
-<g fill="currentColor" font-size="12">
-<text x="190" y="236">Export MRR and churn</text><text x="190" y="284">Reconcile against ledger</text><text x="190" y="332">One line per metric</text>
-<text x="355" y="236">Draft the headline story</text><text x="355" y="284">Edit down to one page</text>
-<text x="520" y="236">Lay out the slides</text><text x="520" y="284">Build the charts</text><text x="520" y="332">Answer the follow-ups</text>
-</g>
-<g font-size="11">
-<text x="190" y="252" fill="var(--muted)">rung 3 · spot-check</text>
-<text x="190" y="300" fill="var(--accent)">● rung 1 · judgment</text>
-<text x="190" y="348" fill="var(--accent)">● rung 0 · judgment</text>
-<text x="355" y="252" fill="var(--accent)">● rung 1 · judgment</text>
-<text x="355" y="300" fill="var(--muted)">rung 2 · consequence</text>
-<text x="520" y="252" fill="var(--muted)">rung 4 · never see it</text>
-<text x="520" y="300" fill="var(--muted)">rung 3 · spot-check</text>
-<text x="520" y="348" fill="var(--accent)">● rung 0 · relationship</text>
-</g>
-<!-- right column -->
-<rect x="720" y="212" width="460" height="64" rx="2" fill="#F2E9E4" stroke="var(--accent)" stroke-width="1.2"/>
-<text x="736" y="234" font-weight="700" fill="currentColor">● Stays with you</text>
-<text x="736" y="252" font-size="12" fill="currentColor">rung 0–1, each with a reason: consequence, judgment,</text>
-<text x="736" y="266" font-size="12" fill="currentColor">relationship, or learning. Habit does not count.</text>
-<rect x="720" y="300" width="460" height="64" rx="2" fill="var(--bg)" stroke="currentColor" stroke-width="1.2"/>
-<text x="736" y="322" font-weight="700" fill="currentColor">Gets built</text>
-<text x="736" y="340" font-size="12" fill="currentColor">rung 2–4. One activity per session; you say how you'd know</text>
-<text x="736" y="354" font-size="12" fill="currentColor">the result is good before anything is built.</text>
-<!-- tree -> right -->
-<path d="M661,240 L690,240 L690,244 L718,244" stroke="var(--accent)" stroke-width="1.2" fill="none" marker-end="url(#arrA)"/>
-<path d="M661,336 L690,336 L690,332 L718,332" stroke="currentColor" stroke-width="1.2" fill="none" marker-end="url(#arr)"/>
-<!-- stays -> goal 2 -->
-<path d="M950,211 L950,98" stroke="var(--accent)" stroke-width="1.4" fill="none" marker-end="url(#arrA)"/>
-<text x="960" y="130" fill="var(--accent)" font-size="11">“why does this matter?”</text>
-<text x="960" y="144" fill="var(--muted)" font-size="11">and again, until the answer stops changing</text>
-<text x="960" y="158" fill="var(--muted)" font-size="11">then restated with no tool or step named</text>
-<!-- redraw -->
-<path d="M950,365 L950,400 L420,400 L420,318" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="5 4" fill="none" marker-end="url(#arrA)"/>
-<text x="700" y="418" text-anchor="middle" fill="var(--accent)" font-size="11" letter-spacing="1.2">AFTER ONE REAL RUN · REDRAW THE TREE</text>
-<text x="700" y="432" text-anchor="middle" fill="var(--muted)" font-size="11">automating an activity changes the work around it: new checking, new chasing</text>
-<!-- card -->
-<line x1="255" y1="357" x2="255" y2="470" stroke="currentColor" stroke-width="1.2" marker-end="url(#arr)"/>
-<rect x="180" y="472" width="1000" height="60" rx="2" fill="#E3DED3" stroke="currentColor" stroke-width="1.2"/>
-<text x="196" y="494" font-size="11" fill="var(--muted)" letter-spacing="1.4">THE CARD</text>
-<text x="196" y="514" fill="currentColor">Goal · subgoals · activities with what each needs and produces · a rung and a reason per activity · what stays, what gets built · the revised goal. In your words.</text>
-<text x="196" y="560" fill="var(--muted)" font-size="12">Steps 4 to 8 on the list, from writing the brief to sharing what you built, read from the card. Step 9 is the dashed loop.</text>
-<text x="196" y="590" fill="var(--muted)" font-size="11">Example workflow: a monthly investor update. Invented for illustration.</text>
-</g>
-</svg>
+      <svg viewBox="0 0 900 540" role="img" aria-label="One piece of work becomes a goal; the goal splits into three subgoals; each subgoal splits into activities; under every activity a dot marks whether it stays with the person or an agent does it; all of it is written down, and from what stays with the person a revised goal is drawn.">
+        <defs>
+          <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker>
+          <marker id="arrA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/></marker>
+        </defs>
+        <g font-family="var(--sans)" font-size="13">
+          <!-- layer labels -->
+          <g fill="var(--muted)" font-size="11" letter-spacing="1.6" text-anchor="end">
+            <text x="200" y="55">THE WORK</text>
+            <text x="200" y="135">GOAL</text>
+            <text x="200" y="215">SUBGOALS</text>
+            <text x="200" y="295">ACTIVITIES</text>
+            <text x="200" y="345">WHO DOES IT</text>
+            <text x="200" y="455">WRITTEN DOWN</text>
+          </g>
 
-      <figcaption>One piece of work, taken apart: the goal, three subgoals, the activities under them, and a rung for every activity. What the person keeps feeds the revised goal; what gets built comes back to redraw the tree. All of it lands on the card.</figcaption>
+          <!-- the work -->
+          <rect x="340" y="30" width="220" height="40" rx="2" fill="var(--bg)" stroke="currentColor" stroke-width="1.2"/>
+          <text x="450" y="55" text-anchor="middle" fill="currentColor">one thing you do regularly</text>
+          <line x1="450" y1="71" x2="450" y2="108" stroke="currentColor" stroke-width="1.2" marker-end="url(#arr)"/>
+
+          <!-- goal -->
+          <rect x="340" y="110" width="220" height="40" rx="2" fill="var(--bg)" stroke="var(--accent)" stroke-width="1.6"/>
+          <text x="450" y="135" text-anchor="middle" fill="currentColor">what it is for</text>
+          <line x1="450" y1="151" x2="450" y2="170" stroke="currentColor" stroke-width="1.2"/>
+          <line x1="300" y1="170" x2="600" y2="170" stroke="currentColor" stroke-width="1.2"/>
+          <g stroke="currentColor" stroke-width="1.2" marker-end="url(#arr)">
+            <line x1="300" y1="170" x2="300" y2="188"/><line x1="450" y1="170" x2="450" y2="188"/><line x1="600" y1="170" x2="600" y2="188"/>
+          </g>
+
+          <!-- subgoals -->
+          <g fill="var(--bg)" stroke="currentColor" stroke-width="1.2">
+            <rect x="240" y="190" width="120" height="36" rx="2"/><rect x="390" y="190" width="120" height="36" rx="2"/><rect x="540" y="190" width="120" height="36" rx="2"/>
+          </g>
+          <g fill="var(--muted)" font-size="12" text-anchor="middle">
+            <text x="300" y="213">the parts</text><text x="450" y="213">in the order</text><text x="600" y="213">they happen</text>
+          </g>
+          <!-- subgoal to activities -->
+          <g stroke="currentColor" stroke-width="1.2" fill="none">
+            <path d="M300,227 L300,250 M270,250 L330,250 M270,250 L270,266 M330,250 L330,266"/>
+            <path d="M450,227 L450,250 M420,250 L480,250 M420,250 L420,266 M480,250 L480,266"/>
+            <path d="M600,227 L600,250 M570,250 L630,250 M570,250 L570,266 M630,250 L630,266"/>
+          </g>
+
+          <!-- activities -->
+          <g fill="var(--bg)" stroke="currentColor" stroke-width="1">
+            <rect x="246" y="268" width="48" height="34" rx="2"/><rect x="306" y="268" width="48" height="34" rx="2"/>
+            <rect x="396" y="268" width="48" height="34" rx="2"/><rect x="456" y="268" width="48" height="34" rx="2"/>
+            <rect x="546" y="268" width="48" height="34" rx="2"/><rect x="606" y="268" width="48" height="34" rx="2"/>
+          </g>
+          <text x="690" y="290" fill="var(--muted)" font-size="12">what you actually did, each with</text>
+          <text x="690" y="305" fill="var(--muted)" font-size="12">what it needs and what it produces</text>
+
+          <!-- who does it -->
+          <g stroke="var(--accent)" stroke-width="1.6">
+            <circle cx="270" cy="340" r="7" fill="var(--accent)"/>
+            <circle cx="330" cy="340" r="7" fill="var(--bg)"/>
+            <circle cx="420" cy="340" r="7" fill="var(--bg)"/>
+            <circle cx="480" cy="340" r="7" fill="var(--accent)"/>
+            <circle cx="570" cy="340" r="7" fill="var(--bg)"/>
+            <circle cx="630" cy="340" r="7" fill="var(--bg)"/>
+          </g>
+          <g font-size="12">
+            <circle cx="697" cy="336" r="5" fill="var(--accent)" stroke="var(--accent)" stroke-width="1.4"/><text x="709" y="340" fill="currentColor">stays with you, for a reason</text>
+            <circle cx="697" cy="356" r="5" fill="var(--bg)" stroke="var(--accent)" stroke-width="1.4"/><text x="709" y="360" fill="currentColor">an agent does it</text>
+          </g>
+
+          <!-- down to the card -->
+          <line x1="450" y1="352" x2="450" y2="428" stroke="currentColor" stroke-width="1.2" marker-end="url(#arr)"/>
+
+          <!-- the card -->
+          <rect x="300" y="430" width="300" height="48" rx="2" fill="var(--bg)" stroke="currentColor" stroke-width="1.2"/>
+          <text x="450" y="459" text-anchor="middle" fill="currentColor">the card, in your words</text>
+
+          <!-- goal revised -->
+          <path d="M601,454 L660,454" stroke="var(--accent)" stroke-width="1.4" fill="none" marker-end="url(#arrA)"/>
+          <rect x="662" y="430" width="200" height="48" rx="2" fill="#F2E9E4" stroke="var(--accent)" stroke-width="1.6"/>
+          <text x="762" y="459" text-anchor="middle" fill="currentColor">the goal, asked again</text>
+          <text x="762" y="500" text-anchor="middle" fill="var(--muted)" font-size="12">from what you kept</text>
+        </g>
+      </svg>
+      <figcaption>One piece of work becomes a goal, the goal becomes subgoals, the subgoals become activities, and every activity is placed with you or with an agent. All of it gets written down, and from what you kept, the goal is asked again.</figcaption>
     </figure>
   </section>
 
-  <section class="section" id="questions" aria-labelledby="questions-label">
-    <div class="section-label"><span class="num">03</span><h2 class="label" id="questions-label">The questions</h2></div>
-    <p class="lead-statement">Fixed wording. <span class="dim">A paraphrase drifts toward “how do you usually”, and the answer to that is fiction.</span></p>
-    <div class="day-list qlist">
-      {questions.map((q) => (
-        <div class="day-row">
-          <div class="day-label"><strong>{q.move}</strong>{q.per && <span class="light"><br>{q.per}</span>}</div>
-          <div>
-            <ul>
-              {q.qs.map((s) => <li>{s}</li>)}
-              {q.stuck && q.stuck.map((s) => <li class="stuck">{s}</li>)}
-            </ul>
-          </div>
-        </div>
-      ))}
+  <section class="section" id="moves" aria-labelledby="moves-label">
+    <div class="section-label"><span class="num">03</span><h2 class="label" id="moves-label">Three moves</h2></div>
+    <p class="lead-statement">The first three skills on the camp’s list, done with you.</p>
+    <div class="moves">
+      <div class="move">
+        <span class="num">1</span>
+        <h3>See it as a workflow</h3>
+        <p>What the thing is for, once it is done. Then everything that happened the last time, past tense, in any order, including the waiting and the chasing. Then the order, and the breaks between the parts. The parts are the subgoals, and under each one the activities: what you opened, wrote, sent, checked.</p>
+      </div>
+      <div class="move">
+        <span class="num">2</span>
+        <h3>Inputs and outputs</h3>
+        <p>For each activity: what you needed to start it, where that came from, what it produced, who got it. A supplier you cannot name is a missing step. An output nobody receives is a step that can go. An input that arrived late is where the time went.</p>
+      </div>
+      <div class="move">
+        <span class="num">3</span>
+        <h3>Decide where you stay in</h3>
+        <p>Each activity gets a rung on a five-step ladder, from <em>I do it</em> to <em>it does, I never see it</em>. Keeping one needs a reason, and four count: the consequence is hard to reverse; there is no ground truth, only judgment; someone needs to know a person did it; it is where your own signal comes from. Habit does not count.</p>
+      </div>
     </div>
   </section>
 
-  <section class="section" id="keep" aria-labelledby="keep-label">
-    <div class="section-label"><span class="num">04</span><h2 class="label" id="keep-label">How much stays with you</h2></div>
-    <p class="lead-statement">A ladder, and four reasons to stay on it.</p>
+  <section class="section" id="card" aria-labelledby="card-label">
+    <div class="section-label"><span class="num">04</span><h2 class="label" id="card-label">What you leave with</h2></div>
+    <p class="lead-statement">Your way of working, written down.</p>
     <div class="cols">
       <div>
-        <p>Each step gets a rung. Replace-me-entirely or leave-it-alone is the wrong question; most steps sit in between, and the interesting ones sit at different rungs for the gathering, the thinking, the deciding and the doing.</p>
-        <dl class="facts ladder">
-          <dt>0</dt><dd>I do it</dd>
-          <dt>1</dt><dd>It drafts, I finish</dd>
-          <dt>2</dt><dd>It does, I approve every one</dd>
-          <dt>3</dt><dd>It does, I spot-check the batch</dd>
-          <dt>4</dt><dd>It does, I never see it</dd>
-        </dl>
+        <p><strong>The card.</strong> Goal, subgoals, activities with what each needs and produces, a rung and a reason per activity, what stays with you, what gets built. In your words throughout. It is the thing you can hand to any agent afterwards, and the thing a colleague can read and disagree with.</p>
+        <p><strong>The goal, twice.</strong> Once at the start, from inside the work as it is now. Once at the end, worked upward from the activities you refused to hand off. What someone keeps says what they think the work is for, better than anything they said going in. If the two goals match, nothing new was found, which is a fair result. If they differ, the difference is the result.</p>
       </div>
       <div>
-        <p>Anything at rung 0 to 2 needs a reason, and only four count. <strong>Consequence:</strong> it goes outside and is hard to reverse. <strong>Judgment:</strong> there is no ground truth, only taste. <strong>Relationship:</strong> someone needs to know a person did it. <strong>Learning:</strong> it is where your signal comes from.</p>
-        <p>Habit is not on the list. If none of the four applies, the step goes up a rung. What someone refuses to hand off says what they think the work is for, better than anything they said at the start; that is why the goal is asked again at the end, from those steps.</p>
+        <p><strong>One thing built.</strong> If an activity sits high enough on the ladder, the agent builds it: it takes the activity’s inputs and outputs from the card, asks how you would know the result was good before anything is built, and builds against that. One activity per session. If nothing clears the bar, it says so, and you still leave with the card.</p>
+        <p><strong>The second pass.</strong> After the built thing has run on a real instance, come back. Automating an activity does not remove it from the work; it changes the work around it, and the card gets redrawn.</p>
       </div>
     </div>
   </section>
 
   <section class="section" id="status" aria-labelledby="status-label">
     <div class="section-label"><span class="num">05</span><h2 class="label" id="status-label">Where it stands</h2></div>
-    <p class="lead-statement">Two front ends, one interview. <span class="dim">Neither is finished.</span></p>
+    <p class="lead-statement">In development. <span class="dim">Not yet run on a real participant.</span></p>
     <div class="cols">
       <div>
-        <p><strong>As a skill.</strong> A Claude Code skill that runs the interview in text, writes the card to disk, and then builds one step from it with whatever the machine has, against a pass condition the participant wrote before anything was built. Built by Noah, with the interview design from Tokyo folded in.</p>
-      </div>
-      <div>
-        <p><strong>As a live card.</strong> A prototype connector for Claude that runs the same interview with the card filling in on screen, the ladder as something you tap, and the two goals side by side at the end. The server refuses to move on before a step’s exit condition is met. Built by Igor; runs locally, not yet deployed.</p>
-      </div>
-    </div>
-    <div class="cols">
-      <div>
-        <p>Neither has been run on a real participant. Both share the questions above and produce the same card, so whichever front end holds up in a real room carries the other one with it.</p>
+        <p>Two front ends run the same interview. A Claude Code skill that writes the card to disk and builds one activity from it, and a prototype connector for Claude that fills the card in on screen as you talk.</p>
       </div>
       <div>
         <p>Questions: <a href="mailto:hello@misocamp.com">hello@misocamp.com</a></p>
@@ -211,12 +185,9 @@ const questions = [
 
 <style>
   .flow { margin:clamp(2rem, 3.5vw, 3rem) 0 0; padding:clamp(1rem, 2vw, 1.5rem); border:1px solid var(--line); overflow-x:auto; color:var(--ink); }
-  .flow svg { display:block; width:100%; height:auto; min-width:900px; }
+  .flow svg { display:block; width:100%; max-width:900px; margin:0 auto; height:auto; min-width:640px; }
   .flow figcaption { margin-top:1rem; max-width:70ch; color:var(--muted); font-size:0.95rem; line-height:1.5; }
-  .qlist { margin-top:clamp(2rem, 3.5vw, 3rem); }
-  .qlist ul { margin:0; padding-left:1.1rem; max-width:60ch; }
-  .qlist li { margin:0.25rem 0; font-size:clamp(1rem, 1.1vw, 1.12rem); line-height:1.5; }
-  .qlist li.stuck { color:var(--muted); }
-  .ladder { margin-top:1.2rem; }
-  .ladder dt { font-variant-numeric:tabular-nums; }
+  .moves { margin-top:clamp(2rem, 3.5vw, 3rem); }
+  .move p { font-size:clamp(1rem, 1.1vw, 1.12rem); line-height:1.55; }
+  @media (max-width:820px) { .moves { grid-template-columns:1fr; } }
 </style>

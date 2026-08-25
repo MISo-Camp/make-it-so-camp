@@ -35,8 +35,10 @@ function collectHtml(dir) {
 }
 
 const htmlFiles = collectHtml(target);
-if (htmlFiles.length !== 4) {
-  throw new Error(`Expected 4 staging pages, found ${htmlFiles.length}`);
+// index, tokyo, adelaide, about, imprint, tokyo/agenda, tokyo/agent
+const expectedPages = 7;
+if (htmlFiles.length !== expectedPages) {
+  throw new Error(`Expected ${expectedPages} staging pages, found ${htmlFiles.length}`);
 }
 for (const path of htmlFiles) {
   const original = readFileSync(path, 'utf8');

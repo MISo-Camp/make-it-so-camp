@@ -43,6 +43,10 @@ const agendaSource = join(source, 'tokyo', 'agenda', 'index.html');
 if (!existsSync(agendaSource)) {
   throw new Error(`Missing production output: ${agendaSource}`);
 }
+const agentSource = join(source, 'tokyo', 'agent', 'index.html');
+if (!existsSync(agentSource)) {
+  throw new Error(`Missing production output: ${agentSource}`);
+}
 cpSync(join(source, 'index.html'), join(repoRoot, 'index.html'));
 cpSync(join(source, 'tokyo'), join(repoRoot, 'tokyo'), { recursive: true });
 cpSync(join(source, 'adelaide'), join(repoRoot, 'adelaide'), { recursive: true });
@@ -52,6 +56,7 @@ cpSync(join(source, 'miso.css'), join(repoRoot, 'miso.css'));
 
 // 3. Retarget root: /new/ scoped URLs -> root, in the four built pages only.
 const agendaTarget = join(repoRoot, 'tokyo', 'agenda', 'index.html');
+const agentTarget = join(repoRoot, 'tokyo', 'agent', 'index.html');
 const htmlTargets = [
   join(repoRoot, 'index.html'),
   join(repoRoot, 'tokyo', 'index.html'),
@@ -59,9 +64,10 @@ const htmlTargets = [
   join(repoRoot, 'about', 'index.html'),
   join(repoRoot, 'imprint', 'index.html'),
   agendaTarget,
+  agentTarget,
 ];
 // Unlisted pages: must be noindex, and are never asserted as indexable.
-const noindexTargets = new Set([agendaTarget]);
+const noindexTargets = new Set([agendaTarget, agentTarget]);
 for (const path of htmlTargets) {
   const original = readFileSync(path, 'utf8');
   const rewritten = original

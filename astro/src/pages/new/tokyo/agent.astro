@@ -45,7 +45,7 @@ import Footer from '../../../components/Footer.astro';
     <div class="section-label"><span class="num">02</span><h2 class="label" id="process-label">The process</h2></div>
     <p class="lead-statement">One piece of work, taken apart.</p>
     <figure class="flow">
-      <svg viewBox="0 0 900 540" role="img" aria-label="One piece of work becomes a goal; the goal splits into three subgoals; each subgoal splits into activities; under every activity a dot marks whether it stays with the person or an agent does it; all of it is written down, and from what stays with the person a revised goal is drawn.">
+      <svg viewBox="0 0 900 520" role="img" aria-label="One piece of work becomes a goal; the goal splits into three subgoals; each subgoal splits into activities; under every activity a dot marks whether it stays with the person or an agent does it; from that, the goal is restated: what you are actually working for, now that you know what you hand off and what you keep. A bracket marks the whole tree as written down, in your words.">
         <defs>
           <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker>
           <marker id="arrA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/></marker>
@@ -57,8 +57,8 @@ import Footer from '../../../components/Footer.astro';
             <text x="200" y="135">GOAL</text>
             <text x="200" y="215">SUBGOALS</text>
             <text x="200" y="295">ACTIVITIES</text>
-            <text x="200" y="345">WHO DOES IT</text>
-            <text x="200" y="455">WRITTEN DOWN</text>
+            <text x="200" y="350">WHO DOES IT</text>
+            <text x="200" y="465">GOAL, RESTATED</text>
           </g>
 
           <!-- the work -->
@@ -95,38 +95,38 @@ import Footer from '../../../components/Footer.astro';
             <rect x="396" y="268" width="48" height="34" rx="2"/><rect x="456" y="268" width="48" height="34" rx="2"/>
             <rect x="546" y="268" width="48" height="34" rx="2"/><rect x="606" y="268" width="48" height="34" rx="2"/>
           </g>
-          <text x="690" y="290" fill="var(--muted)" font-size="12">what you actually did, each with</text>
-          <text x="690" y="305" fill="var(--muted)" font-size="12">what it needs and what it produces</text>
+          <text x="450" y="320" text-anchor="middle" fill="var(--muted)" font-size="11">what you actually did, each with what it needs and what it produces</text>
 
           <!-- who does it -->
           <g stroke="var(--accent)" stroke-width="1.6">
-            <circle cx="270" cy="340" r="7" fill="var(--accent)"/>
-            <circle cx="330" cy="340" r="7" fill="var(--bg)"/>
-            <circle cx="420" cy="340" r="7" fill="var(--bg)"/>
-            <circle cx="480" cy="340" r="7" fill="var(--accent)"/>
-            <circle cx="570" cy="340" r="7" fill="var(--bg)"/>
-            <circle cx="630" cy="340" r="7" fill="var(--bg)"/>
+            <circle cx="270" cy="345" r="7" fill="var(--accent)"/>
+            <circle cx="330" cy="345" r="7" fill="var(--bg)"/>
+            <circle cx="420" cy="345" r="7" fill="var(--bg)"/>
+            <circle cx="480" cy="345" r="7" fill="var(--accent)"/>
+            <circle cx="570" cy="345" r="7" fill="var(--bg)"/>
+            <circle cx="630" cy="345" r="7" fill="var(--bg)"/>
           </g>
           <g font-size="12">
-            <circle cx="697" cy="336" r="5" fill="var(--accent)" stroke="var(--accent)" stroke-width="1.4"/><text x="709" y="340" fill="currentColor">stays with you, for a reason</text>
-            <circle cx="697" cy="356" r="5" fill="var(--bg)" stroke="var(--accent)" stroke-width="1.4"/><text x="709" y="360" fill="currentColor">an agent does it</text>
+            <circle cx="300" cy="380" r="5" fill="var(--accent)" stroke="var(--accent)" stroke-width="1.4"/><text x="312" y="384" fill="currentColor">stays with you, for a reason</text>
+            <circle cx="500" cy="380" r="5" fill="var(--bg)" stroke="var(--accent)" stroke-width="1.4"/><text x="512" y="384" fill="currentColor">an agent does it</text>
           </g>
 
-          <!-- down to the card -->
-          <line x1="450" y1="352" x2="450" y2="428" stroke="currentColor" stroke-width="1.2" marker-end="url(#arr)"/>
+          <!-- down to the restated goal -->
+          <line x1="450" y1="396" x2="450" y2="428" stroke="var(--accent)" stroke-width="1.4" marker-end="url(#arrA)"/>
 
-          <!-- the card -->
-          <rect x="300" y="430" width="300" height="48" rx="2" fill="var(--bg)" stroke="currentColor" stroke-width="1.2"/>
-          <text x="450" y="459" text-anchor="middle" fill="currentColor">the card, in your words</text>
+          <!-- goal, restated -->
+          <rect x="280" y="430" width="340" height="64" rx="2" fill="#F2E9E4" stroke="var(--accent)" stroke-width="1.6"/>
+          <text x="450" y="455" text-anchor="middle" fill="currentColor">what you are actually working for,</text>
+          <text x="450" y="473" text-anchor="middle" fill="currentColor">now that you know what you hand off and what you keep</text>
 
-          <!-- goal revised -->
-          <path d="M601,454 L660,454" stroke="var(--accent)" stroke-width="1.4" fill="none" marker-end="url(#arrA)"/>
-          <rect x="662" y="430" width="200" height="48" rx="2" fill="#F2E9E4" stroke="var(--accent)" stroke-width="1.6"/>
-          <text x="762" y="459" text-anchor="middle" fill="currentColor">the goal, asked again</text>
-          <text x="762" y="500" text-anchor="middle" fill="var(--muted)" font-size="12">from what you kept</text>
+          <!-- the whole tree, written down -->
+          <path d="M700,30 L712,30 L712,494 L700,494" stroke="var(--muted)" stroke-width="1" fill="none"/>
+          <text x="724" y="258" fill="var(--muted)" font-size="11" letter-spacing="1.6">ALL OF THIS,</text>
+          <text x="724" y="272" fill="var(--muted)" font-size="11" letter-spacing="1.6">WRITTEN DOWN,</text>
+          <text x="724" y="286" fill="var(--muted)" font-size="11" letter-spacing="1.6">IN YOUR WORDS</text>
         </g>
       </svg>
-      <figcaption>One piece of work becomes a goal, the goal becomes subgoals, the subgoals become activities, and every activity is placed with you or with an agent. All of it gets written down, and from what you kept, the goal is asked again.</figcaption>
+      <figcaption>One piece of work becomes a goal, the goal becomes subgoals, the subgoals become activities, and every activity is placed with you or with an agent. Knowing which is which, you can say what you are actually working for. The whole tree is your way of working, written down.</figcaption>
     </figure>
   </section>
 
@@ -154,15 +154,15 @@ import Footer from '../../../components/Footer.astro';
 
   <section class="section" id="card" aria-labelledby="card-label">
     <div class="section-label"><span class="num">04</span><h2 class="label" id="card-label">What you leave with</h2></div>
-    <p class="lead-statement">Your way of working, written down.</p>
+    <p class="lead-statement">A clearer goal, and the method that gets you there.</p>
     <div class="cols">
       <div>
-        <p><strong>The card.</strong> Goal, subgoals, activities with what each needs and produces, a rung and a reason per activity, what stays with you, what gets built. In your words throughout. It is the thing you can hand to any agent afterwards, and the thing a colleague can read and disagree with.</p>
-        <p><strong>The goal, twice.</strong> Once at the start, from inside the work as it is now. Once at the end, worked upward from the activities you refused to hand off. What someone keeps says what they think the work is for, better than anything they said going in. If the two goals match, nothing new was found, which is a fair result. If they differ, the difference is the result.</p>
+        <p><strong>Your way of working, written down.</strong> Goal, subgoals, activities with what each needs and produces, a rung and a reason per activity, what stays with you, what gets built. In your words throughout. It is the thing you can hand to any agent afterwards, and the thing a colleague can read and disagree with.</p>
+        <p><strong>The goal, restated.</strong> At the start you can only state the goal from inside the work as it is now. At the end, knowing which activities you hand off and which you keep, you can say what you are actually working for. What someone keeps says what they think the work is for, better than anything they said going in. If the two goals match, nothing new was found, which is a fair result. If they differ, the difference is the result.</p>
       </div>
       <div>
-        <p><strong>One thing built.</strong> If an activity sits high enough on the ladder, the agent builds it: it takes the activity’s inputs and outputs from the card, asks how you would know the result was good before anything is built, and builds against that. One activity per session. If nothing clears the bar, it says so, and you still leave with the card.</p>
-        <p><strong>The second pass.</strong> After the built thing has run on a real instance, come back. Automating an activity does not remove it from the work; it changes the work around it, and the card gets redrawn.</p>
+        <p><strong>One thing built.</strong> If an activity sits high enough on the ladder, the agent builds it: it takes the activity’s inputs and outputs from the card, asks how you would know the result was good before anything is built, and builds against that. One activity per session. If nothing clears the bar, it says so, and you still leave with the method written down.</p>
+        <p><strong>The second pass.</strong> After the built thing has run on a real instance, come back. Automating an activity does not remove it from the work; it changes the work around it, and the tree gets redrawn.</p>
       </div>
     </div>
   </section>
@@ -172,7 +172,7 @@ import Footer from '../../../components/Footer.astro';
     <p class="lead-statement">In development. <span class="dim">Not yet run on a real participant.</span></p>
     <div class="cols">
       <div>
-        <p>Two front ends run the same interview. A Claude Code skill that writes the card to disk and builds one activity from it, and a prototype connector for Claude that fills the card in on screen as you talk.</p>
+        <p>Two front ends run the same interview. A Claude Code skill that writes the method to disk and builds one activity from it, and a prototype connector for Claude that fills the tree in on screen as you talk.</p>
       </div>
       <div>
         <p>Questions: <a href="mailto:hello@misocamp.com">hello@misocamp.com</a></p>

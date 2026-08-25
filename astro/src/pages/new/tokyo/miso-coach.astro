@@ -51,9 +51,9 @@ import Footer from '../../../components/Footer.astro';
           <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker>
           <marker id="arrA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/></marker>
         </defs>
-        <g font-family="var(--sans)" font-size="13">
+        <g font-family="var(--sans)" font-size="15" font-weight="600">
           <!-- layer labels -->
-          <g fill="var(--muted)" font-size="11" letter-spacing="1.6" text-anchor="end">
+          <g fill="currentColor" font-size="12" font-weight="700" letter-spacing="1.6" text-anchor="end">
             <text x="200" y="55">THE WORK</text>
             <text x="200" y="135">GOAL</text>
             <text x="200" y="215">SUBGOALS</text>
@@ -63,68 +63,68 @@ import Footer from '../../../components/Footer.astro';
           </g>
 
           <!-- the work -->
-          <rect x="340" y="30" width="220" height="40" rx="2" fill="var(--bg)" stroke="currentColor" stroke-width="1.2"/>
+          <rect x="340" y="30" width="220" height="40" rx="2" fill="var(--bg)" stroke="currentColor" stroke-width="2"/>
           <text x="450" y="55" text-anchor="middle" fill="currentColor">one thing you do regularly</text>
-          <line x1="450" y1="71" x2="450" y2="108" stroke="currentColor" stroke-width="1.2" marker-end="url(#arr)"/>
+          <line x1="450" y1="71" x2="450" y2="108" stroke="currentColor" stroke-width="2" marker-end="url(#arr)"/>
 
           <!-- goal -->
-          <rect x="340" y="110" width="220" height="40" rx="2" fill="var(--bg)" stroke="var(--accent)" stroke-width="1.6"/>
+          <rect x="340" y="110" width="220" height="40" rx="2" fill="var(--bg)" stroke="var(--accent)" stroke-width="2.4"/>
           <text x="450" y="135" text-anchor="middle" fill="currentColor">what it is for</text>
-          <line x1="450" y1="151" x2="450" y2="170" stroke="currentColor" stroke-width="1.2"/>
-          <line x1="300" y1="170" x2="600" y2="170" stroke="currentColor" stroke-width="1.2"/>
-          <g stroke="currentColor" stroke-width="1.2" marker-end="url(#arr)">
+          <line x1="450" y1="151" x2="450" y2="170" stroke="currentColor" stroke-width="2"/>
+          <line x1="300" y1="170" x2="600" y2="170" stroke="currentColor" stroke-width="2"/>
+          <g stroke="currentColor" stroke-width="2" marker-end="url(#arr)">
             <line x1="300" y1="170" x2="300" y2="188"/><line x1="450" y1="170" x2="450" y2="188"/><line x1="600" y1="170" x2="600" y2="188"/>
           </g>
 
           <!-- subgoals -->
-          <g fill="var(--bg)" stroke="currentColor" stroke-width="1.2">
+          <g fill="var(--bg)" stroke="currentColor" stroke-width="2">
             <rect x="240" y="190" width="120" height="36" rx="2"/><rect x="390" y="190" width="120" height="36" rx="2"/><rect x="540" y="190" width="120" height="36" rx="2"/>
           </g>
-          <g fill="var(--muted)" font-size="12" text-anchor="middle">
+          <g fill="currentColor" font-size="14" font-weight="600" text-anchor="middle">
             <text x="300" y="213">the parts</text><text x="450" y="213">in the order</text><text x="600" y="213">they happen</text>
           </g>
           <!-- subgoal to activities -->
-          <g stroke="currentColor" stroke-width="1.2" fill="none">
+          <g stroke="currentColor" stroke-width="2" fill="none">
             <path d="M300,227 L300,250 M270,250 L330,250 M270,250 L270,266 M330,250 L330,266"/>
             <path d="M450,227 L450,250 M420,250 L480,250 M420,250 L420,266 M480,250 L480,266"/>
             <path d="M600,227 L600,250 M570,250 L630,250 M570,250 L570,266 M630,250 L630,266"/>
           </g>
 
           <!-- activities -->
-          <g fill="var(--bg)" stroke="currentColor" stroke-width="1">
+          <g fill="var(--bg)" stroke="currentColor" stroke-width="1.8">
             <rect x="246" y="268" width="48" height="34" rx="2"/><rect x="306" y="268" width="48" height="34" rx="2"/>
             <rect x="396" y="268" width="48" height="34" rx="2"/><rect x="456" y="268" width="48" height="34" rx="2"/>
             <rect x="546" y="268" width="48" height="34" rx="2"/><rect x="606" y="268" width="48" height="34" rx="2"/>
           </g>
-          <text x="450" y="320" text-anchor="middle" fill="var(--muted)" font-size="11">what you actually did, each with what it needs and what it produces</text>
+          <text x="450" y="320" text-anchor="middle" fill="currentColor" font-size="12" font-weight="500">what you actually did, each with what it needs and what it produces</text>
 
           <!-- who does it -->
-          <g stroke="var(--accent)" stroke-width="1.6">
-            <circle cx="270" cy="345" r="7" fill="var(--accent)"/>
-            <circle cx="330" cy="345" r="7" fill="var(--bg)"/>
-            <circle cx="420" cy="345" r="7" fill="var(--bg)"/>
-            <circle cx="480" cy="345" r="7" fill="var(--accent)"/>
-            <circle cx="570" cy="345" r="7" fill="var(--bg)"/>
-            <circle cx="630" cy="345" r="7" fill="var(--bg)"/>
+          <g stroke="var(--accent)" stroke-width="2.4">
+            <circle cx="270" cy="345" r="9" fill="var(--accent)"/>
+            <circle cx="330" cy="345" r="9" fill="var(--bg)"/>
+            <circle cx="420" cy="345" r="9" fill="var(--bg)"/>
+            <circle cx="480" cy="345" r="9" fill="var(--accent)"/>
+            <circle cx="570" cy="345" r="9" fill="var(--bg)"/>
+            <circle cx="630" cy="345" r="9" fill="var(--bg)"/>
           </g>
-          <g font-size="12">
-            <circle cx="300" cy="380" r="5" fill="var(--accent)" stroke="var(--accent)" stroke-width="1.4"/><text x="312" y="384" fill="currentColor">stays with you, for a reason</text>
-            <circle cx="500" cy="380" r="5" fill="var(--bg)" stroke="var(--accent)" stroke-width="1.4"/><text x="512" y="384" fill="currentColor">an agent does it</text>
+          <g font-size="14" font-weight="600">
+            <circle cx="270" cy="380" r="7" fill="var(--accent)" stroke="var(--accent)" stroke-width="2.2"/><text x="282" y="384" fill="currentColor">stays with you, for a reason</text>
+            <circle cx="580" cy="380" r="7" fill="var(--bg)" stroke="var(--accent)" stroke-width="2.2"/><text x="592" y="384" fill="currentColor">an agent does it</text>
           </g>
 
           <!-- down to the restated goal -->
-          <line x1="450" y1="396" x2="450" y2="428" stroke="var(--accent)" stroke-width="1.4" marker-end="url(#arrA)"/>
+          <line x1="450" y1="396" x2="450" y2="428" stroke="var(--accent)" stroke-width="2.2" marker-end="url(#arrA)"/>
 
           <!-- goal, restated -->
-          <rect x="280" y="430" width="340" height="64" rx="2" fill="#F2E9E4" stroke="var(--accent)" stroke-width="1.6"/>
+          <rect x="230" y="430" width="440" height="64" rx="2" fill="#F2E9E4" stroke="var(--accent)" stroke-width="2.4"/>
           <text x="450" y="455" text-anchor="middle" fill="currentColor">what you are actually working for,</text>
           <text x="450" y="473" text-anchor="middle" fill="currentColor">now that you know what you hand off and what you keep</text>
 
           <!-- the whole tree, written down -->
-          <path d="M700,30 L712,30 L712,494 L700,494" stroke="var(--muted)" stroke-width="1" fill="none"/>
-          <text x="724" y="258" fill="var(--muted)" font-size="11" letter-spacing="1.6">ALL OF THIS,</text>
-          <text x="724" y="272" fill="var(--muted)" font-size="11" letter-spacing="1.6">WRITTEN DOWN,</text>
-          <text x="724" y="286" fill="var(--muted)" font-size="11" letter-spacing="1.6">IN YOUR WORDS</text>
+          <path d="M700,30 L712,30 L712,494 L700,494" stroke="var(--muted)" stroke-width="1.8" fill="none"/>
+          <text x="724" y="258" fill="currentColor" font-size="12" font-weight="700" letter-spacing="1.6">ALL OF THIS,</text>
+          <text x="724" y="272" fill="currentColor" font-size="12" font-weight="700" letter-spacing="1.6">WRITTEN DOWN,</text>
+          <text x="724" y="286" fill="currentColor" font-size="12" font-weight="700" letter-spacing="1.6">IN YOUR WORDS</text>
         </g>
       </svg>
       <figcaption>One piece of work becomes a goal, the goal becomes subgoals, the subgoals become activities, and every activity is placed with you or with an agent. Knowing which is which, you can say what you are actually working for. The whole tree is your way of working, written down.</figcaption>

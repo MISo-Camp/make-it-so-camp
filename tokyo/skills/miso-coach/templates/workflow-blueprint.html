@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Workflow Blueprint — {{slug}}</title>
+<style>
+  /* ── Reset & Base ─────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --color-bg: #ffffff;
+    --color-text: #1a1a1a;
+    --color-text-secondary: #555555;
+    --color-border: #d0d0d0;
+    --color-border-light: #e8e8e8;
+    --color-strip-bg: #f5f5f5;
+    --color-job-bg: #fafafa;
+
+    /* Allocation levels — paired with patterns for accessibility */
+    --color-human: #2c5282;
+    --color-ai-assists: #6b46c1;
+    --color-ai-approves: #b7791f;
+    --color-ai-samples: #c05621;
+    --color-ai-autonomous: #9b2c2c;
+
+    /* Outcome badges */
+    --color-agent-spec: #276749;
+    --color-no-code: #744210;
+
+    /* Emphasis */
+    --color-specified-now: #276749;
+    --color-specified-now-bg: #f0fff4;
+    --color-noncausal: #9b2c2c;
+    --color-retained: #2c5282;
+    --color-existing: #6b46c1;
+    --color-disproportionate: #c05621;
+    --color-unsafe: #9b2c2c;
+
+    /* Current vs proposed */
+    --color-current-state: #718096;
+    --color-proposed: #2d3748;
+
+    --font-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-mono: "SF Mono", "Fira Code", "Fira Mono", Menlo, Consolas, monospace;
+  }
+
+  body {
+    font-family: var(--font-primary);
+    font-size: 11px;
+    line-height: 1.45;
+    color: var(--color-text);
+    background: var(--color-bg);
+    padding: 0;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ── Page Container ───────────────────────────────────── */
+  .blueprint {
+    width: 297mm;
+    min-height: 210mm;
+    padding: 12mm 14mm;
+    margin: 0 auto;
+  }
+
+  /* ── 1. Path-neutral top strip ────────────────────────── */
+  .top-strip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--color-strip-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    padding: 8px 14px;
+    margin-bottom: 14px;
+  }
+
+  .journey-steps {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--color-text-secondary);
+  }
+
+  .journey-step {
+    white-space: nowrap;
+  }
+
+  .journey-arrow {
+    margin: 0 6px;
+    color: var(--color-border);
+    font-size: 9px;
+  }
+
+  .outcome-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .outcome-badge--agent-spec {
+    background: var(--color-specified-now-bg);
+    color: var(--color-agent-spec);
+    border: 1.5px solid var(--color-agent-spec);
+  }
+
+  .outcome-badge--no-code {
+    background: #fffbeb;
+    color: var(--color-no-code);
+    border: 1.5px solid var(--color-no-code);
+  }
+
+  .outcome-badge-icon {
+    font-size: 12px;
+  }
+
+  /* ── 2. Job story & project goal ──────────────────────── */
+  .job-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+
+  .job-card, .goal-card {
+    background: var(--color-job-bg);
+    border: 1px solid var(--color-border-light);
+    border-radius: 4px;
+    padding: 10px 12px;
+  }
+
+  .card-label {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text-secondary);
+    margin-bottom: 4px;
+  }
+
+  .card-content {
+    font-size: 11px;
+    line-height: 1.5;
+    color: var(--color-text);
+    font-style: italic;
+  }
+
+  .goal-card .card-content {
+    font-style: normal;
+    font-weight: 500;
+  }
+
+  /* ── 3. Workflow view grouped by subgoal ──────────────── */
+  .workflow-section {
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--color-text);
+    padding-bottom: 5px;
+    border-bottom: 2px solid var(--color-text);
+    margin-bottom: 10px;
+  }
+
+  .subgoal-group {
+    margin-bottom: 12px;
+    border: 1px solid var(--color-border-light);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .subgoal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--color-strip-bg);
+    padding: 6px 10px;
+    border-bottom: 1px solid var(--color-border-light);
+  }
+
+  .subgoal-name {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+
+  .subgoal-refinement {
+    font-size: 9px;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    padding: 2px 5px;
+    border: 1px solid var(--color-border);
+    border-radius: 2px;
+  }
+
+  /* ── Activity rows ────────────────────────────────────── */
+  .activity-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10px;
+  }
+
+  .activity-table thead {
+    background: var(--color-strip-bg);
+  }
+
+  .activity-table th {
+    font-size: 8.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-secondary);
+    padding: 5px 7px;
+    text-align: left;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .activity-table td {
+    padding: 6px 7px;
+    border-bottom: 1px solid var(--color-border-light);
+    vertical-align: top;
+    line-height: 1.4;
+  }
+
+  .activity-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  /* ── 5 & 6. Allocation labels + exact levels ──────────── */
+  .allocation-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 6px;
+    border-radius: 2px;
+    font-size: 9px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  /* Pattern markers (not color-dependent) for accessibility */
+  .allocation-tag::before {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    text-align: center;
+    line-height: 10px;
+    font-size: 8px;
+    border-radius: 1px;
+    flex-shrink: 0;
+  }
+
+  .allocation-tag--human {
+    color: var(--color-human);
+    background: #ebf4ff;
+    border: 1px solid var(--color-human);
+  }
+  .allocation-tag--human::before {
+    content: "H";
+    background: var(--color-human);
+    color: #fff;
+  }
+
+  .allocation-tag--ai-assists {
+    color: var(--color-ai-assists);
+    background: #faf5ff;
+    border: 1px solid var(--color-ai-assists);
+  }
+  .allocation-tag--ai-assists::before {
+    content: "A";
+    background: var(--color-ai-assists);
+    color: #fff;
+  }
+
+  .allocation-tag--ai-approves {
+    color: var(--color-ai-approves);
+    background: #fffff0;
+    border: 1px solid var(--color-ai-approves);
+  }
+  .allocation-tag--ai-approves::before {
+    content: "V";
+    background: var(--color-ai-approves);
+    color: #fff;
+  }
+
+  .allocation-tag--ai-samples {
+    color: var(--color-ai-samples);
+    background: #fffaf0;
+    border: 1px solid var(--color-ai-samples);
+  }
+  .allocation-tag--ai-samples::before {
+    content: "S";
+    background: var(--color-ai-samples);
+    color: #fff;
+  }
+
+  .allocation-tag--ai-autonomous {
+    color: var(--color-ai-autonomous);
+    background: #fff5f5;
+    border: 1px solid var(--color-ai-autonomous);
+  }
+  .allocation-tag--ai-autonomous::before {
+    content: "X";
+    background: var(--color-ai-autonomous);
+    color: #fff;
+  }
+
+  .allocation-boundary {
+    font-size: 9px;
+    color: var(--color-text-secondary);
+    margin-top: 2px;
+    font-style: italic;
+  }
+
+  /* ── 7. Current-state vs proposed distinction ─────────── */
+  .state-layer {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 2px;
+  }
+
+  .state-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 1px;
+    flex-shrink: 0;
+  }
+
+  .state-marker--current {
+    background: var(--color-current-state);
+    border: 1px dashed var(--color-text-secondary);
+  }
+
+  .state-marker--proposed {
+    background: var(--color-proposed);
+    border: 1px solid var(--color-text);
+  }
+
+  .state-label {
+    font-size: 9px;
+    color: var(--color-text-secondary);
+  }
+
+  /* ── 8. Reason-specific emphasis ──────────────────────── */
+
+  /* SPECIFIED NOW — agent-spec selected slice */
+  .emphasis--specified-now {
+    background: var(--color-specified-now-bg);
+    border-left: 3px solid var(--color-specified-now);
+  }
+  .emphasis--specified-now td:first-child::before {
+    content: "▶ SPECIFIED NOW  ";
+    font-size: 8px;
+    font-weight: 800;
+    color: var(--color-specified-now);
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  /* NON-CAUSAL — broken causal link */
+  .emphasis--noncausal {
+    background: #fff5f5;
+    border-left: 3px dashed var(--color-noncausal);
+  }
+  .emphasis--noncausal td:first-child::before {
+    content: "✕ BROKEN CAUSAL LINK  ";
+    font-size: 8px;
+    font-weight: 800;
+    color: var(--color-noncausal);
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  /* HUMAN-RETAINED — participant retains */
+  .emphasis--retained {
+    background: #ebf4ff;
+    border-left: 3px solid var(--color-retained);
+  }
+  .emphasis--retained td:first-child::before {
+    content: "● HUMAN BOUNDARY  ";
+    font-size: 8px;
+    font-weight: 800;
+    color: var(--color-retained);
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  /* EXISTING-OR-SIMPLER — already served */
+  .emphasis--existing {
+    background: #faf5ff;
+    border-left: 3px solid var(--color-existing);
+  }
+  .emphasis--existing td:first-child::before {
+    content: "= ALREADY SERVED  ";
+    font-size: 8px;
+    font-weight: 800;
+    color: var(--color-existing);
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  /* DISPROPORTIONATE-VALUE — value/cost mismatch */
+  .emphasis--disproportionate {
+    background: #fffaf0;
+    border-left: 3px double var(--color-disproportionate);
+  }
+  .emphasis--disproportionate td:first-child::before {
+    content: "⚖ VALUE / COST MISMATCH  ";
+    font-size: 8px;
+    font-weight: 800;
+    color: var(--color-disproportionate);
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  /* UNSAFE-OR-UNVERIFIABLE — violated boundary */
+  .emphasis--unsafe {
+    background: #fff5f5;
+    border-left: 3px solid var(--color-unsafe);
+  }
+  .emphasis--unsafe td:first-child::before {
+    content: "⛔ VIOLATED BOUNDARY  ";
+    font-size: 8px;
+    font-weight: 800;
+    color: var(--color-unsafe);
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  /* FUTURE OPPORTUNITY — other AI-suitable activities not specified now */
+  .emphasis--future-opportunity {
+    background: #f7fafc;
+    border-left: 3px dashed #a0aec0;
+  }
+  .emphasis--future-opportunity td:first-child::before {
+    content: "○ FUTURE OPPORTUNITY  ";
+    font-size: 8px;
+    font-weight: 800;
+    color: #a0aec0;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  /* ── 4. Actors, systems, handoffs, exceptions ─────────── */
+  .context-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .context-box {
+    border: 1px solid var(--color-border-light);
+    border-radius: 4px;
+    padding: 8px 10px;
+  }
+
+  .context-box-title {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-secondary);
+    margin-bottom: 5px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid var(--color-border-light);
+  }
+
+  .context-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .context-list li {
+    font-size: 10px;
+    padding: 2px 0;
+    color: var(--color-text);
+    line-height: 1.4;
+  }
+
+  .context-list li::before {
+    content: "— ";
+    color: var(--color-text-secondary);
+  }
+
+  /* ── 9. Legend ─────────────────────────────────────────── */
+  .legend {
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    padding: 8px 12px;
+    margin-bottom: 12px;
+    background: var(--color-strip-bg);
+  }
+
+  .legend-title {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text-secondary);
+    margin-bottom: 6px;
+  }
+
+  .legend-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px 14px;
+  }
+
+  .legend-group-title {
+    font-size: 8.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    margin-bottom: 4px;
+    grid-column: 1 / -1;
+    padding-top: 4px;
+    border-top: 1px solid var(--color-border-light);
+  }
+
+  .legend-group-title:first-child {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 9px;
+    color: var(--color-text);
+  }
+
+  .legend-swatch {
+    width: 10px;
+    height: 10px;
+    border-radius: 1px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 7px;
+    font-weight: 800;
+    color: #fff;
+  }
+
+  .legend-emphasis {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 9px;
+    color: var(--color-text);
+  }
+
+  .legend-emphasis-swatch {
+    width: 20px;
+    height: 10px;
+    flex-shrink: 0;
+    border-radius: 1px;
+  }
+
+  /* State distinction in legend */
+  .legend-state-row {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 9px;
+    color: var(--color-text);
+  }
+
+  /* ── 10. Companion artifact links ─────────────────────── */
+  .companion-links {
+    display: flex;
+    gap: 14px;
+    padding: 6px 0;
+    border-top: 1px solid var(--color-border);
+    margin-top: 6px;
+  }
+
+  .companion-link {
+    font-size: 9px;
+    color: var(--color-text-secondary);
+    font-family: var(--font-mono);
+  }
+
+  .companion-link strong {
+    color: var(--color-text);
+  }
+
+  /* ── Footer ───────────────────────────────────────────── */
+  .blueprint-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 8px;
+    border-top: 1px solid var(--color-border);
+    margin-top: 12px;
+    font-size: 8.5px;
+    color: var(--color-text-secondary);
+  }
+
+  /* ── Print styles ─────────────────────────────────────── */
+  @media print {
+    @page {
+      size: A4 landscape;
+      margin: 8mm;
+    }
+
+    body {
+      font-size: 9.5px;
+      background: #fff;
+    }
+
+    .blueprint {
+      width: 100%;
+      padding: 0;
+      margin: 0;
+    }
+
+    .top-strip,
+    .subgoal-header,
+    .legend,
+    .allocation-tag,
+    .emphasis--specified-now,
+    .emphasis--noncausal,
+    .emphasis--retained,
+    .emphasis--existing,
+    .emphasis--disproportionate,
+    .emphasis--unsafe,
+    .outcome-badge--agent-spec,
+    .outcome-badge--no-code {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .subgoal-group {
+      break-inside: avoid;
+    }
+
+    .activity-table tr {
+      break-inside: avoid;
+    }
+
+    .legend {
+      break-inside: avoid;
+    }
+
+    .context-section {
+      break-inside: avoid;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="blueprint">
+
+  <!-- ═══════════════════════════════════════════════════════
+       1. PATH-NEUTRAL TOP STRIP + OUTCOME BADGE
+       ═══════════════════════════════════════════════════════ -->
+  <div class="top-strip">
+    <div class="journey-steps">
+      <span class="journey-step">Annoying task</span>
+      <span class="journey-arrow">→</span>
+      <span class="journey-step">Job</span>
+      <span class="journey-arrow">→</span>
+      <span class="journey-step">Subgoals</span>
+      <span class="journey-arrow">→</span>
+      <span class="journey-step">Activities</span>
+      <span class="journey-arrow">→</span>
+      <span class="journey-step">Human / AI</span>
+      <span class="journey-arrow">→</span>
+      <span class="journey-step">Outcome</span>
+    </div>
+
+    <!-- Use ONE of these badges. Delete the other when rendering. -->
+
+    <!-- Agent-spec outcome badge -->
+    <span class="outcome-badge outcome-badge--agent-spec">
+      <span class="outcome-badge-icon">◆</span> Agent Specification
+    </span>
+
+    <!-- No-code outcome badge — replace {{no_code_reason}} with the reason code -->
+    <!--
+    <span class="outcome-badge outcome-badge--no-code">
+      <span class="outcome-badge-icon">◇</span> No Agent Brief · {{no_code_reason}}
+    </span>
+    -->
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       2. JOB STORY + PROJECT GOAL
+       ═══════════════════════════════════════════════════════ -->
+  <div class="job-section">
+    <div class="job-card">
+      <div class="card-label">Job story</div>
+      <div class="card-content">
+        "When {{job_situation}}, I need to {{job_progress}}, so I can {{job_outcome}}, while preserving {{job_quality}}."
+      </div>
+    </div>
+    <div class="goal-card">
+      <div class="card-label">Project goal</div>
+      <div class="card-content">{{project_goal}}</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       3–8. WORKFLOW VIEW GROUPED BY SUBGOAL
+       Each subgoal-group contains activities with allocation,
+       current/proposed state, and reason-specific emphasis.
+       ═══════════════════════════════════════════════════════ -->
+  <div class="workflow-section">
+    <div class="section-title">Workflow · {{boundary_start}} → {{boundary_end}}</div>
+
+    <!-- ── Subgoal group (repeat for each subgoal) ────────── -->
+    <div class="subgoal-group">
+      <div class="subgoal-header">
+        <span class="subgoal-name">{{subgoal_name}}</span>
+        <span class="subgoal-refinement">{{subgoal_refinement_type}}</span>
+        <!-- refinement_type: AND | OR | external condition -->
+      </div>
+
+      <table class="activity-table">
+        <thead>
+          <tr>
+            <th style="width: 18%;">Activity</th>
+            <th style="width: 10%;">Actor</th>
+            <th style="width: 12%;">Input → Output</th>
+            <th style="width: 10%;">System</th>
+            <th style="width: 10%;">Handoff</th>
+            <th style="width: 12%;">Exception</th>
+            <th style="width: 14%;">Current state</th>
+            <th style="width: 14%;">Proposed allocation</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <!-- ── Standard activity row ──────────────────────── -->
+          <tr>
+            <td>{{activity_name}}</td>
+            <td>{{actor}}</td>
+            <td>{{input}} → {{output}}</td>
+            <td>{{system}}</td>
+            <td>{{handoff}}</td>
+            <td>{{exception}}</td>
+            <td>
+              <div class="state-layer">
+                <span class="state-marker state-marker--current"></span>
+                <span class="state-label">{{current_allocation}}</span>
+              </div>
+            </td>
+            <td>
+              <div class="state-layer">
+                <span class="state-marker state-marker--proposed"></span>
+                <!-- Use the allocation-tag matching the proposed level -->
+                <span class="allocation-tag allocation-tag--human">Human</span>
+              </div>
+              <div class="allocation-boundary">{{boundary_detail}}</div>
+            </td>
+          </tr>
+
+          <!-- ── SPECIFIED NOW row (agent-spec selected slice) ── -->
+          <!--
+          <tr class="emphasis--specified-now">
+            <td>{{selected_slice_activity}}</td>
+            <td>{{actor}}</td>
+            <td>{{input}} → {{output}}</td>
+            <td>{{system}}</td>
+            <td>{{handoff}}</td>
+            <td>{{exception}}</td>
+            <td>
+              <div class="state-layer">
+                <span class="state-marker state-marker--current"></span>
+                <span class="state-label">{{current_allocation}}</span>
+              </div>
+            </td>
+            <td>
+              <div class="state-layer">
+                <span class="state-marker state-marker--proposed"></span>
+                <span class="allocation-tag allocation-tag--ai-approves">AI acts, human approves</span>
+              </div>
+              <div class="allocation-boundary">{{approval_boundary}}</div>
+            </td>
+          </tr>
+          -->
+
+          <!-- ── BROKEN CAUSAL LINK row (non-causal no-code) ── -->
+          <!--
+          <tr class="emphasis--noncausal">
+            <td>{{noncausal_activity}}</td>
+            <td>{{actor}}</td>
+            <td>{{input}} → {{output}}</td>
+            <td>{{system}}</td>
+            <td>{{handoff}}</td>
+            <td>{{exception}}</td>
+            <td>
+              <div class="state-layer">
+                <span class="state-marker state-marker--current"></span>
+                <span class="state-label">{{current_allocation}}</span>
+              </div>
+            </td>
+            <td>
+              <div class="state-layer">
+                <span class="state-marker state-marker--proposed"></span>
+                <span class="state-label">No change — causal link broken</span>
+              </div>
+            </td>
+          </tr>
+          -->
+
+          <!-- ── HUMAN BOUNDARY row (human-retained no-code) ── -->
+          <!--
+          <tr class="emphasis--retained">
+            <td>{{retained_activity}}</td>
+            <td>{{actor}}</td>
+            <td>{{input}} → {{output}}</td>
+            <td>{{system}}</td>
+            <td>{{handoff}}</td>
+            <td>{{exception}}</td>
+            <td>
+              <div class="state-layer">
+                <span class="state-marker state-marker--current"></span>
+                <span class="state-label">Human</span>
+              </div>
+            </td>
+            <td>
+              <div class="state-layer">
+                <span class="state-marker state-marker--proposed"></span>
+                <span class="allocation-tag allocation-tag--human">Human — retained by choice</span>
+              </div>
+              <div class="allocation-boundary">Reason: {{retained_reason}}</div>
+            </td>
+          </tr>
+          -->
+
+          <!-- ── ALREADY SERVED row (existing-or-simpler no-code) ── -->
+          <!--
+          <tr class="emphasis--existing">
+            <td>{{existing_activity}}</td>
+            <td>{{actor}}</td>
+            <td>{{input}} → {{output}}</td>
+            <td>{{system}}</td>
+            <td>{{handoff}}</td>
+            <td>{{exception}}</td>
+            <td>
+              <div class="state-layer">
+                <span class="state-marker state-marker--current"></span>
+                <span class="state-label">{{current_allocation}}</span>
+              </div>
+            </td>
+            <td>
+              <div class="state-layer">
+                <span class="state-marker state-marker--proposed"></span>
+                <span class="state-label">Already served by {{existing_solution}}</span>
+              </div>
+            </td>
+          </tr>
+          -->
+
+          <!-- ── VALUE/COST MISMATCH row (disproportionate-value no-code) ── -->
+          <!--
+          <tr class="emphasis--disproportionate">
+            <td>{{disproportionate_activity}}</td>
+            <td>{{actor}}</td>
+            <td>{{input}} → {{output}}</td>
+            <td>{{system}}</td>
+            <td>{{handoff}}</td>
+            <td>{{exception}}</td>
+            <td>
+              <div class="state-layer">
+                <span class="state-marker state-marker--current"></span>
+                <span class="state-label">{{current_allocation}}</span>
+              </div>
+            </td>
+            <td>
+              <div class="state-layer">
+                <span class="state-marker state-marker--proposed"></span>
+                <span class="state-label">Not proportionate — {{value_cost_detail}}</span>
+              </div>
+            </td>
+          </tr>
+          -->
+
+          <!-- ── VIOLATED BOUNDARY row (unsafe-or-unverifiable no-code) ── -->
+          <!--
+          <tr class="emphasis--unsafe">
+            <td>{{unsafe_activity}}</td>
+            <td>{{actor}}</td>
+            <td>{{input}} → {{output}}</td>
+            <td>{{system}}</td>
+            <td>{{handoff}}</td>
+            <td>{{exception}}</td>
+            <td>
+              <div class="state-layer">
+                <span class="state-marker state-marker--current"></span>
+                <span class="state-label">{{current_allocation}}</span>
+              </div>
+            </td>
+            <td>
+              <div class="state-layer">
+                <span class="state-marker state-marker--proposed"></span>
+                <span class="state-label">Blocked — {{violated_boundary}}</span>
+              </div>
+            </td>
+          </tr>
+          -->
+
+        </tbody>
+      </table>
+    </div>
+    <!-- ── End subgoal group (repeat above for each subgoal) ── -->
+
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       4. ACTORS, SYSTEMS, INPUTS, OUTPUTS, HANDOFFS, EXCEPTIONS
+       ═══════════════════════════════════════════════════════ -->
+  <div class="context-section">
+    <div class="context-box">
+      <div class="context-box-title">Actors &amp; Systems</div>
+      <ul class="context-list">
+        <li>{{actor_or_system}}: {{role_or_description}}</li>
+        <!-- Repeat for each actor and system -->
+      </ul>
+    </div>
+    <div class="context-box">
+      <div class="context-box-title">Key Inputs &amp; Outputs</div>
+      <ul class="context-list">
+        <li>{{input_or_output}}: {{description}}</li>
+        <!-- Repeat for each key input and output -->
+      </ul>
+    </div>
+    <div class="context-box">
+      <div class="context-box-title">Handoffs</div>
+      <ul class="context-list">
+        <li>{{from}} → {{to}}: {{what_transfers}}</li>
+        <!-- Repeat for each handoff -->
+      </ul>
+    </div>
+    <div class="context-box">
+      <div class="context-box-title">Exceptions &amp; Alternate Paths</div>
+      <ul class="context-list">
+        <li>{{exception}}: {{behavior}}</li>
+        <!-- Repeat for each exception -->
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       9. LEGEND (does not rely on color alone)
+       ═══════════════════════════════════════════════════════ -->
+  <div class="legend">
+    <div class="legend-title">Legend</div>
+    <div class="legend-grid">
+
+      <!-- Allocation levels -->
+      <div class="legend-group-title">Allocation levels</div>
+      <div class="legend-item">
+        <span class="legend-swatch" style="background: var(--color-human);">H</span>
+        Human — person performs it
+      </div>
+      <div class="legend-item">
+        <span class="legend-swatch" style="background: var(--color-ai-assists);">A</span>
+        AI assists — AI prepares/drafts, person finishes
+      </div>
+      <div class="legend-item">
+        <span class="legend-swatch" style="background: var(--color-ai-approves);">V</span>
+        AI acts, human approves — per-instance approval
+      </div>
+      <div class="legend-item">
+        <span class="legend-swatch" style="background: var(--color-ai-samples);">S</span>
+        AI acts, human samples — batch review + escalation
+      </div>
+      <div class="legend-item">
+        <span class="legend-swatch" style="background: var(--color-ai-autonomous);">X</span>
+        AI autonomous — no routine review
+      </div>
+
+      <!-- State distinction -->
+      <div class="legend-group-title">State distinction</div>
+      <div class="legend-state-row">
+        <span class="state-marker state-marker--current"></span>
+        Current state (observed) — dashed border
+      </div>
+      <div class="legend-state-row">
+        <span class="state-marker state-marker--proposed"></span>
+        Proposed allocation — solid border
+      </div>
+
+      <!-- Reason-specific emphasis -->
+      <div class="legend-group-title">Emphasis markers</div>
+      <div class="legend-emphasis">
+        <span class="legend-emphasis-swatch" style="background: var(--color-specified-now-bg); border-left: 3px solid var(--color-specified-now);"></span>
+        ▶ SPECIFIED NOW — selected slice for agent spec
+      </div>
+      <div class="legend-emphasis">
+        <span class="legend-emphasis-swatch" style="background: #fff5f5; border-left: 3px dashed var(--color-noncausal);"></span>
+        ✕ BROKEN CAUSAL LINK — no causal path to desired progress
+      </div>
+      <div class="legend-emphasis">
+        <span class="legend-emphasis-swatch" style="background: #ebf4ff; border-left: 3px solid var(--color-retained);"></span>
+        ● HUMAN BOUNDARY — participant retains by choice
+      </div>
+      <div class="legend-emphasis">
+        <span class="legend-emphasis-swatch" style="background: #faf5ff; border-left: 3px solid var(--color-existing);"></span>
+        = ALREADY SERVED — existing tool/process covers this
+      </div>
+      <div class="legend-emphasis">
+        <span class="legend-emphasis-swatch" style="background: #fffaf0; border-left: 3px double var(--color-disproportionate);"></span>
+        ⚖ VALUE / COST MISMATCH — build not proportionate
+      </div>
+      <div class="legend-emphasis">
+        <span class="legend-emphasis-swatch" style="background: #fff5f5; border-left: 3px solid var(--color-unsafe);"></span>
+        ⛔ VIOLATED BOUNDARY — safety/permission/observability block
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       10. COMPANION ARTIFACT LINKS
+       ═══════════════════════════════════════════════════════ -->
+  <div class="companion-links">
+    <span class="companion-link"><strong>Case card:</strong> case-card.md</span>
+
+    <!-- Use ONE of these. Delete the other when rendering. -->
+    <span class="companion-link"><strong>Specification:</strong> agent-spec.md</span>
+    <!-- <span class="companion-link"><strong>Verdict:</strong> no-code-verdict.md</span> -->
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════════════════ -->
+  <div class="blueprint-footer">
+    <span>MISO Workflow Blueprint · {{slug}}</span>
+    <span>Generated {{date}} · Revision {{revision}}</span>
+  </div>
+
+</div>
+</body>
+</html>

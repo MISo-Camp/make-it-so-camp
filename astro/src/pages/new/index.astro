@@ -1,27 +1,24 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
-import Hero from '../../components/Hero.astro';
-import Footer from '../../components/Footer.astro';
-import { getCamp, collaborationSentence, partnerLinks, tokyoVenueMapUrl } from '../../data/camps';
 
-const tokyo = getCamp('tokyo');
-const adelaide = getCamp('adelaide');
-const contributors = (camp: typeof tokyo) =>
-  [...camp.partners, ...(camp.supporters ?? [])].map((p) => ({ "@type": "Organization", "name": p.name, "url": p.url }));
+const navLinks = [
+  { label: 'The programme', href: '#programme' },
+  { label: 'How it works', href: '#practice' },
+  { label: 'Camps', href: '#camps' },
+  { label: 'Host a camp', href: '#host', accent: true },
+];
 
-const title = 'Make It So Camp — You cannot delegate what you cannot articulate';
-const description = 'Make It So Camp is a selective two-day AI workshop for experienced practitioners. Day 1 you make your working method explicit; Day 2 you build with others and demo. Tokyo and Adelaide, 2026. By invitation.';
+const title = 'Make It So Camp — Work with AI. Rethink what becomes possible.';
+const description = 'A hands-on executive programme on working with AI, for people making decisions and designing the systems others depend on. Led by Igor Schwarzmann and Noah Raford.';
 const jsonldGraph = [
   {
     "@context": "https://schema.org",
     "@graph": [
-      { "@type": "Organization", "@id": "https://misocamp.com/new/#org", "name": "Make It So Camp", "url": "https://misocamp.com/new/", "email": "hello@misocamp.com", "description": "Make It So Camp is a selective two-day AI workshop, by invitation. Thesis: You cannot delegate what you cannot articulate.", "founder": [ { "@id": "https://misocamp.com/new/#igor" }, { "@id": "https://misocamp.com/new/#noah" } ] },
-      { "@type": "WebSite", "@id": "https://misocamp.com/new/#website", "name": "Make It So Camp", "url": "https://misocamp.com/new/", "inLanguage": "en", "publisher": { "@id": "https://misocamp.com/new/#org" } },
-      { "@type": "Person", "@id": "https://misocamp.com/new/#igor", "name": "Igor Schwarzmann", "sameAs": ["https://igorschwarzmann.com"] },
-      { "@type": "Person", "@id": "https://misocamp.com/new/#noah", "name": "Noah Raford", "jobTitle": "Managing Partner", "affiliation": { "@type": "Organization", "name": "EMIR" }, "alumniOf": [{ "@type": "EducationalOrganization", "name": "Massachusetts Institute of Technology" }], "hasCredential": "PhD, Massachusetts Institute of Technology", "sameAs": ["https://noahraford.com"] },
-      { "@type": "Event", "@id": "https://misocamp.com/new/#tokyo-event", "name": "Make It So Camp Tokyo", "description": `Selective two-day AI workshop, by invitation. ${collaborationSentence(tokyo.partners)}`, "startDate": "2026-08-24", "endDate": "2026-08-25", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "eventStatus": "https://schema.org/EventScheduled", "organizer": { "@id": "https://misocamp.com/new/#org" }, "contributor": contributors(tokyo), "location": { "@type": "Place", "name": "Crypto Café Tokyo", "hasMap": tokyoVenueMapUrl, "address": { "@type": "PostalAddress", "addressLocality": "Tokyo", "addressCountry": "JP" } } },
-      { "@type": "Event", "@id": "https://misocamp.com/new/#adelaide-event", "name": "Make It So Camp Adelaide", "description": `Selective two-day AI workshop, by invitation. ${collaborationSentence(adelaide.partners)}`, "startDate": "2026-09-17", "endDate": "2026-09-18", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "eventStatus": "https://schema.org/EventScheduled", "organizer": { "@id": "https://misocamp.com/new/#org" }, "contributor": contributors(adelaide), "location": { "@type": "Place", "name": "Venue to be announced", "address": { "@type": "PostalAddress", "addressLocality": "Adelaide", "addressCountry": "AU" } } }
+      { "@type": "Organization", "@id": "https://misocamp.com/#org", "name": "Make It So Camp", "url": "https://misocamp.com/", "email": "hello@misocamp.com", "description": "A hands-on executive programme on working with AI, led by Igor Schwarzmann and Noah Raford.", "founder": [ { "@id": "https://misocamp.com/#igor" }, { "@id": "https://misocamp.com/#noah" } ] },
+      { "@type": "WebSite", "@id": "https://misocamp.com/#website", "name": "Make It So Camp", "url": "https://misocamp.com/", "inLanguage": "en", "publisher": { "@id": "https://misocamp.com/#org" } },
+      { "@type": "Person", "@id": "https://misocamp.com/#igor", "name": "Igor Schwarzmann", "sameAs": ["https://igorschwarzmann.com"] },
+      { "@type": "Person", "@id": "https://misocamp.com/#noah", "name": "Noah Raford", "sameAs": ["https://noahraford.com"] }
     ]
   }
 ];
@@ -30,126 +27,354 @@ const jsonldGraph = [
   title={title}
   description={description}
   canonicalPath="/new/"
-  ogTitle={title}
-  ogDescription="A selective two-day AI workshop for experienced practitioners. Tokyo and Adelaide, 2026. By invitation."
-
+  ogTitle="Make It So Camp"
+  ogDescription="Work with AI. Rethink what becomes possible. A hands-on executive programme led by Igor Schwarzmann and Noah Raford."
   jsonldGraph={jsonldGraph}
 >
-  <Header links={[
-    { label: "Who it's for", href: '#who' },
-    { label: 'How it works', href: '#how' },
-    { label: 'Tokyo · Adelaide', href: '#camps' },
-    { label: 'About', href: '/new/about/' },
-    { label: 'Request an invitation', href: '#request', accent: true },
-  ]} />
+  <a class="skip" href="#main">Skip to content</a>
 
-  <Hero
-    leftMeta="By invitation"
-    rightMeta='Two-day AI workshop<br><span class="light">Tokyo · Adelaide · 2026</span>'
-    statement="You cannot delegate what you cannot articulate."
-    cta={{ href: 'mailto:hello@misocamp.com?subject=Invitation%20request', label: 'Request an invitation ↗︎' }}
-    ctaAlt={{ href: 'mailto:hello@misocamp.com?subject=Partnership', label: 'Partner with us to run a camp ↗︎' }}
-  />
+  <Header links={navLinks} />
 
-  <section class="section" id="idea" aria-labelledby="idea-label">
-    <div class="section-label"><span class="num">01</span><h2 class="label" id="idea-label">The idea</h2></div>
-    <p class="lead-statement">AI can only help with work you can describe. <span class="dim">And the most valuable work — yours — has usually never been described.</span></p>
-    <div class="cols">
-      <div>
-        <p>When these tools arrived, the people who got the most out of them were not the most technical. They were the ones who could state what they wanted: the goal, the constraints, what good looks like. The machine does not guess. It needs you to say what you mean.</p>
-        <p>Most AI training starts with the tools: which model, which prompt, which trick. We start with your work. Whatever your field and however long you have been in it, most of your method is unwritten — how you frame a problem, what you pay attention to, when you call something good enough. That unwritten method is the material the camp works with.</p>
-      </div>
-      <div>
-        <p>The camp is for writing it down. That sounds simple, and it is the whole difference: a written method is something a machine can execute, a stranger can question, and a team can improve. And it compounds — each piece of your work you make explicit makes the next thing you build faster.</p>
-        <p>The aim is not to get faster at generic tasks. It is to make your work legible enough that AI becomes a collaborator, and to leave with a way of working that keeps paying off long after the two days end.</p>
-      </div>
-    </div>
-  </section>
+  <main id="main">
+    <section class="home-hero" aria-labelledby="hero-label">
+      <p class="hero-eyebrow">A hands-on executive programme</p>
+      <h1 class="home-statement" id="hero-label">Work with AI. Rethink what becomes possible.</h1>
+      <p class="home-intro">For people making decisions and designing the systems others depend on. Explore AI through practical work, then examine what it changes about your organisation, your field and the responsibilities you carry.</p>
+      <p class="home-cta">
+        <a class="accent" href="#host">Host a camp&nbsp;→</a>
+        <a class="home-cta-alt" href="#programme">Explore the programme&nbsp;↓</a>
+      </p>
+      <p class="hero-byline">Led by Igor Schwarzmann and Noah Raford</p>
+    </section>
 
-  <section class="section" id="who" aria-labelledby="who-label">
-    <div class="section-label"><span class="num">02</span><h2 class="label" id="who-label">Who it's for</h2></div>
-    <p class="lead-statement">Come for your experience, not your AI experience. <span class="dim">The camp leans on what you already know — strategy, research, policy, craft — and mixes domains on purpose: the method transfers, and the demos are better for it.</span></p>
-    <div class="moves moves-four" style="margin-top:clamp(2rem,3.5vw,3rem)">
-      <div class="move">
-        <h3>Academic</h3>
-        <p>Researchers, teachers, lab leads. People whose methods are rigorous but rarely written for anyone else to run.</p>
-      </div>
-      <div class="move">
-        <h3>Creative</h3>
-        <p>Strategists, designers, writers, cultural workers. People who work by taste and want it to survive contact with the tools.</p>
-      </div>
-      <div class="move">
-        <h3>Corporate</h3>
-        <p>Product, operations, transformation. People who own a process a team needs to understand, not just follow.</p>
-      </div>
-      <div class="move">
-        <h3>Policy</h3>
-        <p>Policy makers, public servants, civic institutions. People whose decisions must hold up when someone asks why.</p>
-      </div>
-    </div>
-    <p class="note">You need work you care about, and the patience to say what you mean. If you would rather wait for a playbook, this camp is not the place — the people here are writing it.</p>
-  </section>
-
-  <section class="section" id="how" aria-labelledby="how-label">
-    <div class="section-label"><span class="num">03</span><h2 class="label" id="how-label">How it works</h2></div>
-    <p class="lead-statement">Hands-on from the first hour.</p>
-    <div class="day-list" style="margin-top:clamp(2rem,3.5vw,3rem)">
-      <div class="day-row">
-        <p class="day-label">Before</p>
+    <section class="section" id="programme" aria-labelledby="programme-label">
+      <div class="section-label"><span class="num">01</span><p class="label">The programme</p></div>
+      <h2 class="lead-statement" id="programme-label">New capabilities change the decisions we face.</h2>
+      <div class="cols">
         <div>
-          <h3>A map of the room.</h3>
-          <p>We ask everyone beforehand what they are working on and how they work today, so Day 1 starts from what is actually in the room rather than a round of introductions.</p>
+          <p>AI can make an idea practical to try before an organisation has agreed what to do with it. That creates questions about the work itself: what becomes worth attempting, what people come to expect, and who will keep it useful.</p>
+        </div>
+        <div>
+          <p>MISO gives those questions a practical setting. Work directly with AI, compare approaches with people from other fields, and use what happens to reconsider the choices in front of you.</p>
         </div>
       </div>
-      <div class="day-row">
-        <p class="day-label">Day 1</p>
+      <div class="q-strip">
+        <div class="q"><span class="num">Q1</span><p>What could we now attempt?</p></div>
+        <div class="q"><span class="num">Q2</span><p>What would that change for people?</p></div>
+        <div class="q"><span class="num">Q3</span><p>What would it take to keep it useful?</p></div>
+      </div>
+    </section>
+
+    <section class="section" id="who" aria-labelledby="who-label">
+      <div class="section-label"><span class="num">02</span><p class="label">Who joins</p></div>
+      <h2 class="lead-statement" id="who-label">Bring your experience. Bring an open question.</h2>
+      <div class="cols">
         <div>
-          <h3>Articulate.</h3>
-          <p>You work on a real problem you bring with you, and make the method behind it explicit: the steps, the assumptions, what good looks like. Exercises with people from other fields test whether someone else could actually follow it.</p>
+          <p>The camp brings together public leaders, policy practitioners, designers, researchers and people shaping how organisations work. Participants have different levels of AI experience and learn from seeing how others approach unfamiliar problems.</p>
+        </div>
+        <div>
+          <p>You might arrive with a service to rethink, a decision to explore or a sense that something new is possible. You do not need a finished project brief. We help you find a useful place to begin.</p>
         </div>
       </div>
-      <div class="day-row">
-        <p class="day-label">Day 2</p>
-        <div>
-          <h3>Build and demo.</h3>
-          <p>Alone or in a small cross-domain team, you put the written method to work with the tools and build something real. The day ends in demo rounds — not show-and-tell, but what did your way of working make possible.</p>
+      <p class="note">Everyone works directly with the tools, individually and with others.</p>
+    </section>
+
+    <section class="section" id="practice" aria-labelledby="practice-label">
+      <div class="section-label"><span class="num">03</span><p class="label">How it works</p></div>
+      <h2 class="lead-statement" id="practice-label">Build, reflect and try again.</h2>
+      <p class="section-intro">Two days of guided experiments, short explanations and discussion. The emphasis and preparation are shaped with each host around the people in the room.</p>
+      <div class="day-list">
+        <div class="day-row">
+          <p class="day-label">01</p>
+          <div>
+            <h3>Find a starting point.</h3>
+            <p>Choose a question or piece of work. Identify what you want to learn and what would make a first attempt useful.</p>
+          </div>
+        </div>
+        <div class="day-row">
+          <p class="day-label">02</p>
+          <div>
+            <h3>Make an attempt.</h3>
+            <p>Work with AI to build a small prototype or explore a workflow. Notice where the result differs from what you expected.</p>
+          </div>
+        </div>
+        <div class="day-row">
+          <p class="day-label">03</p>
+          <div>
+            <h3>Make the reasoning visible.</h3>
+            <p>Describe the assumptions, inputs and judgments behind your approach. Let others question it and use what you learn in another attempt.</p>
+          </div>
+        </div>
+        <div class="day-row">
+          <p class="day-label">04</p>
+          <div>
+            <h3>Reconsider the wider work.</h3>
+            <p>Discuss what the experiment changes: who would use it, what people would expect, where human judgment matters and what ongoing work it would create.</p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+      <p class="outcome">Leave with practical experience, a record of your approach and limitations, and a clearer next decision: what to develop, what to change or where to stop.</p>
+    </section>
 
-  <section class="section" id="camps" aria-labelledby="camps-label">
-    <div class="section-label"><span class="num">04</span><h2 class="label" id="camps-label">2026 camps</h2></div>
-    <div class="camps">
-      <div class="camp">
-        <h2>Tokyo</h2>
-        <dl>
-          <dt>Dates</dt><dd>24–25 August 2026</dd>
-          <dt>Venue</dt><dd><a href={tokyoVenueMapUrl} target="_blank" rel="noopener">Crypto Café Tokyo ↗︎</a></dd>
-          <dt>Collaborators</dt><dd set:html={partnerLinks(tokyo.partners, true)} />
-          {tokyo.supporters && <><dt>Supporters</dt><dd set:html={partnerLinks(tokyo.supporters, true)} /></>}
-        </dl>
-        <p class="cta"><a class="accent" href="/new/tokyo/">View Tokyo ↗︎</a></p>
+    <section class="ink-band" id="method" aria-labelledby="method-label">
+      <div class="section">
+        <div class="section-label"><span class="num">04</span><p class="label">The method</p></div>
+        <h2 class="lead-statement" id="method-label">You cannot delegate what you cannot articulate.</h2>
+        <div class="cols">
+          <div>
+            <p>Working with AI brings gaps in our instructions and assumptions into view. Making enough of the method explicit gives us a basis for checking the result and discussing it with others.</p>
+          </div>
+          <div>
+            <p>Some knowledge remains tied to experience, relationships and context. Part of the work is recognising where a person needs to stay involved, and why.</p>
+          </div>
+        </div>
       </div>
-      <div class="camp">
-        <h2>Adelaide</h2>
-        <dl>
-          <dt>Dates</dt><dd>17–18 September 2026</dd>
-          <dt>Venue</dt><dd>TBD</dd>
-          <dt>Collaborators</dt><dd set:html={partnerLinks(adelaide.partners, true)} />
-          {adelaide.supporters && <><dt>Supporters</dt><dd set:html={partnerLinks(adelaide.supporters, true)} /></>}
-        </dl>
-        <p class="cta"><a class="accent" href="/new/adelaide/">View Adelaide ↗︎</a></p>
+    </section>
+
+    <section class="section" id="example" aria-labelledby="example-label">
+      <div class="section-label"><span class="num">05</span><p class="label">An example from our practice</p></div>
+      <p class="kicker">Facilitator example · exploratory prototype</p>
+      <h2 class="lead-statement" id="example-label">What if public information started with your circumstances?</h2>
+      <div class="cols">
+        <div>
+          <p>After a conversation about a childcare rule he had missed, Igor built a prototype that organises public decisions around a resident's situation and neighbourhood.</p>
+        </div>
+        <div>
+          <p>Trying the idea made a different public-service expectation tangible: tell me what matters where I live. It also exposed the work needed to check explanations, keep information current and handle corrections.</p>
+        </div>
       </div>
-    </div>
-  </section>
+      <p class="note"><a class="accent" href="https://igorschwarzmann.com/notes/ai-and-everyday-complexity-adelaide/" rel="noopener">Read the example and the questions it raised&nbsp;↗</a></p>
+    </section>
 
-  <section class="section invite" id="request" aria-labelledby="request-label">
-    <div class="section-label"><span class="num">05</span><h2 class="label" id="request-label">Request an invitation</h2></div>
-    <p class="lead-statement" style="margin-bottom:1.6rem">Tell us which camp, what work you would bring, and why now.</p>
-    <p class="email"><a href="mailto:hello@misocamp.com?subject=Invitation%20request">hello@misocamp.com</a></p>
-    <p class="note">Interested in running a version of Make It So Camp — at your university, company, or city? <a class="accent" href="mailto:hello@misocamp.com?subject=Partnership">Partner with us ↗︎</a></p>
-  </section>
+    <section class="section" id="camps" aria-labelledby="camps-label">
+      <div class="section-label"><span class="num">06</span><p class="label">Camps</p></div>
+      <h2 class="lead-statement" id="camps-label">Developed with people in different settings.</h2>
+      <div class="camps">
+        <div class="camp">
+          <h3>Tokyo <span class="camp-date">24–25 August 2026</span></h3>
+          <p>The first MISO Camp took place at Crypto Café Tokyo, in collaboration with the Henkaku Center at Chiba Institute of Technology.</p>
+          <p class="cta"><a class="accent" href="/tokyo/">Tokyo camp details&nbsp;→</a></p>
+        </div>
+        <div class="camp">
+          <h3>Adelaide <span class="camp-date">17–18 September 2026</span></h3>
+          <p>MISO in Adelaide, in collaboration with Flinders University New Venture Institute and SA Futures Agency.</p>
+          <p class="cta"><a class="accent" href="/adelaide/">Adelaide camp details&nbsp;→</a></p>
+        </div>
+      </div>
+    </section>
 
-  <Footer />
+    <section class="section invite" id="host" aria-labelledby="host-label">
+      <div class="section-label"><span class="num">07</span><p class="label">Host a camp</p></div>
+      <h2 class="lead-statement" id="host-label">Bring MISO to your institution.</h2>
+      <div class="cols">
+        <div>
+          <p>We work with universities, public institutions and organisations to shape a camp around a cohort and the questions it faces. MISO can stand on its own or contribute a practical component to an executive, leadership or professional development programme.</p>
+        </div>
+        <div>
+          <p>Start with who you want to bring together and what decisions they are facing. We can then discuss the focus, preparation, tool access and support needed for that group.</p>
+        </div>
+      </div>
+      <p class="email"><a href="mailto:hello@misocamp.com?subject=Hosting%20a%20MISO%20Camp">hello@misocamp.com</a></p>
+      <p class="note"><a class="accent" href="/about/">Meet Igor and Noah&nbsp;→</a></p>
+      <p class="note">Interested in joining a future camp? <a class="accent" href="mailto:hello@misocamp.com?subject=Future%20MISO%20Camp">Tell us about your work.</a></p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div>Make It So Camp</div>
+    <div><a href="/about/">About</a> · <a href="/imprint/">Impressum</a> · <a href="mailto:hello@misocamp.com">hello@misocamp.com</a></div>
+  </footer>
+
+  <style is:inline>
+    /* Page-scoped styles for the institutional homepage preview. */
+
+    /* Shared --muted (#8C877D) is 2.87:1 on bone — below AA for normal text.
+       Page-scoped override lifts every muted run (nav, byline, secondary CTA,
+       section labels, camp dates, footer) to 5.2:1 without touching miso.css. */
+    body { --muted: #635D53; }
+
+    .skip {
+      position: absolute;
+      left: -10000px;
+      top: 0;
+      z-index: 10;
+      background: var(--ink);
+      color: var(--bg);
+      padding: 0.75rem 1.25rem;
+      font-weight: 600;
+    }
+    .skip:focus { left: 0; }
+
+    :is(a, button, [tabindex]):focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    /* Touch targets: inline links grow vertically without shifting the layout. */
+    .site-header .nav a { display: inline-block; padding: 0.45rem 0; }
+    .camp .cta a,
+    .note a,
+    .footer a { display: inline-block; padding: 0.65rem 0; }
+
+    h1, h2, h3 { text-wrap: balance; }
+
+    /* Hero */
+    .home-hero {
+      max-width: var(--wide);
+      margin: 0 auto;
+      padding: clamp(3rem, 6vw, 5.5rem) var(--pad) clamp(3rem, 6vw, 5.5rem);
+    }
+    .hero-eyebrow {
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      margin-bottom: clamp(1.2rem, 2.5vw, 2rem);
+    }
+    .home-statement {
+      font-weight: 700;
+      font-size: clamp(2.6rem, 5.2vw, 4.6rem);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      max-width: 18ch;
+    }
+    .home-intro {
+      margin-top: clamp(1.4rem, 2.5vw, 2.25rem);
+      font-size: clamp(1.15rem, 1.5vw, 1.4rem);
+      line-height: 1.55;
+      max-width: 60ch;
+    }
+    .home-cta {
+      margin-top: clamp(1.5rem, 3vw, 2.5rem);
+      font-size: clamp(1.05rem, 1.4vw, 1.3rem);
+      font-weight: 600;
+    }
+    .home-cta a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 2px solid var(--accent);
+      display: inline-block;
+      padding: 0.45rem 0;
+    }
+    .home-cta a:hover { color: var(--accent-hover); border-color: var(--accent-hover); }
+    .home-cta a.home-cta-alt {
+      color: var(--muted);
+      border-bottom: 2px solid var(--line);
+      margin-left: 1.4rem;
+    }
+    .home-cta a.home-cta-alt:hover { color: var(--ink); border-color: var(--ink); }
+    .hero-byline {
+      margin-top: clamp(1.75rem, 3vw, 2.5rem);
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    /* Section intro line under a lead statement */
+    .section-intro {
+      margin-top: clamp(1.2rem, 2vw, 1.6rem);
+      max-width: 58ch;
+      font-size: clamp(1.02rem, 1.15vw, 1.18rem);
+      line-height: 1.55;
+    }
+    .day-list { margin-top: clamp(2rem, 3.5vw, 3rem); }
+    /* Shared `.day-row p` outranks `.day-label`, so the stage numerals lose the
+       accent colour every other numeral on this page carries. Restore it. */
+    .day-row p.day-label { color: var(--accent); }
+
+    /* Outcome inset after the working stages */
+    .outcome {
+      margin-top: clamp(2rem, 3.5vw, 3rem);
+      border-top: 3px solid var(--accent);
+      padding-top: 1.1rem;
+      max-width: 62ch;
+      font-size: clamp(1.15rem, 1.6vw, 1.45rem);
+      font-weight: 600;
+      line-height: 1.45;
+      letter-spacing: -0.01em;
+    }
+
+    /* Three open questions — typographic strip */
+    .q-strip {
+      margin-top: clamp(2.75rem, 5vw, 4rem);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(1.5rem, 3vw, 3rem);
+    }
+    .q { border-top: 2px solid var(--ink); padding-top: 0.9rem; }
+    .q .num { display: block; margin-bottom: 0.55rem; }
+    .q p {
+      font-weight: 600;
+      font-size: clamp(1.25rem, 1.8vw, 1.6rem);
+      line-height: 1.25;
+      letter-spacing: -0.015em;
+      max-width: 22ch;
+    }
+
+    /* Kicker above an example statement */
+    .kicker {
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+      margin-bottom: clamp(1rem, 2vw, 1.5rem);
+    }
+
+    /* Ink band — pacing inset */
+    .ink-band { background: var(--ink); color: var(--bg); }
+    .ink-band .label { color: #A9A395; }
+    .ink-band .num { color: #C96A54; }
+    .ink-band .lead-statement { color: var(--bg); }
+    .ink-band .cols p { color: var(--bg); }
+
+    /* Camp entries */
+    .camp h3 {
+      font-weight: 700;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.9rem;
+    }
+    .camp-date {
+      font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 0;
+      margin-left: 0.4rem;
+      white-space: nowrap;
+    }
+    .camp p { max-width: 46ch; margin-bottom: 1.1rem; }
+    .camps { margin-top: clamp(2rem, 3.5vw, 3rem); }
+    .camp .cta { font-weight: 600; margin-bottom: 0; }
+
+    /* Host section */
+    .invite .email { margin-top: clamp(2rem, 3.5vw, 3rem); }
+    /* Shared miso.css floors the email at 2rem, which overflows a 320px
+       viewport. Make the floor fluid; 8.4vw only bites below ~381px, so 390px
+       and desktop keep the existing 2rem/5.5vw sizing. */
+    .invite .email { font-size: clamp(min(2rem, 8.4vw), 5.5vw, 4.2rem); }
+
+    @media (max-width: 820px) {
+      .q-strip { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .home-cta a { display: block; width: fit-content; padding: 0.65rem 0; }
+      .home-cta a.home-cta-alt { margin-left: 0; margin-top: 0.9rem; }
+      .camp-date { display: block; margin-left: 0; margin-top: 0.25rem; }
+      /* Four nav items overflow the shared single-row scroll nav at 390px and
+         clip "Host a camp" — the primary CTA. Wrap instead of scrolling. */
+      .site-header .nav {
+        flex-wrap: wrap;
+        overflow-x: visible;
+        row-gap: 0;
+      }
+      /* 44px minimum on the header's tap targets. */
+      .site-header .brand,
+      .site-header .nav a {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+        padding: 0;
+      }
+    }
+  </style>
 </BaseLayout>

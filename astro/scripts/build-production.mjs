@@ -19,18 +19,19 @@ if (!existsSync(source)) {
 
 // 1. Clear only the five prior production outputs at repo root.
 const outFiles = ['index.html', 'miso.css'];
-const outDirs = ['adelaide', 'about', 'imprint'];
+const outDirs = ['about', 'imprint'];
 for (const name of outFiles) {
   rmSync(join(repoRoot, name), { force: true });
 }
 for (const name of outDirs) {
   rmSync(join(repoRoot, name), { recursive: true, force: true });
 }
-// tokyo/ also hosts hand-maintained content (tokyo/skills/) that is not part of
-// the Astro build. Clear only the built outputs inside it, never the directory.
+// tokyo/ and adelaide/ also host hand-maintained content (*/skills/) that is not
+// part of the Astro build. Clear only the built outputs inside them, never the directory.
 for (const name of ['index.html', 'agenda', 'miso-coach']) {
   rmSync(join(repoRoot, 'tokyo', name), { recursive: true, force: true });
 }
+rmSync(join(repoRoot, 'adelaide', 'index.html'), { force: true });
 
 // 2. Copy the four built pages + the stylesheet into repo root, flattening /new/.
 const pages = [
@@ -54,7 +55,7 @@ if (!existsSync(agentSource)) {
 }
 cpSync(join(source, 'index.html'), join(repoRoot, 'index.html'));
 cpSync(join(source, 'tokyo'), join(repoRoot, 'tokyo'), { recursive: true }); // merges into tokyo/, leaves tokyo/skills/ alone
-cpSync(join(source, 'adelaide'), join(repoRoot, 'adelaide'), { recursive: true });
+cpSync(join(source, 'adelaide'), join(repoRoot, 'adelaide'), { recursive: true }); // merges, leaves adelaide/skills/ alone
 cpSync(join(source, 'about'), join(repoRoot, 'about'), { recursive: true });
 cpSync(join(source, 'imprint'), join(repoRoot, 'imprint'), { recursive: true });
 cpSync(join(source, 'miso.css'), join(repoRoot, 'miso.css'));

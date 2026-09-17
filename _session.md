@@ -11,7 +11,7 @@ Updated: 2026-09-18 Australia/Adelaide
 
 ## Next steps
 
-- Deployment target: `https://misocamp.com/new/`. User authorized publishing this preview. Live verification is recorded in `docs/crew/2026-09-17-homepage-preview.md`.
+- Published and verified at `https://misocamp.com/new/` (deployment commit `dcea595`). Live HTML/CSS match the reviewed build; current root homepage remains unchanged. Evidence in `docs/crew/2026-09-17-homepage-preview.md`.
 - Review the preview before any future promotion to the root homepage.
 
 ## Open questions

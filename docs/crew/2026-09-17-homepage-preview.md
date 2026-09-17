@@ -41,3 +41,9 @@ Review rubric: code spec adherence, scope safety, accessibility and responsive b
 ## Final pre-deployment verification
 
 Narrow correction completed successfully in Claude Code Opus; report `/tmp/miso-home-build/opus/narrow-report.md`. Fluid email font floor fixes320px overflow without changing390px or desktop sizing. Coordinator independently inspected320px host screenshot and390px header plus every desktop section; measured no overflow at320/390/768/1440. Generated HTML equals current Astro output after robots rewrite; stylesheet equals source. All386 baseline files still unchanged. Final Astro check/build rerun passed with zero errors/warnings and the existing BaseLayout hint. `git diff --check` passed. Review findings resolved; coordinator approves deployment within the authorized /new scope. Live verification pending push.
+
+## Deployment and live verification
+
+Source and generated artifacts committed as `dcea595`, fast-forward merged to master and pushed. GitHub Pages reports built for that commit. `https://misocamp.com/new/` and `/new/miso.css` return HTTP200 and match committed bytes exactly. Live root homepage and CSS retain their saved hashes; camp/About/Imprint links return200. Live Chromium desktop1440 and mobile390 screenshots inspected; mobile Host navigation reaches `#host`; canonical and noindex directives confirmed. Evidence `/tmp/miso-home-build/live-verification.json`, `live-desktop.png`, `live-mobile.png`. Implementation complete. Future promotion to root is a separate decision.
+
+Owned review browser/server closed after verification; Opus workers exited and closed their browser/server resources. Completed GLM session closed after final review; failed Flash logs retained. Pre-existing unrelated untracked files remain untouched.
